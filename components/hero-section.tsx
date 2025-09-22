@@ -30,6 +30,12 @@ export function HeroSection() {
             <Button
               size="lg"
               className="text-lg px-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+              onClick={() => {
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               AI 교육 시작하기
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -38,8 +44,14 @@ export function HeroSection() {
               variant="outline"
               size="lg"
               className="text-lg px-8 border-primary/20 hover:bg-primary/5 bg-transparent"
+              onClick={() => {
+                const servicesSection = document.getElementById('services');
+                if (servicesSection) {
+                  servicesSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
-              무료 데모 체험
+              주요 통계 분석 소개
               <Zap className="ml-2 h-4 w-4" />
             </Button>
           </div>
