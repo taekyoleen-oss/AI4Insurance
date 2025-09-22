@@ -56,6 +56,20 @@ export function AboutSection() {
           <div className="space-y-6">
             <Card>
               <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4">소개</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  보험업계에서 15년간 데이터 분석과 머신러닝 연구를 수행해온 전문가입니다. 통계학 박사 학위를 보유하고
+                  있으며, 다수의 보험회사에서 AI 기반 리스크 모델링과 고객 분석 시스템을 구축한 경험이 있습니다.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  현재는 보험업계의 디지털 전환을 위한 교육과 컨설팅을 제공하며, 실무진들이 데이터 과학 기술을 효과적으로
+                  활용할 수 있도록 돕고 있습니다.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">주요 성과</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
