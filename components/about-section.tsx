@@ -1,0 +1,78 @@
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+export function AboutSection() {
+  return (
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold text-foreground mb-6">김데이터 박사</h2>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              보험업계에서 15년간 데이터 분석과 머신러닝 연구를 수행해온 전문가입니다. 통계학 박사 학위를 보유하고
+              있으며, 다수의 보험회사에서 AI 기반 리스크 모델링과 고객 분석 시스템을 구축한 경험이 있습니다.
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              현재는 보험업계의 디지털 전환을 위한 교육과 컨설팅을 제공하며, 실무진들이 데이터 과학 기술을 효과적으로
+              활용할 수 있도록 돕고 있습니다.
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold mb-2">전문 분야</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">보험 통계학</Badge>
+                  <Badge variant="secondary">머신러닝</Badge>
+                  <Badge variant="secondary">리스크 모델링</Badge>
+                  <Badge variant="secondary">고객 분석</Badge>
+                  <Badge variant="secondary">예측 분석</Badge>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2">경력 사항</h3>
+                <div className="space-y-2 text-muted-foreground">
+                  <p>• 2020-현재: 보험 AI 연구소 수석 연구원</p>
+                  <p>• 2015-2020: 대한생명 데이터분석팀 팀장</p>
+                  <p>• 2010-2015: 삼성화재 리스크관리부 선임연구원</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4">주요 성과</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                    <p className="text-muted-foreground">보험 사기 탐지 AI 모델 개발로 연간 100억원 손실 방지</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
+                    <p className="text-muted-foreground">고객 이탈 예측 모델로 고객 유지율 25% 향상</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-chart-2 rounded-full mt-2"></div>
+                    <p className="text-muted-foreground">보험료 산정 알고리즘 최적화로 수익성 15% 개선</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4">교육 철학</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  "이론과 실무의 완벽한 결합을 통해 보험업계의 실질적인 문제를 해결할 수 있는 데이터 전문가를 양성하는
+                  것이 저의 목표입니다. 복잡한 개념도 쉽게 이해할 수 있도록 실제 사례 중심의 교육을 제공합니다."
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
