@@ -7,28 +7,9 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-6">인태교 박사</h2>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              보험업계에서 15년간 데이터 분석과 머신러닝 연구를 수행해온 전문가입니다. 통계학 박사 학위를 보유하고
-              있으며, 다수의 보험회사에서 AI 기반 리스크 모델링과 고객 분석 시스템을 구축한 경험이 있습니다.
-            </p>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              현재는 보험업계의 디지털 전환을 위한 교육과 컨설팅을 제공하며, 실무진들이 데이터 과학 기술을 효과적으로
-              활용할 수 있도록 돕고 있습니다.
-            </p>
+            <h2 className="text-3xl font-bold text-foreground mb-8">인태교 박사</h2>
 
             <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">전문 분야</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">보험 통계학</Badge>
-                  <Badge variant="secondary">머신러닝</Badge>
-                  <Badge variant="secondary">리스크 모델링</Badge>
-                  <Badge variant="secondary">고객 분석</Badge>
-                  <Badge variant="secondary">예측 분석</Badge>
-                </div>
-              </div>
-
               <div>
                 <h3 className="text-lg font-semibold mb-2">경력 사항</h3>
                 <div className="space-y-2 text-muted-foreground">
@@ -48,6 +29,17 @@ export function AboutSection() {
                   <p>• 전희주, 인태교 (2025, 4). 과거질병이력과 건강검진지표에 기반한 치매 발병 예측모형 개발 - 국민건강보험공단 노인코호트DB 사용, 금융감독연구, 제 12권 1호, 1-23. (KCI)</p>
                   <p>• 전희주, 인태교 (2025.4). 간편고지보험 가입대상자 우량층 확대를 위한 요율차등화 연구: 질병입원발생 및 질병수술발생을 중심으로, 보험학회지, 제142호, 115-141. (KCI)</p>
                   <p>• 인태교, 전희주 (2025, 5). 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2">전문 분야</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">보험 통계학</Badge>
+                  <Badge variant="secondary">머신러닝</Badge>
+                  <Badge variant="secondary">리스크 모델링</Badge>
+                  <Badge variant="secondary">고객 분석</Badge>
+                  <Badge variant="secondary">예측 분석</Badge>
                 </div>
               </div>
             </div>
