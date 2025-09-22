@@ -6,28 +6,36 @@ import { BookOpen, Users, MessageSquare, TrendingUp } from "lucide-react"
 export function ServicesSection() {
   const courses = [
     {
-      title: "보험 통계학 기초",
-      description: "보험업무에 필요한 기본 통계 개념과 분석 방법을 학습합니다.",
+      title: "엑셀365를 활용한 통계분석 기초",
+      description: "엑셀365의 최신 통계 함수와 데이터 분석 도구를 활용하여 보험 실무에 필요한 데이터 처리 및 분석 능력을 향상시킵니다.",
       duration: "4주",
       level: "초급",
-      topics: ["확률론", "통계적 추론", "회귀분석", "시계열 분석"],
+      topics: ["XLOOKUP, FILTER, GROUPBY", "LAMBDA, LET, SCAN 함수", "보험료 산출 모델링", "최적값 산출 및 순환 참조"],
       icon: BookOpen,
     },
     {
-      title: "머신러닝 실무 과정",
-      description: "보험 데이터를 활용한 머신러닝 모델 구축과 활용법을 익힙니다.",
+      title: "엑셀로 하는 일반보험 모델링 실무",
+      description: "일반보험 프라이싱을 위한 빈도 및 심도 모형을 엑셀로 실습하며, 다양한 통계 기법과 시뮬레이션을 통해 실무 적용 능력을 강화합니다.",
       duration: "6주",
       level: "중급",
-      topics: ["지도학습", "비지도학습", "모델 평가", "특성 엔지니어링"],
+      topics: ["빈도 모형(이항, 포아송, 음이항)", "심도 모형(정규, 로그정규, 지수)", "Monte Carlo 시뮬레이션", "비비례 재보험 모델"],
       icon: TrendingUp,
     },
     {
-      title: "리스크 모델링",
-      description: "보험 리스크 평가와 예측 모델링 전문 과정입니다.",
+      title: "데이터 사이언스 이론 및 실무",
+      description: "보험사에서 활용 가능한 머신러닝 기법을 중심으로 지도 및 비지도 학습의 이론과 실습을 병행합니다.",
       duration: "8주",
-      level: "고급",
-      topics: ["신용리스크", "운영리스크", "시장리스크", "스트레스 테스트"],
+      level: "중급",
+      topics: ["로지스틱 회귀, 의사결정나무", "KNN, 나이브 베이즈", "주성분 분석, K-평균 클러스터링", "엑셀 기반 머신러닝 모델 구축"],
       icon: Users,
+    },
+    {
+      title: "엑셀을 통한 파이썬 데이터 분석",
+      description: "엑셀365에 내장된 파이썬 기능을 활용하여 데이터 전처리부터 분석, 시각화까지 통합된 분석 환경을 실습합니다.",
+      duration: "6주",
+      level: "중급",
+      topics: ["엑셀 내 파이썬 연동", "파이썬 기반 분석 결과 엑셀 출력", "머신러닝 분석 및 차트 생성", "실무 데이터 기반 모델링"],
+      icon: MessageSquare,
     },
   ]
 
@@ -41,7 +49,7 @@ export function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {courses.map((course, index) => {
             const Icon = course.icon
             return (
