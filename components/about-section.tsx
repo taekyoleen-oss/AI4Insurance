@@ -72,15 +72,19 @@ export function AboutSection() {
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">보험 사기 탐지 AI 모델 개발로 연간 100억원 손실 방지</p>
+                    <p className="text-muted-foreground">비비례재보험 모델링 및 시스템 도입 등 재보험 프라이싱</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">고객 이탈 예측 모델로 고객 유지율 25% 향상</p>
+                    <p className="text-muted-foreground">간편보험(SI), 신규담보 등 국내 신상품 도입 및 확대</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-chart-2 rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">보험료 산정 알고리즘 최적화로 수익성 15% 개선</p>
+                    <p className="text-muted-foreground">생명 및 손해보험 빈도-심도 모델링 등 프라이싱 강화</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-chart-3 rounded-full mt-2"></div>
+                    <p className="text-muted-foreground">신용정보, 건강정보 데이터를 통한 건강상태/신용도별 건강나이 모형</p>
                   </div>
                 </div>
               </CardContent>
