@@ -45,7 +45,7 @@ export function AboutSection() {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">소개</h3>
