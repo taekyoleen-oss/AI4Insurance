@@ -13,9 +13,12 @@ export function AboutSection() {
               <div>
                 <h3 className="text-lg font-semibold mb-2">경력 사항</h3>
                 <div className="space-y-2 text-muted-foreground">
-                  <p>• 2020-현재: 보험 AI 연구소 수석 연구원</p>
-                  <p>• 2015-2020: 대한생명 데이터분석팀 팀장</p>
-                  <p>• 2010-2015: 삼성화재 리스크관리부 선임연구원</p>
+                  <p>• 1996년 ~ 현재: 코리안리 근무</p>
+                  <p>– 상품개발 및 계리업무를 중심으로 30년간 재보험 분야에 종사</p>
+                  <p>– 2007년 스코르(SCOR) 재보험사 파견 근무를 통해 글로벌 재보험 실무 경험 축적</p>
+                  <p>– 2015~2021년 선임계리사 선임</p>
+                  <p>– 2020~2025년 상품개발팀장 역임</p>
+                  <p>– 2002년 보험계리사 자격 취득, 2018년 금융감독원 표창 수상</p>
                 </div>
               </div>
 
@@ -35,11 +38,13 @@ export function AboutSection() {
               <div>
                 <h3 className="text-lg font-semibold mb-2">전문 분야</h3>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">보험 통계학</Badge>
-                  <Badge variant="secondary">머신러닝</Badge>
-                  <Badge variant="secondary">리스크 모델링</Badge>
-                  <Badge variant="secondary">고객 분석</Badge>
-                  <Badge variant="secondary">예측 분석</Badge>
+                  <Badge variant="secondary">신규위험률 산출</Badge>
+                  <Badge variant="secondary">보험상품 개발</Badge>
+                  <Badge variant="secondary">보험분야 머신러닝</Badge>
+                  <Badge variant="secondary">프라이싱</Badge>
+                  <Badge variant="secondary">금융재보험</Badge>
+                  <Badge variant="secondary">엑셀 데이터 분석</Badge>
+                  <Badge variant="secondary">비비례재보험</Badge>
                 </div>
               </div>
             </div>
