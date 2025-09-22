@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target } from "lucide-react"
 
