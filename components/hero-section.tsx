@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target } from "lucide-react"
+import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target, Calculator } from "lucide-react"
 
 export function HeroSection() {
   return (
@@ -62,11 +62,11 @@ export function HeroSection() {
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center group hover:scale-105 transition-transform duration-300">
             <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-primary/25 transition-all">
-              <BarChart3 className="h-8 w-8 text-primary" />
+              <Calculator className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">실시간 데이터 분석</h3>
+            <h3 className="text-xl font-semibold mb-2">보험통계 분석 방법론</h3>
             <p className="text-muted-foreground">
-              빅데이터와 실시간 분석 기술로 보험 트렌드를 예측하고 인사이트를 도출합니다.
+              보험업계에 특화된 통계 분석 기법과 방법론을 통해 정확한 리스크 평가와 프라이싱을 수행합니다.
             </p>
           </div>
           <div className="text-center group hover:scale-105 transition-transform duration-300">
