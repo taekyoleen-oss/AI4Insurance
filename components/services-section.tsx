@@ -125,7 +125,7 @@ export function ServicesSection() {
           {courses.map((course, index) => {
             const Icon = course.icon
             return (
-              <Card key={index} className="h-full">
+              <Card key={index} className="h-full flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-primary" />
@@ -136,9 +136,9 @@ export function ServicesSection() {
                     <Badge variant="secondary">{course.level}</Badge>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex flex-col flex-grow">
                   <p className="text-muted-foreground mb-4 leading-relaxed">{course.description}</p>
-                  <div className="space-y-2">
+                  <div className="space-y-2 flex-grow">
                     <h4 className="font-semibold text-sm">주요 학습 내용:</h4>
                     <ul className="text-sm text-muted-foreground space-y-1">
                       {course.topics.map((topic, topicIndex) => (
@@ -149,10 +149,11 @@ export function ServicesSection() {
                       ))}
                     </ul>
                   </div>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button className="w-full mt-6">자세히 보기</Button>
-                    </DialogTrigger>
+                  <div className="mt-auto pt-4">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="w-full">자세히 보기</Button>
+                      </DialogTrigger>
                     <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-bold">{course.title}</DialogTitle>
@@ -219,7 +220,8 @@ export function ServicesSection() {
                         </div>
                       </div>
                     </DialogContent>
-                  </Dialog>
+                    </Dialog>
+                  </div>
                 </CardContent>
               </Card>
             )
