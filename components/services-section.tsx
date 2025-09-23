@@ -18,6 +18,23 @@ export function ServicesSection() {
       level: "초급",
       topics: ["XLOOKUP, FILTER, GROUPBY", "LAMBDA, LET, SCAN 함수", "보험료 산출 모델링", "최적값 산출 및 순환 참조"],
       icon: BookOpen,
+      details: {
+        overview: [
+          "엑셀365 최신 버전의 강화된 통계 및 데이터 분석 도구 소개",
+          "데이터 분석을 위한 신규 함수 활용 실무"
+        ],
+        target: [
+          "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
+          "중소규모 데이터 모델링 및 데이터 분석 관심자"
+        ],
+        requirements: "엑셀365 버전 탑재 노트북 필수",
+        curriculum: [
+          "데이터 분석용 신규 함수 20여종 소개 및 활용 (XLOOKUP, FILTER, GROUPBY 등)",
+          "엑셀365 상품개발 및 업무 활용 실습",
+          "데이터 분석 간소화 및 가공 실습",
+          "최적값 산출 및 순환참조 해찾기 실습"
+        ]
+      }
     },
     {
       title: "엑셀로 하는 일반보험 모델링 실무",
@@ -47,6 +64,25 @@ export function ServicesSection() {
       level: "중급",
       topics: ["로지스틱 회귀, 의사결정나무", "KNN, 나이브 베이즈", "주성분 분석, K-평균 클러스터링", "엑셀 기반 머신러닝 모델 구축"],
       icon: Users,
+      details: {
+        overview: [
+          "보험사 활용 가능한 머신러닝 종류 및 원리 학습",
+          "엑셀 기반 머신러닝별 분석 및 실습"
+        ],
+        target: [
+          "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
+          "중소규모 데이터 모델링 및 분석 관심자"
+        ],
+        requirements: "노트북 필수 (엑셀365 권장)",
+        curriculum: [
+          "머신러닝 개요 및 기존 모델과 차이점",
+          "보험사 활용 데이터 및 분석 목표 소개",
+          "로지스틱, 의사결정나무, KNN, 나이브-베이즈 지도학습 이론 및 실습",
+          "주성분 분석, K-평균 등 비지도학습 이론 및 실습",
+          "초급 딥러닝 개념 및 실무 예제",
+          "엑셀 기반 분석 과정 및 데이터 모델 구축 실습"
+        ]
+      }
     },
     {
       title: "엑셀을 통한 파이썬 데이터 분석",
@@ -55,6 +91,23 @@ export function ServicesSection() {
       level: "중급",
       topics: ["엑셀 내 파이썬 연동", "파이썬 기반 분석 결과 엑셀 출력", "머신러닝 분석 및 차트 생성", "실무 데이터 기반 모델링"],
       icon: MessageSquare,
+      details: {
+        overview: [
+          "엑셀 내 파이썬 활용 데이터 분석 소개",
+          "엑셀-파이썬 연계 전처리 및 분석 실습"
+        ],
+        target: [
+          "보험회사 통계 분석, 상품개발 엑셀 활용 실무자",
+          "다양한 실무 데이터 활용 모델링 및 분석 관심자"
+        ],
+        requirements: "엑셀365 탑재 노트북 필수",
+        curriculum: [
+          "엑셀365 내 파이썬 주요 특징 및 장단점",
+          "엑셀-파이썬 데이터 처리 기본 실습",
+          "데이터 전처리(엑셀), 분석(파이썬), 결과 엑셀 변환 실습",
+          "머신러닝 분석 및 차트 생성 방법 실습"
+        ]
+      }
     },
   ]
 
@@ -110,28 +163,24 @@ export function ServicesSection() {
                             <div>
                               <h3 className="text-lg font-semibold mb-3 text-primary">교육 개요</h3>
                               <ul className="space-y-2">
-                                <li className="flex items-start">
-                                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                  <span className="text-muted-foreground">빈도모형과 심도모형 소개 및 활용 방안</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                  <span className="text-muted-foreground">다양한 일반보험 프라이싱을 위한 모형 제안 및 산출과정 실습</span>
-                                </li>
+                                {(Array.isArray(course.details.overview) ? course.details.overview : [course.details.overview]).map((item, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                    <span className="text-muted-foreground">{item}</span>
+                                  </li>
+                                ))}
                               </ul>
                             </div>
                             
                             <div>
                               <h3 className="text-lg font-semibold mb-3 text-primary">교육 대상</h3>
                               <ul className="space-y-2">
-                                <li className="flex items-start">
-                                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                  <span className="text-muted-foreground">보험회사 일반보험 프라이싱 및 수리 관련 부서 실무자</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                  <span className="text-muted-foreground">통계 모형을 활용하는 리스크관리 부서 실무자</span>
-                                </li>
+                                {(Array.isArray(course.details.target) ? course.details.target : [course.details.target]).map((item, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                    <span className="text-muted-foreground">{item}</span>
+                                  </li>
+                                ))}
                               </ul>
                             </div>
                             
@@ -140,7 +189,7 @@ export function ServicesSection() {
                               <ul className="space-y-2">
                                 <li className="flex items-start">
                                   <div className="w-2 h-2 bg-chart-2 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                  <span className="text-muted-foreground">노트북 필수 (엑셀365 버전 권장)</span>
+                                  <span className="text-muted-foreground">{course.details.requirements}</span>
                                 </li>
                               </ul>
                             </div>
