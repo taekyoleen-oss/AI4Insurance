@@ -1,9 +1,15 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { BookOpen, Users, MessageSquare, TrendingUp } from "lucide-react"
+import { useState } from "react"
 
 export function ServicesSection() {
+  const [selectedCourse, setSelectedCourse] = useState<number | null>(null)
+
   const courses = [
     {
       title: "엑셀365를 활용한 통계분석 기초",
@@ -20,6 +26,19 @@ export function ServicesSection() {
       level: "중급",
       topics: ["빈도 모형(이항, 포아송, 음이항)", "심도 모형(정규, 로그정규, 지수)", "Monte Carlo 시뮬레이션", "비비례 재보험 모델"],
       icon: TrendingUp,
+      details: {
+        overview: "빈도모형과 심도모형 소개 및 활용 방안, 다양한 일반보험 프라이싱을 위한 모형 제안 및 산출과정 실습",
+        target: "보험회사 일반보험 프라이싱 및 수리 관련 부서 실무자, 통계 모형을 활용하는 리스크관리 부서 실무자",
+        requirements: "노트북 필수 (엑셀365 버전 권장)",
+        curriculum: [
+          "빈도 모형(이항, 포아송, 음이항) 소개 및 일반보험 활용 실습",
+          "심도 모형(정규, 로그정규, 지수, 파레토 등) 소개 및 일반보험 활용 실습",
+          "각종 보험가격 손해액 산출 및 Monte Carlo 시뮬레이션",
+          "극단치 분석 및 Lee-Carter 등 보험사 활용 가능한 분석 소개",
+          "엑셀365 데이터 기반 함수 활용 모델 구축 실습",
+          "비비례(Excess of Loss, Stop) 모델 이론 및 실습"
+        ]
+      }
     },
     {
       title: "데이터 사이언스 이론 및 실무",
@@ -77,7 +96,53 @@ export function ServicesSection() {
                       ))}
                     </ul>
                   </div>
-                  <Button className="w-full mt-6">자세히 보기</Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full mt-6">자세히 보기</Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold">{course.title}</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="text-lg font-semibold mb-2">교육 개요</h3>
+                          <p className="text-muted-foreground">{course.details?.overview || course.description}</p>
+                        </div>
+                        
+                        {course.details && (
+                          <>
+                            <div>
+                              <h3 className="text-lg font-semibold mb-2">교육 대상</h3>
+                              <p className="text-muted-foreground">{course.details.target}</p>
+                            </div>
+                            
+                            <div>
+                              <h3 className="text-lg font-semibold mb-2">준비 사항</h3>
+                              <p className="text-muted-foreground">{course.details.requirements}</p>
+                            </div>
+                            
+                            <div>
+                              <h3 className="text-lg font-semibold mb-2">교육 내용</h3>
+                              <ul className="space-y-2">
+                                {course.details.curriculum.map((item, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                    <span className="text-muted-foreground">{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </>
+                        )}
+                        
+                        <div className="flex gap-4 pt-4 border-t">
+                          <Badge variant="outline">{course.duration}</Badge>
+                          <Badge variant="secondary">{course.level}</Badge>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
             )
