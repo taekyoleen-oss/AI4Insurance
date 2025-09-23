@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target, Calculator } from "lucide-react"
+import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target, Calculator, Heart, TrendingUp } from "lucide-react"
 
 export function HeroSection() {
   return (
@@ -71,20 +71,20 @@ export function HeroSection() {
           </div>
           <div className="text-center group hover:scale-105 transition-transform duration-300">
             <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-accent/25 transition-all">
-              <Brain className="h-8 w-8 text-accent" />
+              <Heart className="h-8 w-8 text-accent" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">AI 예측 모델링</h3>
+            <h3 className="text-xl font-semibold mb-2">건강/의료 데이터 분석</h3>
             <p className="text-muted-foreground">
-              딥러닝과 머신러닝을 활용한 리스크 예측 및 고객 행동 분석 모델을 구축합니다.
+              건강보험 데이터와 의료 정보를 활용한 개인별 건강 위험도 평가 및 맞춤형 보험 상품 개발을 지원합니다.
             </p>
           </div>
           <div className="text-center group hover:scale-105 transition-transform duration-300">
             <div className="w-16 h-16 bg-gradient-to-br from-chart-2/20 to-chart-2/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-chart-2/25 transition-all">
-              <Target className="h-8 w-8 text-chart-2" />
+              <TrendingUp className="h-8 w-8 text-chart-2" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">스마트 자동화</h3>
+            <h3 className="text-xl font-semibold mb-2">보험 AI분석 선진화 방안</h3>
             <p className="text-muted-foreground">
-              AI 기반 자동화 솔루션으로 보험 업무 효율성을 극대화하고 혁신을 이끕니다.
+              최신 AI 기술과 고급 분석 기법을 도입하여 보험업계의 데이터 활용도와 의사결정 정확성을 혁신적으로 향상시킵니다.
             </p>
           </div>
         </div>
