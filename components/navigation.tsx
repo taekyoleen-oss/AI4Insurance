@@ -12,7 +12,7 @@ export function Navigation() {
 
   const navItems = [
     { name: "소개", href: "#about" },
-    { name: "AI 교육과정", href: "#services" },
+    { name: "보험 배움 마당", href: "#services" },
     { name: "커뮤니티", href: "#community" },
     { name: "문의", href: "#contact" },
   ]

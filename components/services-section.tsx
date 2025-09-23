@@ -116,12 +116,12 @@ export function ServicesSection() {
   return (
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-foreground mb-4">교육 과정</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            체계적인 커리큘럼으로 기초부터 고급까지 단계별 학습이 가능합니다.
-          </p>
-        </div>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-foreground mb-4">보험 배움 마당</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                체계적인 커리큘럼으로 기초부터 고급까지 단계별 학습이 가능합니다.
+              </p>
+            </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {courses.map((course, index) => {
