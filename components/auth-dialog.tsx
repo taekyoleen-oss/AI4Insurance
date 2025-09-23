@@ -1,0 +1,139 @@
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Card, CardContent } from "@/components/ui/card"
+import { useAuth } from "@/contexts/auth-context"
+
+export function AuthDialog() {
+  const [isLogin, setIsLogin] = useState(true)
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    name: ""
+  })
+  const { setIsLoggedIn } = useAuth()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // 간단한 시뮬레이션 - 실제로는 서버와 통신
+    if (isLogin) {
+      if (formData.email && formData.password) {
+        setIsLoggedIn(true)
+        alert("로그인 성공!")
+      }
+    } else {
+      if (formData.email && formData.password && formData.name && formData.password === formData.confirmPassword) {
+        setIsLoggedIn(true)
+        alert("회원가입 성공!")
+      }
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" size="sm" className="flex items-center gap-2">
+          <span>로그인/회원가입</span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-center">
+            {isLogin ? "로그인" : "회원가입"}
+          </DialogTitle>
+        </DialogHeader>
+        
+        <Card>
+          <CardContent className="p-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {!isLogin && (
+                <div>
+                  <Label htmlFor="name">이름</Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="이름을 입력하세요"
+                    required={!isLogin}
+                  />
+                </div>
+              )}
+              
+              <div>
+                <Label htmlFor="email">이메일</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="이메일을 입력하세요"
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="password">비밀번호</Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="비밀번호를 입력하세요"
+                  required
+                />
+              </div>
+              
+              {!isLogin && (
+                <div>
+                  <Label htmlFor="confirmPassword">비밀번호 확인</Label>
+                  <Input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    placeholder="비밀번호를 다시 입력하세요"
+                    required={!isLogin}
+                  />
+                </div>
+              )}
+              
+              <Button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+              >
+                {isLogin ? "로그인" : "회원가입"}
+              </Button>
+            </form>
+            
+            <div className="mt-4 text-center">
+              <Button
+                variant="ghost"
+                onClick={() => setIsLogin(!isLogin)}
+                className="text-sm"
+              >
+                {isLogin ? "계정이 없으신가요? 회원가입" : "이미 계정이 있으신가요? 로그인"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </DialogContent>
+    </Dialog>
+  )
+}

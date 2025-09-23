@@ -6,9 +6,11 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { BookOpen, Users, MessageSquare, TrendingUp } from "lucide-react"
 import { useState } from "react"
+import { useAuth } from "@/contexts/auth-context"
 
 export function ServicesSection() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null)
+  const { isLoggedIn, setIsLoggedIn } = useAuth()
 
   const courses = [
     {
@@ -257,7 +259,30 @@ export function ServicesSection() {
           </div>
 
           <div className="flex justify-center mt-8">
-            <Button size="lg">커뮤니티 가입하기</Button>
+            {isLoggedIn ? (
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MessageSquare className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">회원 전용 공간</h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  이 곳은 회원님들을 위한 정보를 제공하는 공간입니다.
+                </p>
+                <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <p className="text-sm text-muted-foreground">
+                    회원님만의 특별한 콘텐츠와 서비스를 이용하실 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <Button 
+                size="lg" 
+                onClick={() => setIsLoggedIn(true)}
+                className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+              >
+                커뮤니티 가입하기
+              </Button>
+            )}
           </div>
         </div>
       </div>

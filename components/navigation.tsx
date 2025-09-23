@@ -2,10 +2,13 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Sparkles } from "lucide-react"
+import { Menu, X, Sparkles, User, LogOut } from "lucide-react"
+import { useAuth } from "@/contexts/auth-context"
+import { AuthDialog } from "@/components/auth-dialog"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const { isLoggedIn, setIsLoggedIn } = useAuth()
 
   const navItems = [
     { name: "소개", href: "#about" },
@@ -41,12 +44,27 @@ export function Navigation() {
                 </a>
               ))}
             </div>
-            <Button
-              size="sm"
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-            >
-              무료 체험
-            </Button>
+            <div className="flex items-center gap-3">
+              <Button
+                size="sm"
+                className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+              >
+                무료 체험
+              </Button>
+              {isLoggedIn ? (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsLoggedIn(false)}
+                  className="flex items-center gap-2"
+                >
+                  <User className="h-4 w-4" />
+                  <span className="hidden sm:inline">로그아웃</span>
+                </Button>
+              ) : (
+                <AuthDialog />
+              )}
+            </div>
           </div>
 
           <div className="md:hidden">
