@@ -32,39 +32,29 @@ export function Navigation() {
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-            <div className="flex items-center gap-3">
-              <Button
-                size="sm"
-                className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
               >
-                무료 체험
+                {item.name}
+              </a>
+            ))}
+            {isLoggedIn ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsLoggedIn(false)}
+                className="flex items-center gap-2"
+              >
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">로그아웃</span>
               </Button>
-              {isLoggedIn ? (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsLoggedIn(false)}
-                  className="flex items-center gap-2"
-                >
-                  <User className="h-4 w-4" />
-                  <span className="hidden sm:inline">로그아웃</span>
-                </Button>
-              ) : (
-                <AuthDialog />
-              )}
-            </div>
+            ) : (
+              <AuthDialog />
+            )}
           </div>
 
           <div className="md:hidden">
