@@ -105,35 +105,63 @@ export function ServicesSection() {
                         <DialogTitle className="text-2xl font-bold">{course.title}</DialogTitle>
                       </DialogHeader>
                       <div className="space-y-6">
-                        <div>
-                          <h3 className="text-lg font-semibold mb-2">교육 개요</h3>
-                          <p className="text-muted-foreground">{course.details?.overview || course.description}</p>
-                        </div>
-                        
-                        {course.details && (
+                        {course.details ? (
                           <>
                             <div>
-                              <h3 className="text-lg font-semibold mb-2">교육 대상</h3>
-                              <p className="text-muted-foreground">{course.details.target}</p>
+                              <h3 className="text-lg font-semibold mb-3 text-primary">교육 개요</h3>
+                              <ul className="space-y-2">
+                                <li className="flex items-start">
+                                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                  <span className="text-muted-foreground">빈도모형과 심도모형 소개 및 활용 방안</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                  <span className="text-muted-foreground">다양한 일반보험 프라이싱을 위한 모형 제안 및 산출과정 실습</span>
+                                </li>
+                              </ul>
                             </div>
                             
                             <div>
-                              <h3 className="text-lg font-semibold mb-2">준비 사항</h3>
-                              <p className="text-muted-foreground">{course.details.requirements}</p>
+                              <h3 className="text-lg font-semibold mb-3 text-primary">교육 대상</h3>
+                              <ul className="space-y-2">
+                                <li className="flex items-start">
+                                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                  <span className="text-muted-foreground">보험회사 일반보험 프라이싱 및 수리 관련 부서 실무자</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                  <span className="text-muted-foreground">통계 모형을 활용하는 리스크관리 부서 실무자</span>
+                                </li>
+                              </ul>
                             </div>
                             
                             <div>
-                              <h3 className="text-lg font-semibold mb-2">교육 내용</h3>
+                              <h3 className="text-lg font-semibold mb-3 text-primary">준비 사항</h3>
+                              <ul className="space-y-2">
+                                <li className="flex items-start">
+                                  <div className="w-2 h-2 bg-chart-2 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                  <span className="text-muted-foreground">노트북 필수 (엑셀365 버전 권장)</span>
+                                </li>
+                              </ul>
+                            </div>
+                            
+                            <div>
+                              <h3 className="text-lg font-semibold mb-3 text-primary">교육 내용</h3>
                               <ul className="space-y-2">
                                 {course.details.curriculum.map((item, idx) => (
                                   <li key={idx} className="flex items-start">
-                                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                    <div className="w-2 h-2 bg-chart-3 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                                     <span className="text-muted-foreground">{item}</span>
                                   </li>
                                 ))}
                               </ul>
                             </div>
                           </>
+                        ) : (
+                          <div>
+                            <h3 className="text-lg font-semibold mb-2">교육 개요</h3>
+                            <p className="text-muted-foreground">{course.description}</p>
+                          </div>
                         )}
                         
                         <div className="flex gap-4 pt-4 border-t">
