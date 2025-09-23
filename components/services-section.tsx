@@ -277,10 +277,23 @@ export function ServicesSection() {
             ) : (
               <Button 
                 size="lg" 
-                onClick={() => setIsLoggedIn(true)}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    // 로그인된 경우 커뮤니티 화면으로 이동
+                    const communitySection = document.getElementById('community');
+                    if (communitySection) {
+                      communitySection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  } else {
+                    // 로그인되지 않은 경우 로그인 다이얼로그 표시
+                    if ((window as any).openAuthDialog) {
+                      (window as any).openAuthDialog();
+                    }
+                  }
+                }}
                 className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
               >
-                커뮤니티 가입하기
+                커뮤니티 들어가기
               </Button>
             )}
           </div>

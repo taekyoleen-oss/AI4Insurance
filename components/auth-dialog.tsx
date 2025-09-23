@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/auth-context"
 
 export function AuthDialog() {
   const [isLogin, setIsLogin] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,17 +19,24 @@ export function AuthDialog() {
   })
   const { setIsLoggedIn } = useAuth()
 
+  // 외부에서 다이얼로그를 열 수 있도록 전역 함수 등록
+  React.useEffect(() => {
+    (window as any).openAuthDialog = () => setIsOpen(true)
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // 간단한 시뮬레이션 - 실제로는 서버와 통신
     if (isLogin) {
       if (formData.email && formData.password) {
         setIsLoggedIn(true)
+        setIsOpen(false)
         alert("로그인 성공!")
       }
     } else {
       if (formData.email && formData.password && formData.name && formData.password === formData.confirmPassword) {
         setIsLoggedIn(true)
+        setIsOpen(false)
         alert("회원가입 성공!")
       }
     }
@@ -42,9 +50,14 @@ export function AuthDialog() {
   }
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="flex items-center gap-2">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="flex items-center gap-2"
+          data-login-trigger
+        >
           <span>로그인/회원가입</span>
         </Button>
       </DialogTrigger>
