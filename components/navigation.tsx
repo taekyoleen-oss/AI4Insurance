@@ -27,7 +27,7 @@ export function Navigation() {
                 <Sparkles className="h-4 w-4 text-white" />
               </div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                InsurTech AI
+                AI 4 Insurance
               </h1>
             </div>
           </div>
