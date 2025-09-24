@@ -29,14 +29,27 @@ export function AboutSection() {
                 </div>
               </div>
 
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold mb-4">상세 정보</h3>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2">연구 실적</h3>
+                <div className="space-y-2 text-muted-foreground text-sm">
+                  <p>• 전희주, 인태교 (2022. 12). 국민건강보험 표본코호트2.0DB를 활용한 건강상태에 따른 암발생과 암수술건수 상대위험도 연구, 리스크관리연구, 제 33권, 4호, 53-83.</p>
+                  <p>• 전희주, 인태교, 황용순 (2023. 7). 신용정보에 따른 입원 및 수술 발생 상대위험도 적용방안 연구: 신용정보원 데이터 이용, 보험학회지, 제 135호, 101-125.</p>
+                  <p>• 전희주, 인태교 (2024.4). 간편고지보험 고지항목별 무사고기간에 따른 암 발생 및 치료 상대위험도 예측, 보험학회지, 제 138호, 41-72. (KCI)</p>
+                  <p>• 전희주, 문기태, 인태교 (2024, 4). 건강상태에 따른 사망률 및 유병기간 분석과 건강여명을 활용한 건강나이 산출에 관한 연구, 금융감독연구, 제 11권 1호, 33-66. (KCI)</p>
+                  <p>• 전희주, 인태교 (2025, 4). 과거질병이력과 건강검진지표에 기반한 치매 발병 예측모형 개발 - 국민건강보험공단 노인코호트DB 사용, 금융감독연구, 제 12권 1호, 1-23. (KCI)</p>
+                  <p>• 전희주, 인태교 (2025.4). 간편고지보험 가입대상자 우량층 확대를 위한 요율차등화 연구: 질병입원발생 및 질병수술발생을 중심으로, 보험학회지, 제142호, 115-141. (KCI)</p>
+                  <p>• 인태교, 전희주 (2025, 5). 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
+                </div>
+              </div>
+
+              <div className="mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Dialog open={openDialog === "intro"} onOpenChange={(open) => setOpenDialog(open ? "intro" : null)}>
                     <DialogTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="h-20 flex flex-col items-center justify-center space-y-2 bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-800"
+                        className="h-24 w-full flex flex-col items-center justify-center space-y-2 bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-800 rounded-lg"
                       >
                         <div className="text-lg font-semibold">소개</div>
                         <div className="text-xs text-blue-600">자세히 보기</div>
@@ -64,7 +77,7 @@ export function AboutSection() {
                     <DialogTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="h-20 flex flex-col items-center justify-center space-y-2 bg-green-50 hover:bg-green-100 border-green-200 text-green-800"
+                        className="h-24 w-full flex flex-col items-center justify-center space-y-2 bg-green-50 hover:bg-green-100 border-green-200 text-green-800 rounded-lg"
                       >
                         <div className="text-lg font-semibold">주요 성과</div>
                         <div className="text-xs text-green-600">자세히 보기</div>
@@ -99,7 +112,7 @@ export function AboutSection() {
                     <DialogTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="h-20 flex flex-col items-center justify-center space-y-2 bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-800"
+                        className="h-24 w-full flex flex-col items-center justify-center space-y-2 bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-800 rounded-lg"
                       >
                         <div className="text-lg font-semibold">교육 철학</div>
                         <div className="text-xs text-purple-600">자세히 보기</div>
@@ -117,19 +130,6 @@ export function AboutSection() {
                       </div>
                     </DialogContent>
                   </Dialog>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">연구 실적</h3>
-                <div className="space-y-2 text-muted-foreground text-sm">
-                  <p>• 전희주, 인태교 (2022. 12). 국민건강보험 표본코호트2.0DB를 활용한 건강상태에 따른 암발생과 암수술건수 상대위험도 연구, 리스크관리연구, 제 33권, 4호, 53-83.</p>
-                  <p>• 전희주, 인태교, 황용순 (2023. 7). 신용정보에 따른 입원 및 수술 발생 상대위험도 적용방안 연구: 신용정보원 데이터 이용, 보험학회지, 제 135호, 101-125.</p>
-                  <p>• 전희주, 인태교 (2024.4). 간편고지보험 고지항목별 무사고기간에 따른 암 발생 및 치료 상대위험도 예측, 보험학회지, 제 138호, 41-72. (KCI)</p>
-                  <p>• 전희주, 문기태, 인태교 (2024, 4). 건강상태에 따른 사망률 및 유병기간 분석과 건강여명을 활용한 건강나이 산출에 관한 연구, 금융감독연구, 제 11권 1호, 33-66. (KCI)</p>
-                  <p>• 전희주, 인태교 (2025, 4). 과거질병이력과 건강검진지표에 기반한 치매 발병 예측모형 개발 - 국민건강보험공단 노인코호트DB 사용, 금융감독연구, 제 12권 1호, 1-23. (KCI)</p>
-                  <p>• 전희주, 인태교 (2025.4). 간편고지보험 가입대상자 우량층 확대를 위한 요율차등화 연구: 질병입원발생 및 질병수술발생을 중심으로, 보험학회지, 제142호, 115-141. (KCI)</p>
-                  <p>• 인태교, 전희주 (2025, 5). 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
                 </div>
               </div>
 
