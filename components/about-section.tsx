@@ -17,7 +17,7 @@ export function AboutSection() {
             <p className="text-sm text-muted-foreground mb-8">(보험계리사, 경영학 박사, 보험상품개발 및 재보험 경력)</p>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">경력 사항</h3>
                   <div className="space-y-2 text-muted-foreground">
