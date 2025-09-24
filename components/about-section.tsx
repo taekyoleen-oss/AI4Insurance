@@ -44,21 +44,33 @@ export function AboutSection() {
                       </div>
                       <div className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>1997~2009년 상품개발 실무자로써 우량체 등 개발</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                         <p>2007년 스코르(SCOR) 재보험사 파견 근무를 통해 글로벌 재보험 실무 경험 축적</p>
                       </div>
                       <div className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                        <p>2015~2021년 선임계리사 선임</p>
+                        <p>2009~2012년 리스크관리팀에서 DFA 구축/운영</p>
                       </div>
                       <div className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                        <p>2020~2025년 상품개발팀장 역임</p>
+                        <p>2012~2015년 장기자동차보험팀에서 장기업무 담당</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>2015~2021년 선임계리사 선임(책임준비금 등 결산 및 지급여력 비율 검증)</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>2020~2025년 상품개발팀장으로 신상품 개발 주도</p>
                       </div>
                       <div className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                         <p>2002년 보험계리사 자격 취득, 2018년 금융감독원 표창 수상</p>
-                      </div>
-                    </div>
+                </div>
+              </div>
                   </CardContent>
                 </Card>
 
@@ -106,7 +118,7 @@ export function AboutSection() {
                         <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
                         <p><span className="font-semibold">인태교, 전희주 (2025, 5)</span>. 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
                       </div>
-                    </div>
+                </div>
                   </CardContent>
                 </Card>
               </div>
@@ -137,7 +149,7 @@ export function AboutSection() {
                         <p className="text-muted-foreground leading-relaxed">
                           현재는 보험사의 디지털 전환을 위한 교육과 컨설팅을 제공하며, 실무진들이 데이터 기반 의사결정을 효과적으로 수행할 수 있도록 지원하고 있습니다.
                         </p>
-                      </div>
+            </div>
                     </DialogContent>
                   </Dialog>
 
@@ -155,24 +167,24 @@ export function AboutSection() {
                       <DialogHeader>
                         <DialogTitle>주요 성과</DialogTitle>
                       </DialogHeader>
-                      <div className="space-y-4">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                           <p className="text-muted-foreground">비비례재보험 모델링 및 시스템 도입 등 재보험 프라이싱</p>
-                        </div>
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
                           <p className="text-muted-foreground">간편보험(SI), 신규담보 등 국내 신상품 도입 및 확대</p>
-                        </div>
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-chart-2 rounded-full mt-2"></div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-chart-2 rounded-full mt-2"></div>
                           <p className="text-muted-foreground">생명 및 손해보험 빈도-심도 모델링 등 프라이싱 강화</p>
                         </div>
                         <div className="flex items-start space-x-3">
                           <div className="w-2 h-2 bg-chart-3 rounded-full mt-2"></div>
                           <p className="text-muted-foreground">신용정보, 건강정보 데이터를 통한 건강상태/신용도별 건강나이 모형</p>
-                        </div>
-                      </div>
+                  </div>
+                </div>
                     </DialogContent>
                   </Dialog>
 
@@ -191,10 +203,10 @@ export function AboutSection() {
                         <DialogTitle>교육 철학</DialogTitle>
                       </DialogHeader>
                       <div className="space-y-4">
-                        <p className="text-muted-foreground leading-relaxed">
-                          "이론과 실무의 완벽한 결합을 통해 보험업계의 실질적인 문제를 해결할 수 있는 데이터 전문가를 양성하는
-                          것이 저의 목표입니다. 복잡한 개념도 쉽게 이해할 수 있도록 실제 사례 중심의 교육을 제공합니다."
-                        </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  "이론과 실무의 완벽한 결합을 통해 보험업계의 실질적인 문제를 해결할 수 있는 데이터 전문가를 양성하는
+                  것이 저의 목표입니다. 복잡한 개념도 쉽게 이해할 수 있도록 실제 사례 중심의 교육을 제공합니다."
+                </p>
                       </div>
                     </DialogContent>
                   </Dialog>
