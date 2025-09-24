@@ -17,14 +17,14 @@ export function AboutSection() {
             <p className="text-sm text-muted-foreground mb-8">(보험계리사, 경영학 박사, 보험상품개발 및 재보험 경력)</p>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg w-full h-full">
                   <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-4 right-4 w-32 h-32 bg-blue-300 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-4 left-4 w-24 h-24 bg-blue-400 rounded-full blur-2xl"></div>
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-blue-200 rounded-full blur-3xl"></div>
                   </div>
-                  <CardContent className="relative p-8">
+                  <CardContent className="relative p-6">
                     <div className="flex items-center mb-6">
                       <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,13 +62,13 @@ export function AboutSection() {
                   </CardContent>
                 </Card>
 
-                <Card className="relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 border-green-200 shadow-lg">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 border-green-200 shadow-lg w-full h-full">
                   <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-4 right-4 w-32 h-32 bg-green-300 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-4 left-4 w-24 h-24 bg-green-400 rounded-full blur-2xl"></div>
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-green-200 rounded-full blur-3xl"></div>
                   </div>
-                  <CardContent className="relative p-8">
+                  <CardContent className="relative p-6">
                     <div className="flex items-center mb-6">
                       <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
