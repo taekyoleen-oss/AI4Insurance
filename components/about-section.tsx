@@ -112,12 +112,12 @@ export function AboutSection() {
               </div>
 
               <div className="mb-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="flex flex-wrap gap-4 max-w-md">
                   <Dialog open={openDialog === "intro"} onOpenChange={(open) => setOpenDialog(open ? "intro" : null)}>
                     <DialogTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="h-16 w-full flex flex-col items-center justify-center space-y-1 bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-800 rounded-lg"
+                        className="h-16 w-32 flex flex-col items-center justify-center space-y-1 bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-800 rounded-lg"
                       >
                         <div className="text-lg font-semibold">소개</div>
                         <div className="text-xs text-blue-600">자세히 보기</div>
@@ -145,7 +145,7 @@ export function AboutSection() {
                     <DialogTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="h-16 w-full flex flex-col items-center justify-center space-y-1 bg-green-50 hover:bg-green-100 border-green-200 text-green-800 rounded-lg"
+                        className="h-16 w-32 flex flex-col items-center justify-center space-y-1 bg-green-50 hover:bg-green-100 border-green-200 text-green-800 rounded-lg"
                       >
                         <div className="text-lg font-semibold">주요 성과</div>
                         <div className="text-xs text-green-600">자세히 보기</div>
@@ -180,7 +180,7 @@ export function AboutSection() {
                     <DialogTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="h-16 w-full flex flex-col items-center justify-center space-y-1 bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-800 rounded-lg"
+                        className="h-16 w-32 flex flex-col items-center justify-center space-y-1 bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-800 rounded-lg"
                       >
                         <div className="text-lg font-semibold">교육 철학</div>
                         <div className="text-xs text-purple-600">자세히 보기</div>
