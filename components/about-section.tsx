@@ -17,31 +17,98 @@ export function AboutSection() {
             <p className="text-sm text-muted-foreground mb-8">(보험계리사, 경영학 박사, 보험상품개발 및 재보험 경력)</p>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">경력 사항</h3>
-                  <div className="space-y-2 text-muted-foreground">
-                    <p>• 1996년 ~ 현재: 코리안리 근무</p>
-                    <p>– 상품개발 및 계리업무를 중심으로 30년간 재보험 분야에 종사</p>
-                    <p>– 2007년 스코르(SCOR) 재보험사 파견 근무를 통해 글로벌 재보험 실무 경험 축적</p>
-                    <p>– 2015~2021년 선임계리사 선임</p>
-                    <p>– 2020~2025년 상품개발팀장 역임</p>
-                    <p>– 2002년 보험계리사 자격 취득, 2018년 금융감독원 표창 수상</p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg">
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-4 right-4 w-32 h-32 bg-blue-300 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-4 left-4 w-24 h-24 bg-blue-400 rounded-full blur-2xl"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-blue-200 rounded-full blur-3xl"></div>
                   </div>
-                </div>
+                  <CardContent className="relative p-8">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-blue-800">경력 사항</h3>
+                    </div>
+                    <div className="space-y-3 text-blue-700">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <p className="font-semibold">1996년 ~ 현재: 코리안리 근무</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>상품개발 및 계리업무를 중심으로 30년간 재보험 분야에 종사</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>2007년 스코르(SCOR) 재보험사 파견 근무를 통해 글로벌 재보험 실무 경험 축적</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>2015~2021년 선임계리사 선임</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>2020~2025년 상품개발팀장 역임</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p>2002년 보험계리사 자격 취득, 2018년 금융감독원 표창 수상</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">연구 실적</h3>
-                  <div className="space-y-2 text-muted-foreground text-sm">
-                    <p>• 전희주, 인태교 (2022. 12). 국민건강보험 표본코호트2.0DB를 활용한 건강상태에 따른 암발생과 암수술건수 상대위험도 연구, 리스크관리연구, 제 33권, 4호, 53-83.</p>
-                    <p>• 전희주, 인태교, 황용순 (2023. 7). 신용정보에 따른 입원 및 수술 발생 상대위험도 적용방안 연구: 신용정보원 데이터 이용, 보험학회지, 제 135호, 101-125.</p>
-                    <p>• 전희주, 인태교 (2024.4). 간편고지보험 고지항목별 무사고기간에 따른 암 발생 및 치료 상대위험도 예측, 보험학회지, 제 138호, 41-72. (KCI)</p>
-                    <p>• 전희주, 문기태, 인태교 (2024, 4). 건강상태에 따른 사망률 및 유병기간 분석과 건강여명을 활용한 건강나이 산출에 관한 연구, 금융감독연구, 제 11권 1호, 33-66. (KCI)</p>
-                    <p>• 전희주, 인태교 (2025, 4). 과거질병이력과 건강검진지표에 기반한 치매 발병 예측모형 개발 - 국민건강보험공단 노인코호트DB 사용, 금융감독연구, 제 12권 1호, 1-23. (KCI)</p>
-                    <p>• 전희주, 인태교 (2025.4). 간편고지보험 가입대상자 우량층 확대를 위한 요율차등화 연구: 질병입원발생 및 질병수술발생을 중심으로, 보험학회지, 제142호, 115-141. (KCI)</p>
-                    <p>• 인태교, 전희주 (2025, 5). 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
+                <Card className="relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 border-green-200 shadow-lg">
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-4 right-4 w-32 h-32 bg-green-300 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-4 left-4 w-24 h-24 bg-green-400 rounded-full blur-2xl"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-green-200 rounded-full blur-3xl"></div>
                   </div>
-                </div>
+                  <CardContent className="relative p-8">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-green-800">연구 실적</h3>
+                    </div>
+                    <div className="space-y-3 text-green-700 text-sm">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">전희주, 인태교 (2022. 12)</span>. 국민건강보험 표본코호트2.0DB를 활용한 건강상태에 따른 암발생과 암수술건수 상대위험도 연구, 리스크관리연구, 제 33권, 4호, 53-83.</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">전희주, 인태교, 황용순 (2023. 7)</span>. 신용정보에 따른 입원 및 수술 발생 상대위험도 적용방안 연구: 신용정보원 데이터 이용, 보험학회지, 제 135호, 101-125.</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">전희주, 인태교 (2024.4)</span>. 간편고지보험 고지항목별 무사고기간에 따른 암 발생 및 치료 상대위험도 예측, 보험학회지, 제 138호, 41-72. (KCI)</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">전희주, 문기태, 인태교 (2024, 4)</span>. 건강상태에 따른 사망률 및 유병기간 분석과 건강여명을 활용한 건강나이 산출에 관한 연구, 금융감독연구, 제 11권 1호, 33-66. (KCI)</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">전희주, 인태교 (2025, 4)</span>. 과거질병이력과 건강검진지표에 기반한 치매 발병 예측모형 개발 - 국민건강보험공단 노인코호트DB 사용, 금융감독연구, 제 12권 1호, 1-23. (KCI)</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">전희주, 인태교 (2025.4)</span>. 간편고지보험 가입대상자 우량층 확대를 위한 요율차등화 연구: 질병입원발생 및 질병수술발생을 중심으로, 보험학회지, 제142호, 115-141. (KCI)</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">인태교, 전희주 (2025, 5)</span>. 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               <div className="mb-6">
