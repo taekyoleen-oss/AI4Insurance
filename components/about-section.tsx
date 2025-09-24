@@ -1,7 +1,13 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { useState } from "react"
 
 export function AboutSection() {
+  const [openDialog, setOpenDialog] = useState<string | null>(null)
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -20,6 +26,97 @@ export function AboutSection() {
                   <p>– 2015~2021년 선임계리사 선임</p>
                   <p>– 2020~2025년 상품개발팀장 역임</p>
                   <p>– 2002년 보험계리사 자격 취득, 2018년 금융감독원 표창 수상</p>
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold mb-4">상세 정보</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Dialog open={openDialog === "intro"} onOpenChange={(open) => setOpenDialog(open ? "intro" : null)}>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex flex-col items-center justify-center space-y-2 bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-800"
+                      >
+                        <div className="text-lg font-semibold">소개</div>
+                        <div className="text-xs text-blue-600">자세히 보기</div>
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>소개</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <p className="text-muted-foreground leading-relaxed">
+                          보험업계에서 30년간 근무하며 보험 상품 개발과 리스크 분석을 전문적으로 수행해온 전문가입니다. 보험계리사 자격증과 통계학 박사 학위를 보유하고 있으며, 머신러닝과 통계 기법을 활용한 보험 및 재보험 프라이싱 모델링에 깊은 전문성을 갖추고 있습니다.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                          생명보험, 손해보험뿐 아니라 금융재보험 등 다양한 재보험 분야에서도 실무 경험을 쌓아왔으며, 재보험 계약 구조와 수익성 분석에 능숙한 재보험 전문가입니다. 공공데이터 기반의 통계 분석에도 정통하며, 엑셀과 파이썬을 활용한 보험료 산출 및 자동화 시스템 구축에도 높은 역량을 보유하고 있습니다.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                          현재는 보험사의 디지털 전환을 위한 교육과 컨설팅을 제공하며, 실무진들이 데이터 기반 의사결정을 효과적으로 수행할 수 있도록 지원하고 있습니다.
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+
+                  <Dialog open={openDialog === "achievements"} onOpenChange={(open) => setOpenDialog(open ? "achievements" : null)}>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex flex-col items-center justify-center space-y-2 bg-green-50 hover:bg-green-100 border-green-200 text-green-800"
+                      >
+                        <div className="text-lg font-semibold">주요 성과</div>
+                        <div className="text-xs text-green-600">자세히 보기</div>
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>주요 성과</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                          <p className="text-muted-foreground">비비례재보험 모델링 및 시스템 도입 등 재보험 프라이싱</p>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
+                          <p className="text-muted-foreground">간편보험(SI), 신규담보 등 국내 신상품 도입 및 확대</p>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-chart-2 rounded-full mt-2"></div>
+                          <p className="text-muted-foreground">생명 및 손해보험 빈도-심도 모델링 등 프라이싱 강화</p>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-chart-3 rounded-full mt-2"></div>
+                          <p className="text-muted-foreground">신용정보, 건강정보 데이터를 통한 건강상태/신용도별 건강나이 모형</p>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+
+                  <Dialog open={openDialog === "philosophy"} onOpenChange={(open) => setOpenDialog(open ? "philosophy" : null)}>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex flex-col items-center justify-center space-y-2 bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-800"
+                      >
+                        <div className="text-lg font-semibold">교육 철학</div>
+                        <div className="text-xs text-purple-600">자세히 보기</div>
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>교육 철학</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <p className="text-muted-foreground leading-relaxed">
+                          "이론과 실무의 완벽한 결합을 통해 보험업계의 실질적인 문제를 해결할 수 있는 데이터 전문가를 양성하는
+                          것이 저의 목표입니다. 복잡한 개념도 쉽게 이해할 수 있도록 실제 사례 중심의 교육을 제공합니다."
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
 
@@ -51,56 +148,6 @@ export function AboutSection() {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">소개</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  보험업계에서 30년간 근무하며 보험 상품 개발과 리스크 분석을 전문적으로 수행해온 전문가입니다. 보험계리사 자격증과 통계학 박사 학위를 보유하고 있으며, 머신러닝과 통계 기법을 활용한 보험 및 재보험 프라이싱 모델링에 깊은 전문성을 갖추고 있습니다.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  생명보험, 손해보험뿐 아니라 금융재보험 등 다양한 재보험 분야에서도 실무 경험을 쌓아왔으며, 재보험 계약 구조와 수익성 분석에 능숙한 재보험 전문가입니다. 공공데이터 기반의 통계 분석에도 정통하며, 엑셀과 파이썬을 활용한 보험료 산출 및 자동화 시스템 구축에도 높은 역량을 보유하고 있습니다.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  현재는 보험사의 디지털 전환을 위한 교육과 컨설팅을 제공하며, 실무진들이 데이터 기반 의사결정을 효과적으로 수행할 수 있도록 지원하고 있습니다.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">주요 성과</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">비비례재보험 모델링 및 시스템 도입 등 재보험 프라이싱</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">간편보험(SI), 신규담보 등 국내 신상품 도입 및 확대</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-chart-2 rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">생명 및 손해보험 빈도-심도 모델링 등 프라이싱 강화</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-chart-3 rounded-full mt-2"></div>
-                    <p className="text-muted-foreground">신용정보, 건강정보 데이터를 통한 건강상태/신용도별 건강나이 모형</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">교육 철학</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  "이론과 실무의 완벽한 결합을 통해 보험업계의 실질적인 문제를 해결할 수 있는 데이터 전문가를 양성하는
-                  것이 저의 목표입니다. 복잡한 개념도 쉽게 이해할 수 있도록 실제 사례 중심의 교육을 제공합니다."
-                </p>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </div>
     </section>
