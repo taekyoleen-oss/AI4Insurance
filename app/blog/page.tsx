@@ -1,5 +1,6 @@
 import { getAllPosts, getAllCategories, getAllTags } from "@/lib/markdown";
 import FilterableBlogList from "@/components/blog/FilterableBlogList";
+import { Navigation } from "@/components/navigation";
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -8,7 +9,8 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 py-8">
+      <Navigation />
+      <div className="container mx-auto px-4 py-8 pt-24">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">

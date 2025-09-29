@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Tag, Folder } from "lucide-react";
+import { Navigation } from "@/components/navigation";
 
 interface TagPageProps {
   params: Promise<{
@@ -23,7 +24,8 @@ export default async function TagPage({ params }: TagPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 py-8">
+      <Navigation />
+      <div className="container mx-auto px-4 py-8 pt-24">
         {/* Header */}
         <div className="mb-8">
           <Link href="/">

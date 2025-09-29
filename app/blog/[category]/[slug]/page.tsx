@@ -4,6 +4,7 @@ import { getPostBySlug, getAllPosts } from "@/lib/markdown";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Folder, Tag, Clock } from "lucide-react";
+import { Navigation } from "@/components/navigation";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -22,7 +23,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 py-8">
+      <Navigation />
+      <div className="container mx-auto px-4 py-8 pt-24">
         {/* Back Button */}
         <div className="mb-8">
           <Link href="/">
