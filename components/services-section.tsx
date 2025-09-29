@@ -233,7 +233,7 @@ export function ServicesSection() {
         <div id="community" className="bg-card rounded-lg p-8">
           <div className="text-center mb-8">
             <MessageSquare className="h-12 w-12 text-accent mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-foreground mb-4">정보 교환 커뮤니티</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-4">보험 모델링 실무자료</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               동료들과 함께 학습하고 실무 경험을 공유할 수 있는 온라인 커뮤니티에 참여하세요.
             </p>
