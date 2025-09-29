@@ -2,11 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target, Calculator, Heart, TrendingUp } from "lucide-react"
-import { useRouter } from "next/navigation"
 
 export function HeroSection() {
-  const router = useRouter()
-  
   return (
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
@@ -50,7 +47,10 @@ export function HeroSection() {
               size="lg"
               className="text-lg px-8 border-primary/20 hover:bg-primary/5 bg-transparent"
               onClick={() => {
-                router.push('/blog');
+                const communitySection = document.getElementById('community');
+                if (communitySection) {
+                  communitySection.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
             >
               보험 모델링 실무자료
