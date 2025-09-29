@@ -49,7 +49,11 @@ export function HeroSection() {
               onClick={() => {
                 const communitySection = document.getElementById('community');
                 if (communitySection) {
-                  communitySection.scrollIntoView({ behavior: 'smooth' });
+                  const offsetTop = communitySection.offsetTop - 80; // 네비게이션 바 높이만큼 오프셋
+                  window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                  });
                 }
               }}
             >
