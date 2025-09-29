@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Card, CardContent } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useAuth } from "@/contexts/auth-context"
+import { useRouter } from "next/navigation"
 
 export function AuthDialog() {
   const [isLogin, setIsLogin] = useState(true)
@@ -20,6 +21,7 @@ export function AuthDialog() {
   })
   const [rememberMe, setRememberMe] = useState(false)
   const { setIsLoggedIn } = useAuth()
+  const router = useRouter()
 
   // 외부에서 다이얼로그를 열 수 있도록 전역 함수 등록
   React.useEffect(() => {
@@ -61,12 +63,22 @@ export function AuthDialog() {
         setIsLoggedIn(true)
         setIsOpen(false)
         alert("로그인 성공!")
+        
+        // 로그인 성공 후 블로그로 이동
+        setTimeout(() => {
+          router.push('/blog')
+        }, 100)
       }
     } else {
       if (formData.email && formData.password && formData.name && formData.password === formData.confirmPassword) {
         setIsLoggedIn(true)
         setIsOpen(false)
         alert("회원가입 성공!")
+        
+        // 회원가입 성공 후 블로그로 이동
+        setTimeout(() => {
+          router.push('/blog')
+        }, 100)
       }
     }
   }
