@@ -131,9 +131,9 @@ export default function FilterableBlogList({ posts, categories, tags }: Filterab
             <CardContent>
               <div className="space-y-2">
                 {categories.map((category) => (
-                  <button
+                  <Link
                     key={category}
-                    onClick={() => handleCategoryClick(category)}
+                    href={`/category/${category}`}
                     className={`w-full flex items-center gap-2 p-2 rounded-lg transition-colors group ${
                       selectedCategory === category
                         ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold'
@@ -149,7 +149,7 @@ export default function FilterableBlogList({ posts, categories, tags }: Filterab
                     <Badge variant="secondary" className="ml-auto text-xs">
                       {posts.filter(post => post.category === category).length}
                     </Badge>
-                  </button>
+                  </Link>
                 ))}
               </div>
             </CardContent>
@@ -166,9 +166,9 @@ export default function FilterableBlogList({ posts, categories, tags }: Filterab
             <CardContent>
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                  <button
+                  <Link
                     key={tag}
-                    onClick={() => handleTagClick(tag)}
+                    href={`/tag/${tag}`}
                     className={`inline-flex items-center gap-1 transition-colors ${
                       selectedTags.includes(tag)
                         ? 'bg-blue-600 text-white'
@@ -186,7 +186,7 @@ export default function FilterableBlogList({ posts, categories, tags }: Filterab
                       <Tag className="w-3 h-3 mr-1" />
                       {tag}
                     </Badge>
-                  </button>
+                  </Link>
                 ))}
               </div>
             </CardContent>

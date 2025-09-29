@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               더 많은 글 보기
             </h3>
             <div className="flex flex-wrap gap-2">
-              <Link href="/">
+              <Link href="/blog">
                 <Button variant="outline" size="sm">
                   모든 글 보기
                 </Button>
