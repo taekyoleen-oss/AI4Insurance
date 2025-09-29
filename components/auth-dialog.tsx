@@ -1,11 +1,12 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
 import { useAuth } from "@/contexts/auth-context"
 
 export function AuthDialog() {
@@ -17,6 +18,7 @@ export function AuthDialog() {
     confirmPassword: "",
     name: ""
   })
+  const [rememberMe, setRememberMe] = useState(false)
   const { setIsLoggedIn } = useAuth()
 
   // 외부에서 다이얼로그를 열 수 있도록 전역 함수 등록
@@ -24,11 +26,38 @@ export function AuthDialog() {
     (window as any).openAuthDialog = () => setIsOpen(true)
   }, [])
 
+  // 저장된 로그인 정보 불러오기
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('savedEmail')
+    const savedPassword = localStorage.getItem('savedPassword')
+    const savedRememberMe = localStorage.getItem('rememberMe') === 'true'
+    
+    if (savedEmail && savedPassword && savedRememberMe) {
+      setFormData(prev => ({
+        ...prev,
+        email: savedEmail,
+        password: savedPassword
+      }))
+      setRememberMe(true)
+    }
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // 간단한 시뮬레이션 - 실제로는 서버와 통신
     if (isLogin) {
       if (formData.email && formData.password) {
+        // 로그인 정보 저장 처리
+        if (rememberMe) {
+          localStorage.setItem('savedEmail', formData.email)
+          localStorage.setItem('savedPassword', formData.password)
+          localStorage.setItem('rememberMe', 'true')
+        } else {
+          localStorage.removeItem('savedEmail')
+          localStorage.removeItem('savedPassword')
+          localStorage.removeItem('rememberMe')
+        }
+        
         setIsLoggedIn(true)
         setIsOpen(false)
         alert("로그인 성공!")
@@ -111,6 +140,19 @@ export function AuthDialog() {
                   required
                 />
               </div>
+
+              {isLogin && (
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="rememberMe"
+                    checked={rememberMe}
+                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                  />
+                  <Label htmlFor="rememberMe" className="text-sm">
+                    로그인 정보 저장
+                  </Label>
+                </div>
+              )}
               
               {!isLogin && (
                 <div>
