@@ -23,11 +23,27 @@ export function Navigation() {
     }
   }
 
+  const handleNavClick = (href: string, e: React.MouseEvent) => {
+    e.preventDefault()
+    if (href.startsWith('/#')) {
+      // 홈페이지로 이동 후 해당 섹션으로 스크롤
+      router.push('/')
+      setTimeout(() => {
+        const element = document.querySelector(href.replace('/', ''))
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    } else {
+      router.push(href)
+    }
+  }
+
   const navItems = [
-    { name: "소개", href: "#about" },
-    { name: "보험 배움 마당", href: "#services" },
+    { name: "소개", href: "/#about" },
+    { name: "보험 배움 마당", href: "/#services" },
     { name: "커뮤니티", href: "/blog", isCommunity: true },
-    { name: "문의", href: "#contact" },
+    { name: "문의", href: "/#contact" },
   ]
 
   return (
@@ -56,13 +72,13 @@ export function Navigation() {
                   {item.name}
                 </button>
               ) : (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
+                  onClick={(e) => handleNavClick(item.href, e)}
                   className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
                 >
                   {item.name}
-                </a>
+                </button>
               )
             ))}
             {isLoggedIn ? (
@@ -103,14 +119,16 @@ export function Navigation() {
                     {item.name}
                   </button>
                 ) : (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
-                    className="text-muted-foreground hover:text-primary block px-3 py-2 text-base font-medium"
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      handleNavClick(item.href, e)
+                      setIsOpen(false)
+                    }}
+                    className="text-muted-foreground hover:text-primary block px-3 py-2 text-base font-medium w-full text-left"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 )
               ))}
             </div>
