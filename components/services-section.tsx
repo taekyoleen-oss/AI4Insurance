@@ -273,17 +273,24 @@ export function ServicesSection() {
                     회원님만의 특별한 콘텐츠와 서비스를 이용하실 수 있습니다.
                   </p>
                 </div>
+                <div className="mt-6">
+                  <Button 
+                    size="lg" 
+                    onClick={() => window.location.href = '/blog'}
+                    className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+                  >
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    보험 모델링 실무자료 보기
+                  </Button>
+                </div>
               </div>
             ) : (
               <Button 
                 size="lg" 
                 onClick={() => {
                   if (isLoggedIn) {
-                    // 로그인된 경우 커뮤니티 화면으로 이동
-                    const communitySection = document.getElementById('community');
-                    if (communitySection) {
-                      communitySection.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    // 로그인된 경우 블로그로 이동
+                    window.location.href = '/blog';
                   } else {
                     // 로그인되지 않은 경우 로그인 다이얼로그 표시
                     if ((window as any).openAuthDialog) {
