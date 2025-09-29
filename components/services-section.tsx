@@ -8,7 +8,14 @@ import { BookOpen, Users, MessageSquare, TrendingUp } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
-export function ServicesSection() {
+import { LatestBlogCards } from "@/components/latest-blog-cards"
+import { BlogPostMeta } from "@/lib/markdown"
+
+interface ServicesSectionProps {
+  latestPosts: BlogPostMeta[]
+}
+
+export function ServicesSection({ latestPosts }: ServicesSectionProps) {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null)
   const { isLoggedIn, setIsLoggedIn } = useAuth()
   const router = useRouter()
@@ -172,7 +179,7 @@ export function ServicesSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div className="text-center">
               <div className="text-2xl font-bold text-primary mb-2">500+</div>
               <div className="text-sm text-muted-foreground">활성 회원</div>
@@ -189,6 +196,11 @@ export function ServicesSection() {
               <div className="text-2xl font-bold text-chart-3 mb-2">24/7</div>
               <div className="text-sm text-muted-foreground">실시간 지원</div>
             </div>
+          </div>
+
+          <div className="mb-8">
+            <h4 className="text-lg font-semibold text-center mb-6">최신 실무 자료</h4>
+            <LatestBlogCards posts={latestPosts} />
           </div>
 
           <div className="flex justify-center mt-8">
