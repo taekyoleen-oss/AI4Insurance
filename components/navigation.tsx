@@ -5,15 +5,28 @@ import { Button } from "@/components/ui/button"
 import { Menu, X, Sparkles, User, LogOut } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { AuthDialog } from "@/components/auth-dialog"
+import { useRouter } from "next/navigation"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const { isLoggedIn, setIsLoggedIn } = useAuth()
+  const router = useRouter()
+
+  const handleCommunityClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (isLoggedIn) {
+      router.push('/blog')
+    } else {
+      if ((window as any).openAuthDialog) {
+        (window as any).openAuthDialog()
+      }
+    }
+  }
 
   const navItems = [
     { name: "소개", href: "#about" },
     { name: "보험 배움 마당", href: "#services" },
-    { name: "커뮤니티", href: "/blog" },
+    { name: "커뮤니티", href: "/blog", isCommunity: true },
     { name: "문의", href: "#contact" },
   ]
 
@@ -34,13 +47,23 @@ export function Navigation() {
 
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
-              >
-                {item.name}
-              </a>
+              item.isCommunity ? (
+                <button
+                  key={item.name}
+                  onClick={handleCommunityClick}
+                  className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
+                >
+                  {item.name}
+                </a>
+              )
             ))}
             {isLoggedIn ? (
               <Button
@@ -68,14 +91,27 @@ export function Navigation() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary block px-3 py-2 text-base font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.isCommunity ? (
+                  <button
+                    key={item.name}
+                    onClick={(e) => {
+                      handleCommunityClick(e)
+                      setIsOpen(false)
+                    }}
+                    className="text-muted-foreground hover:text-primary block px-3 py-2 text-base font-medium w-full text-left"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-muted-foreground hover:text-primary block px-3 py-2 text-base font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
             </div>
           </div>

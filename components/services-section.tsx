@@ -215,14 +215,9 @@ export function ServicesSection({ latestPosts }: ServicesSectionProps) {
               <Button 
                 size="lg" 
                 onClick={() => {
-                  if (isLoggedIn) {
-                    // 로그인된 경우 블로그로 이동
-                    router.push('/blog');
-                  } else {
-                    // 로그인되지 않은 경우 로그인 다이얼로그 표시
-                    if ((window as any).openAuthDialog) {
-                      (window as any).openAuthDialog();
-                    }
+                  // 로그인되지 않은 경우 로그인 다이얼로그 표시
+                  if ((window as any).openAuthDialog) {
+                    (window as any).openAuthDialog();
                   }
                 }}
                 className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
