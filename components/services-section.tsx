@@ -8,29 +8,26 @@ import { BookOpen, Users, MessageSquare, TrendingUp } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
+import { LatestBlogCards } from "@/components/latest-blog-cards"
+import { getAllPosts } from "@/lib/markdown"
 
 export function ServicesSection() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null)
   const { isLoggedIn, setIsLoggedIn } = useAuth()
   const router = useRouter()
+  
+  // 최신 블로그 포스트 가져오기
+  const latestPosts = getAllPosts()
 
   const courses = [
     {
       title: "엑셀365를 활용한 통계분석 기초",
       description: "엑셀365의 최신 통계 함수와 데이터 분석 도구를 활용하여 보험 실무에 필요한 데이터 처리 및 분석 능력을 향상시킵니다.",
-      duration: "4주",
       level: "초급",
-      topics: ["XLOOKUP, FILTER, GROUPBY", "LAMBDA, LET, SCAN 함수", "보험료 산출 모델링", "최적값 산출 및 순환 참조"],
-      icon: BookOpen,
+      duration: "2일",
       details: {
-        overview: [
-          "엑셀365 최신 버전의 강화된 통계 및 데이터 분석 도구 소개",
-          "데이터 분석을 위한 신규 함수 활용 실무"
-        ],
-        target: [
-          "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
-          "중소규모 데이터 모델링 및 데이터 분석 관심자"
-        ],
+        overview: "엑셀365 최신 버전의 강화된 통계 및 데이터 분석 도구 소개",
+        target: "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
         requirements: "엑셀365 버전 탑재 노트북 필수",
         curriculum: [
           "데이터 분석용 신규 함수 20여종 소개 및 활용 (XLOOKUP, FILTER, GROUPBY 등)",
@@ -43,13 +40,11 @@ export function ServicesSection() {
     {
       title: "엑셀로 하는 일반보험 모델링 실무",
       description: "일반보험 프라이싱을 위한 빈도 및 심도 모형을 엑셀로 실습하며, 다양한 통계 기법과 시뮬레이션을 통해 실무 적용 능력을 강화합니다.",
-      duration: "6주",
       level: "중급",
-      topics: ["빈도 모형(이항, 포아송, 음이항)", "심도 모형(정규, 로그정규, 지수)", "Monte Carlo 시뮬레이션", "비비례 재보험 모델"],
-      icon: TrendingUp,
+      duration: "3일",
       details: {
-        overview: "빈도모형과 심도모형 소개 및 활용 방안, 다양한 일반보험 프라이싱을 위한 모형 제안 및 산출과정 실습",
-        target: "보험회사 일반보험 프라이싱 및 수리 관련 부서 실무자, 통계 모형을 활용하는 리스크관리 부서 실무자",
+        overview: "빈도모형과 심도모형 소개 및 활용 방안",
+        target: "보험회사 일반보험 프라이싱 및 수리 관련 부서 실무자",
         requirements: "노트북 필수 (엑셀365 버전 권장)",
         curriculum: [
           "빈도 모형(이항, 포아송, 음이항) 소개 및 일반보험 활용 실습",
@@ -64,19 +59,11 @@ export function ServicesSection() {
     {
       title: "데이터 사이언스 이론 및 실무",
       description: "보험사에서 활용 가능한 머신러닝 기법을 중심으로 지도 및 비지도 학습의 이론과 실습을 병행합니다.",
-      duration: "8주",
       level: "중급",
-      topics: ["로지스틱 회귀, 의사결정나무", "KNN, 나이브 베이즈", "주성분 분석, K-평균 클러스터링", "엑셀 기반 머신러닝 모델 구축"],
-      icon: Users,
+      duration: "3일",
       details: {
-        overview: [
-          "보험사 활용 가능한 머신러닝 종류 및 원리 학습",
-          "엑셀 기반 머신러닝별 분석 및 실습"
-        ],
-        target: [
-          "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
-          "중소규모 데이터 모델링 및 분석 관심자"
-        ],
+        overview: "보험사 활용 가능한 머신러닝 종류 및 원리 학습",
+        target: "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
         requirements: "노트북 필수 (엑셀365 권장)",
         curriculum: [
           "머신러닝 개요 및 기존 모델과 차이점",
@@ -91,19 +78,11 @@ export function ServicesSection() {
     {
       title: "엑셀을 통한 파이썬 데이터 분석",
       description: "엑셀365에 내장된 파이썬 기능을 활용하여 데이터 전처리부터 분석, 시각화까지 통합된 분석 환경을 실습합니다.",
-      duration: "6주",
       level: "중급",
-      topics: ["엑셀 내 파이썬 연동", "파이썬 기반 분석 결과 엑셀 출력", "머신러닝 분석 및 차트 생성", "실무 데이터 기반 모델링"],
-      icon: MessageSquare,
+      duration: "2일",
       details: {
-        overview: [
-          "엑셀 내 파이썬 활용 데이터 분석 소개",
-          "엑셀-파이썬 연계 전처리 및 분석 실습"
-        ],
-        target: [
-          "보험회사 통계 분석, 상품개발 엑셀 활용 실무자",
-          "다양한 실무 데이터 활용 모델링 및 분석 관심자"
-        ],
+        overview: "엑셀 내 파이썬 활용 데이터 분석 소개",
+        target: "보험회사 통계 분석, 상품개발 엑셀 활용 실무자",
         requirements: "엑셀365 탑재 노트북 필수",
         curriculum: [
           "엑셀365 내 파이썬 주요 특징 및 장단점",
@@ -112,124 +91,82 @@ export function ServicesSection() {
           "머신러닝 분석 및 차트 생성 방법 실습"
         ]
       }
-    },
+    }
   ]
 
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-foreground mb-4">보험 배움 마당</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                체계적인 커리큘럼으로 기초부터 고급까지 단계별 학습이 가능합니다.
-              </p>
-            </div>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            보험 배움 마당
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            실무 중심의 보험 데이터 분석 및 모델링 교육 과정을 통해 전문성을 향상시키세요.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {courses.map((course, index) => {
-            const Icon = course.icon
-            return (
-              <Card key={index} className="h-full flex flex-col">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{course.title}</CardTitle>
-                  <div className="flex gap-2">
-                    <Badge variant="outline">{course.duration}</Badge>
-                    <Badge variant="secondary">{course.level}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex flex-col flex-grow">
-                  <p className="text-muted-foreground mb-4 leading-relaxed">{course.description}</p>
-                  <div className="space-y-2 flex-grow">
-                    <h4 className="font-semibold text-sm">주요 학습 내용:</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {course.topics.map((topic, topicIndex) => (
-                        <li key={topicIndex} className="flex items-center">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></div>
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-auto pt-4">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button className="w-full">자세히 보기</Button>
-                      </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          {courses.map((course, index) => (
+            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:scale-105 flex flex-col">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between mb-2">
+                  <Badge variant="secondary" className="text-xs">
+                    {course.level}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">{course.duration}</span>
+                </div>
+                <CardTitle className="text-lg line-clamp-2 group-hover:text-primary transition-colors">
+                  {course.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0 flex-grow">
+                <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                  {course.description}
+                </p>
+                <div className="mt-auto pt-4">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full"
+                        onClick={() => setSelectedCourse(index)}
+                      >
+                        자세히 보기
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
                       <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold">{course.title}</DialogTitle>
+                        <DialogTitle className="text-2xl">{course.title}</DialogTitle>
                       </DialogHeader>
                       <div className="space-y-6">
-                        {course.details ? (
-                          <>
-                            <div>
-                              <h3 className="text-lg font-semibold mb-3 text-primary">교육 개요</h3>
-                              <ul className="space-y-2">
-                                {(Array.isArray(course.details.overview) ? course.details.overview : [course.details.overview]).map((item, idx) => (
-                                  <li key={idx} className="flex items-start">
-                                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <span className="text-muted-foreground">{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h3 className="text-lg font-semibold mb-3 text-primary">교육 대상</h3>
-                              <ul className="space-y-2">
-                                {(Array.isArray(course.details.target) ? course.details.target : [course.details.target]).map((item, idx) => (
-                                  <li key={idx} className="flex items-start">
-                                    <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <span className="text-muted-foreground">{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h3 className="text-lg font-semibold mb-3 text-primary">준비 사항</h3>
-                              <ul className="space-y-2">
-                                <li className="flex items-start">
-                                  <div className="w-2 h-2 bg-chart-2 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                  <span className="text-muted-foreground">{course.details.requirements}</span>
-                                </li>
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h3 className="text-lg font-semibold mb-3 text-primary">교육 내용</h3>
-                              <ul className="space-y-2">
-                                {course.details.curriculum.map((item, idx) => (
-                                  <li key={idx} className="flex items-start">
-                                    <div className="w-2 h-2 bg-chart-3 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                    <span className="text-muted-foreground">{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </>
-                        ) : (
-                          <div>
-                            <h3 className="text-lg font-semibold mb-2">교육 개요</h3>
-                            <p className="text-muted-foreground">{course.description}</p>
-                          </div>
-                        )}
-                        
-                        <div className="flex gap-4 pt-4 border-t">
-                          <Badge variant="outline">{course.duration}</Badge>
-                          <Badge variant="secondary">{course.level}</Badge>
+                        <div>
+                          <h4 className="font-semibold mb-2">교육 개요</h4>
+                          <p className="text-muted-foreground">{course.details.overview}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">교육 대상</h4>
+                          <p className="text-muted-foreground">{course.details.target}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">준비 사항</h4>
+                          <p className="text-muted-foreground">{course.details.requirements}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">교육 내용</h4>
+                          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                            {course.details.curriculum.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
                     </DialogContent>
-                    </Dialog>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
+                  </Dialog>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         <div id="community" className="bg-card rounded-lg p-8">
@@ -237,75 +174,11 @@ export function ServicesSection() {
             <MessageSquare className="h-12 w-12 text-accent mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-foreground mb-4">보험 모델링 실무자료</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              동료들과 함께 학습하고 실무 경험을 공유할 수 있는 온라인 커뮤니티에 참여하세요.
+              최신 보험 모델링 및 데이터 분석 관련 실무 자료를 확인하세요.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary mb-2">500+</div>
-              <div className="text-sm text-muted-foreground">활성 회원</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-accent mb-2">1,200+</div>
-              <div className="text-sm text-muted-foreground">토론 주제</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-chart-2 mb-2">50+</div>
-              <div className="text-sm text-muted-foreground">전문가 멘토</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-chart-3 mb-2">24/7</div>
-              <div className="text-sm text-muted-foreground">실시간 지원</div>
-            </div>
-          </div>
-
-          <div className="flex justify-center mt-8">
-            {isLoggedIn ? (
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MessageSquare className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">회원 전용 공간</h3>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  이 곳은 회원님들을 위한 정보를 제공하는 공간입니다.
-                </p>
-                <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
-                  <p className="text-sm text-muted-foreground">
-                    회원님만의 특별한 콘텐츠와 서비스를 이용하실 수 있습니다.
-                  </p>
-                </div>
-                <div className="mt-6">
-                  <Button 
-                    size="lg" 
-                    onClick={() => router.push('/blog')}
-                    className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-                  >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    보험 모델링 실무자료 보기
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <Button 
-                size="lg" 
-                onClick={() => {
-                  if (isLoggedIn) {
-                    // 로그인된 경우 블로그로 이동
-                    router.push('/blog');
-                  } else {
-                    // 로그인되지 않은 경우 로그인 다이얼로그 표시
-                    if ((window as any).openAuthDialog) {
-                      (window as any).openAuthDialog();
-                    }
-                  }
-                }}
-                className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-              >
-                커뮤니티 들어가기
-              </Button>
-            )}
-          </div>
+          <LatestBlogCards posts={latestPosts} />
         </div>
       </div>
     </section>
