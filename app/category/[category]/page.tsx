@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostsByCategory, getAllCategories, getAllTags } from "@/lib/markdown";
+import { getPostsByCategory, getAllCategories, getAllTags, getAllPosts } from "@/lib/markdown";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ interface CategoryPageProps {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
   const posts = getPostsByCategory(category);
+  const allPosts = getAllPosts();
   const categories = getAllCategories();
   const tags = getAllTags();
 
@@ -68,7 +69,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                         }`} />
                         <span className="capitalize text-sm font-medium">{cat}</span>
                         <Badge variant="secondary" className="ml-auto text-xs">
-                          {posts.filter(post => post.category === cat).length}
+                          {allPosts.filter(post => post.category === cat).length}
                         </Badge>
                       </Link>
                     ))}

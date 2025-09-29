@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostsByTag, getAllTags, getAllCategories } from "@/lib/markdown";
+import { getPostsByTag, getAllTags, getAllCategories, getAllPosts } from "@/lib/markdown";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ interface TagPageProps {
 export default async function TagPage({ params }: TagPageProps) {
   const { tag } = await params;
   const posts = getPostsByTag(tag);
+  const allPosts = getAllPosts();
   const tags = getAllTags();
   const categories = getAllCategories();
 
@@ -60,7 +61,7 @@ export default async function TagPage({ params }: TagPageProps) {
                         <FileText className="w-4 h-4 text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
                         <span className="capitalize text-sm font-medium">{cat}</span>
                         <Badge variant="secondary" className="ml-auto text-xs">
-                          {posts.filter(post => post.category === cat).length}
+                          {allPosts.filter(post => post.category === cat).length}
                         </Badge>
                       </Link>
                     ))}
