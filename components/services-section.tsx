@@ -9,15 +9,16 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
 import { LatestBlogCards } from "@/components/latest-blog-cards"
-import { getAllPosts } from "@/lib/markdown"
+import { BlogPostMeta } from "@/lib/markdown"
 
-export function ServicesSection() {
+interface ServicesSectionProps {
+  latestPosts: BlogPostMeta[]
+}
+
+export function ServicesSection({ latestPosts }: ServicesSectionProps) {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null)
   const { isLoggedIn, setIsLoggedIn } = useAuth()
   const router = useRouter()
-  
-  // 최신 블로그 포스트 가져오기
-  const latestPosts = getAllPosts()
 
   const courses = [
     {
