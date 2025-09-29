@@ -6,11 +6,13 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { BookOpen, Users, MessageSquare, TrendingUp } from "lucide-react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
 
 export function ServicesSection() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null)
   const { isLoggedIn, setIsLoggedIn } = useAuth()
+  const router = useRouter()
 
   const courses = [
     {
@@ -276,7 +278,7 @@ export function ServicesSection() {
                 <div className="mt-6">
                   <Button 
                     size="lg" 
-                    onClick={() => window.location.href = '/blog'}
+                    onClick={() => router.push('/blog')}
                     className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
                   >
                     <MessageSquare className="mr-2 h-5 w-5" />
@@ -290,7 +292,7 @@ export function ServicesSection() {
                 onClick={() => {
                   if (isLoggedIn) {
                     // 로그인된 경우 블로그로 이동
-                    window.location.href = '/blog';
+                    router.push('/blog');
                   } else {
                     // 로그인되지 않은 경우 로그인 다이얼로그 표시
                     if ((window as any).openAuthDialog) {
