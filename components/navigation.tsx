@@ -26,14 +26,31 @@ export function Navigation() {
   const handleNavClick = (href: string, e: React.MouseEvent) => {
     e.preventDefault()
     if (href.startsWith('/#')) {
-      // 홈페이지로 이동 후 해당 섹션으로 스크롤
-      router.push('/')
-      setTimeout(() => {
+      // 현재 페이지가 홈페이지인지 확인
+      if (window.location.pathname === '/') {
+        // 홈페이지에 있으면 바로 스크롤
         const element = document.querySelector(href.replace('/', ''))
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
+          const offsetTop = element.offsetTop - 80 // 네비게이션 바 높이만큼 오프셋
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          })
         }
-      }, 100)
+      } else {
+        // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
+        router.push('/')
+        setTimeout(() => {
+          const element = document.querySelector(href.replace('/', ''))
+          if (element) {
+            const offsetTop = element.offsetTop - 80 // 네비게이션 바 높이만큼 오프셋
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            })
+          }
+        }, 200) // 페이지 로딩을 위해 시간 증가
+      }
     } else {
       router.push(href)
     }
