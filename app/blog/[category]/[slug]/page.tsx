@@ -13,6 +13,9 @@ interface BlogPostPageProps {
   }>;
 }
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { category, slug } = await params;
   const post = await getPostBySlug(category, slug);
