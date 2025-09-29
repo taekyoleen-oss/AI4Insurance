@@ -2,8 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, BarChart3, Brain, Sparkles, Zap, Target, Calculator, Heart, TrendingUp } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function HeroSection() {
+  const router = useRouter()
+  
   return (
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
@@ -39,7 +42,7 @@ export function HeroSection() {
                 }
               }}
             >
-              AI 교육 시작하기
+              보험 배움 마당
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
@@ -47,13 +50,10 @@ export function HeroSection() {
               size="lg"
               className="text-lg px-8 border-primary/20 hover:bg-primary/5 bg-transparent"
               onClick={() => {
-                const servicesSection = document.getElementById('services');
-                if (servicesSection) {
-                  servicesSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                router.push('/blog');
               }}
             >
-              주요 통계 분석 소개
+              보험 모델링 실무자료
               <Zap className="ml-2 h-4 w-4" />
             </Button>
           </div>
