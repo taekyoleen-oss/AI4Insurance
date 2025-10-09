@@ -10,32 +10,47 @@ export function MobileLinksCard() {
 
   const handleNavigation = (path: string) => {
     if (path.startsWith("/#")) {
-      // 현재 페이지가 홈페이지인지 확인
-      if (window.location.pathname === "/") {
-        // 홈페이지에 있으면 바로 스크롤
-        const targetId = path.replace("/#", "");
+      const targetId = path.replace("/#", "");
+      
+      const scrollToElement = () => {
         const element = document.getElementById(targetId);
         if (element) {
-          const offsetTop = element.offsetTop - 120; // 네비게이션 바 높이 + 여유 공간
+          const rect = element.getBoundingClientRect();
+          const offsetTop = window.pageYOffset + rect.top - 120;
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
           });
+          return true;
+        }
+        return false;
+      };
+
+      // 현재 페이지가 홈페이지인지 확인
+      if (window.location.pathname === "/") {
+        // 홈페이지에 있으면 바로 스크롤 시도
+        if (!scrollToElement()) {
+          // 요소가 아직 로드되지 않았다면 잠시 후 재시도
+          setTimeout(() => {
+            scrollToElement();
+          }, 100);
         }
       } else {
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push("/");
         setTimeout(() => {
-          const targetId = path.replace("/#", "");
-          const element = document.getElementById(targetId);
-          if (element) {
-            const offsetTop = element.offsetTop - 120; // 네비게이션 바 높이 + 여유 공간
-            window.scrollTo({
-              top: offsetTop,
-              behavior: "smooth",
-            });
-          }
-        }, 500); // 페이지 로딩을 위해 시간 증가
+          // 여러 번 시도하여 요소가 로드될 때까지 기다림
+          let attempts = 0;
+          const maxAttempts = 10;
+          const tryScroll = () => {
+            if (scrollToElement() || attempts >= maxAttempts) {
+              return;
+            }
+            attempts++;
+            setTimeout(tryScroll, 200);
+          };
+          tryScroll();
+        }, 300);
       }
     } else {
       router.push(path);
