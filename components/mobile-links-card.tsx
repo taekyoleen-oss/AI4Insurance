@@ -12,63 +12,32 @@ export function MobileLinksCard() {
     if (path.startsWith("/#")) {
       const targetId = path.replace("/#", "");
       
-      const scrollToTarget = () => {
-        const element = document.getElementById(targetId);
-        if (element) {
-          // 요소의 정확한 위치 계산
-          const rect = element.getBoundingClientRect();
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const elementTop = rect.top + scrollTop;
-          const offsetTop = elementTop - 120;
-          
-          // 강제로 스크롤 실행
-          window.scrollTo({
-            top: Math.max(0, offsetTop),
-            behavior: "smooth",
-          });
-          
-          // 스크롤이 제대로 되지 않으면 강제로 다시 시도
-          setTimeout(() => {
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            const targetScroll = Math.max(0, offsetTop);
-            if (Math.abs(currentScroll - targetScroll) > 50) {
-              window.scrollTo({
-                top: targetScroll,
-                behavior: "smooth",
-              });
-            }
-          }, 100);
-          
-          return true;
-        }
-        return false;
-      };
-
       // 현재 페이지가 홈페이지인지 확인
       if (window.location.pathname === "/") {
-        // 홈페이지에 있으면 즉시 스크롤 시도
-        if (!scrollToTarget()) {
-          // 요소가 없으면 잠시 후 재시도
-          setTimeout(() => {
-            scrollToTarget();
-          }, 200);
-        }
+        // 홈페이지에 있으면 바로 스크롤
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: "smooth", 
+              block: "start",
+              inline: "nearest"
+            });
+          }
+        }, 100);
       } else {
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push("/");
         setTimeout(() => {
-          // 여러 번 시도
-          let attempts = 0;
-          const maxAttempts = 5;
-          const tryScroll = () => {
-            if (scrollToTarget() || attempts >= maxAttempts) {
-              return;
-            }
-            attempts++;
-            setTimeout(tryScroll, 300);
-          };
-          tryScroll();
-        }, 500);
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: "smooth", 
+              block: "start",
+              inline: "nearest"
+            });
+          }
+        }, 1000);
       }
     } else {
       router.push(path);
