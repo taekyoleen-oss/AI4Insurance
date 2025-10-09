@@ -54,7 +54,7 @@ export function MobileLinksCard() {
       title: "보험 모델링 실무 자료",
       description: "실무 중심의 보험 데이터 분석 자료",
       icon: <FileText className="h-5 w-5" />,
-      href: "/blog",
+      href: "/#community",
       color: "from-accent to-accent/80",
     },
     {
