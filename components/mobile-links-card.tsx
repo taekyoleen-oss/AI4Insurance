@@ -3,11 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, FileText, MessageCircle, ExternalLink } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function MobileLinksCard() {
-  const router = useRouter();
-
   // 앵커 링크를 사용하여 네이티브 스크롤을 활용합니다.
 
   const linkItems = [
@@ -45,7 +43,7 @@ export function MobileLinksCard() {
               variant="outline"
               className="w-full h-auto p-4 justify-start text-left hover:shadow-md transition-all duration-200"
             >
-              <a href={item.href}>
+              <Link href={item.href} scroll>
                 <div className="flex items-center gap-4 w-full">
                   <div
                     className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}
@@ -62,7 +60,7 @@ export function MobileLinksCard() {
                   </div>
                   <ExternalLink className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 </div>
-              </a>
+              </Link>
             </Button>
           ))}
         </div>
