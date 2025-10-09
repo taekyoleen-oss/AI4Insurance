@@ -13,9 +13,10 @@ export function MobileLinksCard() {
       // 현재 페이지가 홈페이지인지 확인
       if (window.location.pathname === "/") {
         // 홈페이지에 있으면 바로 스크롤
-        const element = document.querySelector(path.replace("/", ""));
+        const targetId = path.replace("/#", "");
+        const element = document.getElementById(targetId);
         if (element) {
-          const offsetTop = element.offsetTop - 80; // 네비게이션 바 높이만큼 오프셋
+          const offsetTop = element.offsetTop - 100; // 네비게이션 바 높이 + 여유 공간
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -25,15 +26,16 @@ export function MobileLinksCard() {
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push("/");
         setTimeout(() => {
-          const element = document.querySelector(path.replace("/", ""));
+          const targetId = path.replace("/#", "");
+          const element = document.getElementById(targetId);
           if (element) {
-            const offsetTop = element.offsetTop - 80; // 네비게이션 바 높이만큼 오프셋
+            const offsetTop = element.offsetTop - 100; // 네비게이션 바 높이 + 여유 공간
             window.scrollTo({
               top: offsetTop,
               behavior: "smooth",
             });
           }
-        }, 200); // 페이지 로딩을 위해 시간 증가
+        }, 500); // 페이지 로딩을 위해 시간 증가
       }
     } else {
       router.push(path);
