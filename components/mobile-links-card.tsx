@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, FileText, MessageCircle, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -8,33 +9,7 @@ import { useRouter } from "next/navigation";
 export function MobileLinksCard() {
   const router = useRouter();
 
-  const handleNavigation = (path: string) => {
-    if (path.startsWith("/#")) {
-      const targetId = path.replace("/#", "");
-      
-      const scrollToTarget = () => {
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: "smooth", 
-            block: "start"
-          });
-        }
-      };
-
-      // 현재 페이지가 홈페이지인지 확인
-      if (window.location.pathname === "/") {
-        // 홈페이지에 있으면 바로 스크롤
-        setTimeout(scrollToTarget, 100);
-      } else {
-        // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
-        router.push("/");
-        setTimeout(scrollToTarget, 1000);
-      }
-    } else {
-      router.push(path);
-    }
-  };
+  // 앵커 링크를 사용하여 네이티브 스크롤을 활용합니다.
 
   const linkItems = [
     {
@@ -67,26 +42,28 @@ export function MobileLinksCard() {
           {linkItems.map((item, index) => (
             <Button
               key={index}
+              asChild
               variant="outline"
               className="w-full h-auto p-4 justify-start text-left hover:shadow-md transition-all duration-200"
-              onClick={() => handleNavigation(item.href)}
             >
-              <div className="flex items-center gap-4 w-full">
-                <div
-                  className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}
-                >
-                  <div className="text-white">{item.icon}</div>
+              <Link href={item.href} scroll>
+                <div className="flex items-center gap-4 w-full">
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}
+                  >
+                    <div className="text-white">{item.icon}</div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-foreground text-base mb-1">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {item.description}
+                    </p>
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground text-base mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {item.description}
-                  </p>
-                </div>
-                <ExternalLink className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-              </div>
+              </Link>
             </Button>
           ))}
         </div>
