@@ -26,6 +26,9 @@ export default function HomePage() {
       {/* 모바일용 레이아웃 - md 미만에서만 표시 */}
       <div className="md:hidden">
         <MobileHeroSection />
+        <AboutSection />
+        <ServicesSection latestPosts={latestPosts} />
+        <ContactSection />
       </div>
 
       <Footer />
