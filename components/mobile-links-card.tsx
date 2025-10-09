@@ -12,13 +12,14 @@ export function MobileLinksCard() {
     if (path.startsWith("/#")) {
       const targetId = path.replace("/#", "");
       
-      const scrollToElement = () => {
+      const scrollToTarget = () => {
         const element = document.getElementById(targetId);
         if (element) {
-          const rect = element.getBoundingClientRect();
-          const offsetTop = window.pageYOffset + rect.top - 120;
+          const elementTop = element.offsetTop;
+          const offsetTop = elementTop - 120;
+          
           window.scrollTo({
-            top: offsetTop,
+            top: Math.max(0, offsetTop),
             behavior: "smooth",
           });
           return true;
@@ -28,29 +29,16 @@ export function MobileLinksCard() {
 
       // 현재 페이지가 홈페이지인지 확인
       if (window.location.pathname === "/") {
-        // 홈페이지에 있으면 바로 스크롤 시도
-        if (!scrollToElement()) {
-          // 요소가 아직 로드되지 않았다면 잠시 후 재시도
-          setTimeout(() => {
-            scrollToElement();
-          }, 100);
-        }
+        // 홈페이지에 있으면 바로 스크롤
+        setTimeout(() => {
+          scrollToTarget();
+        }, 50);
       } else {
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push("/");
         setTimeout(() => {
-          // 여러 번 시도하여 요소가 로드될 때까지 기다림
-          let attempts = 0;
-          const maxAttempts = 10;
-          const tryScroll = () => {
-            if (scrollToElement() || attempts >= maxAttempts) {
-              return;
-            }
-            attempts++;
-            setTimeout(tryScroll, 200);
-          };
-          tryScroll();
-        }, 300);
+          scrollToTarget();
+        }, 800);
       }
     } else {
       router.push(path);
