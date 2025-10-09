@@ -47,7 +47,7 @@ export function MobileLinksCard() {
       title: "보험 배움 마당",
       description: "보험 통계 및 AI 분석 교육 과정",
       icon: <BookOpen className="h-5 w-5" />,
-      href: "/#services",
+      href: "/#services-title",
       color: "from-primary to-primary/80",
     },
     {
