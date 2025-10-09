@@ -9,69 +9,29 @@ export function MobileLinksCard() {
   const router = useRouter();
 
   const handleNavigation = (path: string) => {
-    console.log("handleNavigation called with:", path);
-    
     if (path.startsWith("/#")) {
       const targetId = path.replace("/#", "");
-      console.log("Target ID:", targetId);
       
-      const scrollToElement = () => {
+      const scrollToTarget = () => {
         const element = document.getElementById(targetId);
-        console.log("Element found:", element);
-        
         if (element) {
-          console.log("Scrolling to element:", element);
           element.scrollIntoView({ 
             behavior: "smooth", 
-            block: "start",
-            inline: "nearest"
+            block: "start"
           });
-          return true;
-        } else {
-          console.log("Element not found, trying again...");
-          return false;
         }
       };
-      
+
       // 현재 페이지가 홈페이지인지 확인
       if (window.location.pathname === "/") {
-        console.log("On homepage, scrolling immediately");
         // 홈페이지에 있으면 바로 스크롤
-        if (!scrollToElement()) {
-          // 요소가 없으면 여러 번 시도
-          let attempts = 0;
-          const maxAttempts = 10;
-          const tryScroll = () => {
-            console.log(`Attempt ${attempts + 1} to find element`);
-            if (scrollToElement() || attempts >= maxAttempts) {
-              return;
-            }
-            attempts++;
-            setTimeout(tryScroll, 200);
-          };
-          setTimeout(tryScroll, 100);
-        }
+        setTimeout(scrollToTarget, 100);
       } else {
-        console.log("Not on homepage, navigating to /");
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push("/");
-        setTimeout(() => {
-          console.log("After navigation, trying to scroll");
-          let attempts = 0;
-          const maxAttempts = 15;
-          const tryScroll = () => {
-            console.log(`Post-navigation attempt ${attempts + 1} to find element`);
-            if (scrollToElement() || attempts >= maxAttempts) {
-              return;
-            }
-            attempts++;
-            setTimeout(tryScroll, 300);
-          };
-          tryScroll();
-        }, 500);
+        setTimeout(scrollToTarget, 1000);
       }
     } else {
-      console.log("Not a hash link, navigating to:", path);
       router.push(path);
     }
   };
