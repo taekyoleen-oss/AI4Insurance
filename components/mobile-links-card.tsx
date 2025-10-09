@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, FileText, MessageCircle, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -16,21 +15,21 @@ export function MobileLinksCard() {
       title: "보험 배움 마당",
       description: "보험 통계 및 AI 분석 교육 과정",
       icon: <BookOpen className="h-5 w-5" />,
-      href: "/#services-title",
+      href: "#services-title",
       color: "from-primary to-primary/80",
     },
     {
       title: "보험 모델링 실무 자료",
       description: "실무 중심의 보험 데이터 분석 자료",
       icon: <FileText className="h-5 w-5" />,
-      href: "/#community",
+      href: "#community",
       color: "from-accent to-accent/80",
     },
     {
       title: "문의하기",
       description: "궁금한 점이 있으시면 언제든 문의하세요",
       icon: <MessageCircle className="h-5 w-5" />,
-      href: "/#contact",
+      href: "#contact",
       color: "from-chart-2 to-chart-2/80",
     },
   ];
@@ -46,7 +45,7 @@ export function MobileLinksCard() {
               variant="outline"
               className="w-full h-auto p-4 justify-start text-left hover:shadow-md transition-all duration-200"
             >
-              <Link href={item.href} scroll>
+              <a href={item.href}>
                 <div className="flex items-center gap-4 w-full">
                   <div
                     className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}
@@ -63,7 +62,7 @@ export function MobileLinksCard() {
                   </div>
                   <ExternalLink className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 </div>
-              </Link>
+              </a>
             </Button>
           ))}
         </div>
