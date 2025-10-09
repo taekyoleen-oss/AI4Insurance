@@ -16,7 +16,7 @@ export function MobileLinksCard() {
         const targetId = path.replace("/#", "");
         const element = document.getElementById(targetId);
         if (element) {
-          const offsetTop = element.offsetTop - 100; // 네비게이션 바 높이 + 여유 공간
+          const offsetTop = element.offsetTop - 120; // 네비게이션 바 높이 + 여유 공간
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -29,7 +29,7 @@ export function MobileLinksCard() {
           const targetId = path.replace("/#", "");
           const element = document.getElementById(targetId);
           if (element) {
-            const offsetTop = element.offsetTop - 100; // 네비게이션 바 높이 + 여유 공간
+            const offsetTop = element.offsetTop - 120; // 네비게이션 바 높이 + 여유 공간
             window.scrollTo({
               top: offsetTop,
               behavior: "smooth",
