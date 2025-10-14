@@ -23,33 +23,37 @@ export function Navigation() {
     }
   }
 
+  // 직접 스크롤 처리 함수 (모바일 링크 카드와 동일한 로직)
+  const handleScrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // 헤더 높이를 고려한 오프셋 (128px = 32 * 4)
+      const headerOffset = 128;
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const handleNavClick = (href: string, e: React.MouseEvent) => {
     e.preventDefault()
     if (href.startsWith('/#')) {
+      const sectionId = href.replace('/#', '');
+      
       // 현재 페이지가 홈페이지인지 확인
       if (window.location.pathname === '/') {
         // 홈페이지에 있으면 바로 스크롤
-        const element = document.querySelector(href.replace('/', ''))
-        if (element) {
-          const offsetTop = element.offsetTop - 80 // 네비게이션 바 높이만큼 오프셋
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          })
-        }
+        handleScrollToSection(sectionId);
       } else {
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push('/')
         setTimeout(() => {
-          const element = document.querySelector(href.replace('/', ''))
-          if (element) {
-            const offsetTop = element.offsetTop - 80 // 네비게이션 바 높이만큼 오프셋
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            })
-          }
-        }, 200) // 페이지 로딩을 위해 시간 증가
+          handleScrollToSection(sectionId);
+        }, 300) // 페이지 로딩을 위해 시간 증가
       }
     } else {
       router.push(href)
@@ -66,7 +70,7 @@ export function Navigation() {
 
   const navItems = [
     { name: "소개", href: "/#about" },
-    { name: "보험 배움 마당", href: "/#services" },
+    { name: "보험 배움 마당", href: "/#services-title" },
     { name: "커뮤니티", href: "/blog", isCommunity: true },
     { name: "문의", href: "/#contact" },
   ]
