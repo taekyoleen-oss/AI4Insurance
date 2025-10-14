@@ -66,7 +66,8 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        {/* PC용 레이아웃 - md 이상에서만 표시 */}
+        <div className="hidden md:flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <button 
               onClick={handleLogoClick}
@@ -81,8 +82,7 @@ export function Navigation() {
             </button>
           </div>
 
-          {/* PC용 네비게이션 - md 이상에서만 표시 */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
@@ -106,14 +106,30 @@ export function Navigation() {
               <AuthDialog />
             )}
           </div>
+        </div>
 
-          {/* 모바일용 네비게이션 - md 미만에서만 표시 */}
-          <div className="md:hidden flex items-center space-x-4">
+        {/* 모바일용 레이아웃 - md 미만에서만 표시 */}
+        <div className="md:hidden">
+          <div className="flex items-center gap-2 mb-4">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                <Sparkles className="h-4 w-4 text-white" />
+              </div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                AI 4 Insurance
+              </h1>
+            </button>
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={(e) => handleNavClick(item.href, e)}
-                className="text-muted-foreground hover:text-primary px-2 py-1 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
+                className="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
               >
                 {item.name}
               </button>
