@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -17,7 +18,9 @@ export function AuthDialog() {
     email: "",
     password: "",
     confirmPassword: "",
-    name: ""
+    name: "",
+    organization: "",
+    bio: ""
   })
   const [rememberMe, setRememberMe] = useState(false)
   const { setIsLoggedIn } = useAuth()
@@ -83,7 +86,7 @@ export function AuthDialog() {
     }
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -177,6 +180,39 @@ export function AuthDialog() {
                     onChange={handleInputChange}
                     placeholder="비밀번호를 다시 입력하세요"
                     required={!isLogin}
+                  />
+                </div>
+              )}
+
+              {!isLogin && (
+                <div>
+                  <Label htmlFor="organization">
+                    조직명 <span className="text-muted-foreground text-sm">(선택사항)</span>
+                  </Label>
+                  <Input
+                    id="organization"
+                    name="organization"
+                    type="text"
+                    value={formData.organization}
+                    onChange={handleInputChange}
+                    placeholder="소속 조직명을 입력하세요"
+                  />
+                </div>
+              )}
+
+              {!isLogin && (
+                <div>
+                  <Label htmlFor="bio">
+                    자기소개 <span className="text-muted-foreground text-sm">(선택사항)</span>
+                  </Label>
+                  <Textarea
+                    id="bio"
+                    name="bio"
+                    value={formData.bio}
+                    onChange={handleInputChange}
+                    placeholder="간단한 자기소개를 입력하세요"
+                    rows={3}
+                    className="resize-none"
                   />
                 </div>
               )}
