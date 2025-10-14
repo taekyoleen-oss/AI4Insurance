@@ -12,7 +12,7 @@ export function AboutSection() {
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 scroll-mt-32">
       <div className="max-w-7xl mx-auto">
         <div className="space-y-12">
-          <div>
+          <div className="hidden md:block">
             <h2 className="text-3xl font-bold text-foreground mb-2">인태교</h2>
             <p className="text-sm text-muted-foreground mb-8">(보험계리사, 경영학 박사, 보험상품개발 및 재보험 경력)</p>
 
