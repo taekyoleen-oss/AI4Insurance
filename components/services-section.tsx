@@ -108,7 +108,7 @@ export function ServicesSection({ latestPosts }: ServicesSectionProps) {
   return (
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div id="services-title" className="text-center mb-16 scroll-mt-24">
+        <div id="services-title" className="text-center mb-16 scroll-mt-32">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             보험 배움 마당
           </h2>
@@ -194,7 +194,7 @@ export function ServicesSection({ latestPosts }: ServicesSectionProps) {
           ))}
         </div>
 
-        <div id="community" className="bg-card rounded-lg p-8 scroll-mt-24">
+        <div id="community" className="bg-card rounded-lg p-8 scroll-mt-32">
           <div className="text-center mb-8">
             <MessageSquare className="h-12 w-12 text-accent mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-foreground mb-4">
