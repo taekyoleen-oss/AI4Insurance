@@ -9,7 +9,7 @@ import { useState } from "react"
 export function AboutSection() {
   const [openDialog, setOpenDialog] = useState<string | null>(null)
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 scroll-mt-32">
       <div className="max-w-7xl mx-auto">
         <div className="space-y-12">
           <div>
