@@ -6,25 +6,51 @@ import { BookOpen, FileText, MessageCircle, ExternalLink } from "lucide-react";
 
 export function MobileLinksCard() {
 
-  // 직접 스크롤 처리 함수
+  // 모바일 친화적인 스크롤 처리 함수
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // 헤더 높이를 고려한 오프셋 (128px = 32 * 4)
-      const headerOffset = 128;
+      // 모바일에서 더 큰 오프셋 적용
+      const headerOffset = 150; // 모바일 네비게이션 높이 고려
       const elementPosition = element.offsetTop;
       const offsetPosition = elementPosition - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      // 모바일에서 더 안정적인 스크롤을 위해 여러 방법 시도
+      try {
+        // 1. 기본 window.scrollTo 시도
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // 2. 모바일에서 안정성을 위해 setTimeout으로 재시도
+        setTimeout(() => {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
+        
+        // 3. scrollIntoView도 함께 시도 (모바일 호환성)
+        setTimeout(() => {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 200);
+        
+      } catch (error) {
+        console.log('모바일 링크 카드 스크롤 오류:', error);
+        // 폴백: 즉시 스크롤
+        window.scrollTo(0, offsetPosition);
+      }
     }
   };
 
   // 클릭 핸들러
   const handleClick = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
+    console.log('모바일 링크 카드 스크롤 시도:', sectionId);
     handleScrollToSection(sectionId);
   };
 

@@ -86,6 +86,20 @@
   }
   html {
     scroll-behavior: smooth;
+    /* 모바일 스크롤 개선 */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+  
+  /* 모바일 스크롤 개선 */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+  
+  /* 모바일에서 스크롤 성능 개선 */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
   body {
     @apply bg-background text-foreground;
