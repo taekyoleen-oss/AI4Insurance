@@ -16,6 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/contexts/auth-context";
 import { useRouter } from "next/navigation";
+import { signUp, signIn } from "@/lib/auth";
 
 export function AuthDialog() {
   const [isLogin, setIsLogin] = useState(true);
@@ -29,6 +30,7 @@ export function AuthDialog() {
     bio: "",
   });
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { setIsLoggedIn } = useAuth();
   const router = useRouter();
 
@@ -53,47 +55,52 @@ export function AuthDialog() {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 간단한 시뮬레이션 - 실제로는 서버와 통신
-    if (isLogin) {
-      if (formData.email && formData.password) {
-        // 로그인 정보 저장 처리
-        if (rememberMe) {
-          localStorage.setItem("savedEmail", formData.email);
-          localStorage.setItem("savedPassword", formData.password);
-          localStorage.setItem("rememberMe", "true");
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        // 로그인
+        const { data, error } = await signIn(formData.email, formData.password);
+
+        if (error) {
+          alert("로그인 실패: " + error.message);
         } else {
-          localStorage.removeItem("savedEmail");
-          localStorage.removeItem("savedPassword");
-          localStorage.removeItem("rememberMe");
+          setIsLoggedIn(true);
+          setIsOpen(false);
+          alert("로그인 성공!");
+          router.push("/blog");
+        }
+      } else {
+        // 회원가입
+        if (formData.password !== formData.confirmPassword) {
+          alert("비밀번호가 일치하지 않습니다.");
+          setLoading(false);
+          return;
         }
 
-        setIsLoggedIn(true);
-        setIsOpen(false);
-        alert("로그인 성공!");
+        const { data, error } = await signUp(
+          formData.email,
+          formData.password,
+          formData.name,
+          formData.organization,
+          formData.bio
+        );
 
-        // 로그인 성공 후 블로그로 이동
-        setTimeout(() => {
+        if (error) {
+          alert("회원가입 실패: " + error.message);
+        } else {
+          setIsLoggedIn(true);
+          setIsOpen(false);
+          alert("회원가입 성공!");
           router.push("/blog");
-        }, 100);
+        }
       }
-    } else {
-      if (
-        formData.email &&
-        formData.password &&
-        formData.name &&
-        formData.password === formData.confirmPassword
-      ) {
-        setIsLoggedIn(true);
-        setIsOpen(false);
-        alert("회원가입 성공!");
-
-        // 회원가입 성공 후 블로그로 이동
-        setTimeout(() => {
-          router.push("/blog");
-        }, 100);
-      }
+    } catch (error) {
+      alert("오류가 발생했습니다: " + error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -226,23 +233,24 @@ export function AuthDialog() {
                       (선택사항)
                     </span>
                   </Label>
-                    <Textarea
-                      id="bio"
-                      name="bio"
-                      value={formData.bio}
-                      onChange={handleInputChange}
-                      placeholder="간단한 자기소개를 입력하세요"
-                      rows={2}
-                      className="resize-none"
-                    />
+                  <Textarea
+                    id="bio"
+                    name="bio"
+                    value={formData.bio}
+                    onChange={handleInputChange}
+                    placeholder="간단한 자기소개를 입력하세요"
+                    rows={2}
+                    className="resize-none"
+                  />
                 </div>
               )}
 
               <Button
                 type="submit"
                 className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
+                disabled={loading}
               >
-                {isLogin ? "로그인" : "회원가입"}
+                {loading ? "처리중..." : isLogin ? "로그인" : "회원가입"}
               </Button>
             </form>
 
