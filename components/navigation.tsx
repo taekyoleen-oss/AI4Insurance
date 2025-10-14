@@ -1,14 +1,12 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Sparkles, User, LogOut } from "lucide-react"
+import { Sparkles, User } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { AuthDialog } from "@/components/auth-dialog"
 import { useRouter } from "next/navigation"
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
   const { isLoggedIn, setIsLoggedIn } = useAuth()
   const router = useRouter()
 
@@ -83,6 +81,7 @@ export function Navigation() {
             </button>
           </div>
 
+          {/* PC용 네비게이션 - md 이상에서만 표시 */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
@@ -108,32 +107,37 @@ export function Navigation() {
             )}
           </div>
 
-          <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+          {/* 모바일용 네비게이션 - md 미만에서만 표시 */}
+          <div className="md:hidden flex items-center space-x-4">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={(e) => handleNavClick(item.href, e)}
+                className="text-muted-foreground hover:text-primary px-2 py-1 text-sm font-medium transition-colors hover:bg-primary/5 rounded-lg"
+              >
+                {item.name}
+              </button>
+            ))}
+            {isLoggedIn ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsLoggedIn(false)}
+                className="flex items-center gap-1"
+              >
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">로그아웃</span>
+              </Button>
+            ) : (
+              <AuthDialog />
+            )}
           </div>
         </div>
 
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={(e) => {
-                    handleNavClick(item.href, e)
-                    setIsOpen(false)
-                  }}
-                  className="text-muted-foreground hover:text-primary block px-3 py-2 text-base font-medium w-full text-left"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   )
 }
+
+
+
