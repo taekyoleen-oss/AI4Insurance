@@ -9,6 +9,7 @@ import {
 } from "react";
 import { supabase } from "@/lib/supabase";
 import { User } from "@supabase/supabase-js";
+import { wakeUpSupabase } from "@/lib/supabase-keepalive";
 
 interface AuthContextType {
   user: User | null;
@@ -25,6 +26,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Supabase 프로젝트가 일시 중지된 경우 깨우기
+    wakeUpSupabase();
+
     // 초기 세션 확인
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -41,7 +45,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    // 주기적으로 Supabase 연결 유지 (10분마다)
+    const keepAliveInterval = setInterval(() => {
+      wakeUpSupabase();
+    }, 10 * 60 * 1000); // 10분
+
+    return () => {
+      subscription.unsubscribe();
+      clearInterval(keepAliveInterval);
+    };
   }, []);
 
   return (
