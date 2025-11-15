@@ -13,6 +13,56 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto">
         <div className="space-y-12">
           <div className="hidden md:block">
+            {/* 플랫폼 소개 문구 */}
+            <div className="mb-6 text-center">
+              <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
+                보험사를 위한 End-to-End 머신러닝 자동화 플랫폼
+              </p>
+              <a
+                href="https://www.InsureAutoFlow.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  const primaryUrl = "https://www.InsureAutoFlow.com";
+                  const fallbackUrl = "https://data-pipeline-pro-793766388839.us-west1.run.app";
+                  
+                  // Primary URL을 시도
+                  const newWindow = window.open(primaryUrl, "_blank", "noopener,noreferrer");
+                  
+                  // 팝업이 차단되었거나 실패한 경우 fallback으로 이동
+                  if (!newWindow || newWindow.closed || typeof newWindow.closed === "undefined") {
+                    // 팝업이 차단된 경우 현재 창에서 fallback으로 이동
+                    e.preventDefault();
+                    window.location.href = fallbackUrl;
+                  } else {
+                    // 새 창이 열렸지만, 일정 시간 후에도 로드되지 않으면 fallback으로 리다이렉트 시도
+                    setTimeout(() => {
+                      try {
+                        // Cross-origin 제한으로 인해 location 접근이 실패할 수 있음
+                        // 이 경우는 정상적인 경우이므로 무시
+                        if (newWindow.location.href === "about:blank") {
+                          newWindow.location.href = fallbackUrl;
+                        }
+                      } catch (err) {
+                        // Cross-origin 에러는 정상적인 경우이므로 무시
+                        // Primary URL이 정상적으로 로드된 것으로 간주
+                      }
+                    }, 2000);
+                  }
+                }}
+                onAuxClick={(e) => {
+                  // 중간 클릭(새 탭)의 경우 기본 동작 사용
+                  // Primary URL이 작동하지 않으면 사용자가 직접 fallback URL을 사용할 수 있음
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:from-primary/90 hover:to-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                <span>InsureAutoFlow</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+            
             <h2 className="text-3xl font-bold text-foreground mb-2">인태교</h2>
             <p className="text-sm text-muted-foreground mb-8">(보험계리사, 경영학 박사, 보험상품개발 및 재보험 경력)</p>
 
