@@ -13,43 +13,61 @@ export function Navigation() {
 
   // 모바일 친화적인 스크롤 처리 함수
   const handleScrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // 모바일에서 더 큰 오프셋 적용
-      const headerOffset = 150; // 모바일 네비게이션 높이 고려
-      const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - headerOffset;
+    // 요소를 찾을 때까지 재시도
+    const findAndScroll = (retries = 0) => {
+      const element = document.getElementById(sectionId);
+      
+      if (!element) {
+        // 요소를 찾지 못한 경우 재시도 (최대 5번)
+        if (retries < 5) {
+          setTimeout(() => findAndScroll(retries + 1), 100);
+        } else {
+          console.warn(`섹션을 찾을 수 없습니다: ${sectionId}`);
+        }
+        return;
+      }
 
-      // 모바일에서 더 안정적인 스크롤을 위해 여러 방법 시도
-      try {
-        // 1. 기본 window.scrollTo 시도
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        // 2. 모바일에서 안정성을 위해 setTimeout으로 재시도
-        setTimeout(() => {
+      // 네비게이션 바 높이 계산 (모바일에서 더 높을 수 있음)
+      const nav = document.querySelector('nav');
+      const navHeight = nav ? nav.offsetHeight : 120;
+      const headerOffset = navHeight + 20; // 여유 공간 추가
+
+      // 요소의 실제 위치 계산
+      const rect = element.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const elementTop = rect.top + scrollTop;
+      const offsetPosition = elementTop - headerOffset;
+
+      // 모바일에서 더 안정적인 스크롤
+      const scrollToPosition = () => {
+        // requestAnimationFrame을 사용하여 더 부드러운 스크롤
+        requestAnimationFrame(() => {
           window.scrollTo({
-            top: offsetPosition,
+            top: Math.max(0, offsetPosition),
             behavior: 'smooth'
           });
-        }, 100);
+        });
+      };
+
+      // 즉시 스크롤 시도
+      scrollToPosition();
+
+      // 모바일 브라우저 호환성을 위해 추가 시도
+      setTimeout(() => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const targetScroll = Math.max(0, offsetPosition);
         
-        // 3. scrollIntoView도 함께 시도 (모바일 호환성)
-        setTimeout(() => {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        // 목표 위치에 도달하지 못한 경우 재시도
+        if (Math.abs(currentScroll - targetScroll) > 50) {
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
           });
-        }, 200);
-        
-      } catch (error) {
-        console.log('스크롤 오류:', error);
-        // 폴백: 즉시 스크롤
-        window.scrollTo(0, offsetPosition);
-      }
-    }
+        }
+      }, 300);
+    };
+
+    findAndScroll();
   };
 
   const handleNavClick = (href: string, e: React.MouseEvent) => {
@@ -60,15 +78,17 @@ export function Navigation() {
       // 현재 페이지가 홈페이지인지 확인
       if (window.location.pathname === '/') {
         // 홈페이지에 있으면 바로 스크롤
-        console.log('모바일 스크롤 시도:', sectionId);
-        handleScrollToSection(sectionId);
+        // 약간의 지연을 두어 클릭 이벤트가 완전히 처리되도록 함
+        setTimeout(() => {
+          handleScrollToSection(sectionId);
+        }, 50);
       } else {
         // 다른 페이지에 있으면 홈페이지로 이동 후 스크롤
         router.push('/')
+        // 페이지 로드 후 스크롤 (더 긴 대기 시간)
         setTimeout(() => {
-          console.log('페이지 이동 후 스크롤 시도:', sectionId);
           handleScrollToSection(sectionId);
-        }, 500) // 모바일에서 더 긴 대기 시간
+        }, 800);
       }
     } else {
       router.push(href)
