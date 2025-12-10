@@ -45,10 +45,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
-    // 주기적으로 Supabase 연결 유지 (10분마다)
+    // 주기적으로 Supabase 연결 유지 (5분마다)
+    // Supabase 무료 플랜은 1주일 비활성 시 일시 중지되므로, 더 자주 호출하여 방지
     const keepAliveInterval = setInterval(() => {
       wakeUpSupabase();
-    }, 10 * 60 * 1000); // 10분
+    }, 5 * 60 * 1000); // 5분
 
     return () => {
       subscription.unsubscribe();

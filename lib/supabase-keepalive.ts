@@ -6,18 +6,34 @@ import { supabase } from "./supabase";
  */
 export async function wakeUpSupabase() {
   try {
-    // 간단한 쿼리를 실행하여 데이터베이스를 깨웁니다
-    // auth.getSession()은 가벼운 요청이므로 적합합니다
-    const { data, error } = await supabase.auth.getSession();
+    // 여러 방법으로 데이터베이스를 깨웁니다
+    // 1. auth.getSession() - 인증 세션 확인 (가장 가벼운 요청)
+    const sessionResult = await supabase.auth.getSession();
     
-    if (error) {
-      console.warn("Supabase 연결 시도 중 오류:", error.message);
-      // 에러가 발생해도 계속 시도 (프로젝트가 깨어나는 동안 시간이 걸릴 수 있음)
-    } else {
-      console.log("Supabase 연결 성공");
+    // 2. 실제 데이터베이스 쿼리 실행 (데이터베이스 연결 확인)
+    // RLS 정책 때문에 에러가 발생할 수 있지만, 중요한 것은 연결 시도입니다
+    try {
+      await supabase
+        .from('users')
+        .select('id')
+        .limit(1)
+        .maybeSingle();
+    } catch (dbError) {
+      // 데이터베이스 쿼리 에러는 무시 (RLS 정책 또는 테이블 접근 권한 문제일 수 있음)
+      // 중요한 것은 데이터베이스에 연결을 시도하는 것입니다
     }
     
-    return { success: !error, error };
+    if (sessionResult.error) {
+      console.warn("Supabase 연결 시도 중 오류:", sessionResult.error.message);
+      // 에러가 발생해도 계속 시도 (프로젝트가 깨어나는 동안 시간이 걸릴 수 있음)
+    } else {
+      // 성공적으로 연결됨
+      if (process.env.NODE_ENV === 'development') {
+        console.log("Supabase Keep-Alive 성공");
+      }
+    }
+    
+    return { success: !sessionResult.error, error: sessionResult.error };
   } catch (error) {
     console.error("Supabase wake-up 실패:", error);
     return { success: false, error };
