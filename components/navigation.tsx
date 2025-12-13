@@ -170,8 +170,17 @@ export function Navigation() {
               </h1>
             </button>
             
-            {/* 모바일에서는 네비게이션 메뉴 제거, 인증 버튼만 표시 */}
-            <div className="flex items-center">
+            {/* 모바일 네비게이션 메뉴 */}
+            <div className="flex items-center space-x-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={(e) => handleNavClick(item.href, e)}
+                  className="text-muted-foreground hover:text-primary px-2 py-1 text-xs font-medium transition-colors hover:bg-primary/5 rounded-lg whitespace-nowrap"
+                >
+                  {item.name}
+                </button>
+              ))}
               {isLoggedIn ? (
                 <Button
                   variant="ghost"
@@ -180,7 +189,6 @@ export function Navigation() {
                   className="flex items-center gap-1"
                 >
                   <User className="h-4 w-4" />
-                  <span className="hidden sm:inline">로그아웃</span>
                 </Button>
               ) : (
                 <AuthDialog />
