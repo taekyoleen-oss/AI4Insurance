@@ -1,14 +1,23 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Sparkles, User } from "lucide-react"
+import { Sparkles, User, Menu, X } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { AuthDialog } from "@/components/auth-dialog"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 export function Navigation() {
   const { isLoggedIn, setIsLoggedIn } = useAuth()
   const router = useRouter()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 
   // 모바일 친화적인 스크롤 처리 함수
@@ -170,17 +179,56 @@ export function Navigation() {
               </h1>
             </button>
             
-            {/* 모바일 네비게이션 메뉴 */}
-            <div className="flex items-center space-x-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={(e) => handleNavClick(item.href, e)}
-                  className="text-muted-foreground hover:text-primary px-2 py-1 text-xs font-medium transition-colors hover:bg-primary/5 rounded-lg whitespace-nowrap"
-                >
-                  {item.name}
-                </button>
-              ))}
+            <div className="flex items-center gap-2">
+              {/* 모바일 네비게이션 메뉴 */}
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="sm" className="p-2">
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                  <SheetHeader>
+                    <SheetTitle>메뉴</SheetTitle>
+                  </SheetHeader>
+                  <div className="mt-8 flex flex-col space-y-4">
+                    {navItems.map((item) => (
+                      <button
+                        key={item.name}
+                        onClick={(e) => {
+                          handleNavClick(item.href, e)
+                          setMobileMenuOpen(false)
+                        }}
+                        className="text-left text-muted-foreground hover:text-primary px-4 py-3 text-base font-medium transition-colors hover:bg-primary/5 rounded-lg"
+                      >
+                        {item.name}
+                      </button>
+                    ))}
+                    <div className="pt-4 border-t">
+                      {isLoggedIn ? (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setIsLoggedIn(false)
+                            setMobileMenuOpen(false)
+                          }}
+                          className="w-full justify-start px-4 py-3 h-auto"
+                        >
+                          <User className="h-4 w-4 mr-2" />
+                          로그아웃
+                        </Button>
+                      ) : (
+                        <div className="px-4">
+                          <AuthDialog />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+
+              {/* 인증 버튼 (햄버거 메뉴 외부에도 표시) */}
               {isLoggedIn ? (
                 <Button
                   variant="ghost"
