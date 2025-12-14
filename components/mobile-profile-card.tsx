@@ -287,6 +287,38 @@ export function MobileProfileCard() {
               </CardContent>
             </a>
           </Card>
+
+          {/* Reserve Matrix Flow 카드 */}
+          <Card className="relative overflow-hidden bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-lg opacity-90">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-4 right-4 w-32 h-32 bg-orange-300 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-4 left-4 w-24 h-24 bg-orange-400 rounded-full blur-2xl"></div>
+            </div>
+            <CardContent className="relative p-4">
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-orange-800">Reserve Matrix Flow</h3>
+                  <span className="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-orange-200 text-orange-800 rounded">
+                    작업중
+                  </span>
+                </div>
+              </div>
+              <p className="text-orange-700 text-sm mb-3">
+                지급준비금을 추정하는 도구
+              </p>
+              <div className="flex items-center text-orange-600 font-semibold text-sm opacity-60">
+                <span>준비중입니다</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* 프로필 이미지와 이름 */}
