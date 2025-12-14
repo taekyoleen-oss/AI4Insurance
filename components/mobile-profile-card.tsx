@@ -186,40 +186,6 @@ export function MobileProfileCard() {
       <CardContent className="p-6">
         {/* 플랫폼 카드 */}
         <div className="mb-6 space-y-4">
-          {/* InsureAutoFlow 카드 */}
-          <Card className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
-            <a
-              href="https://www.insureautoflow.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block h-full"
-            >
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-4 right-4 w-32 h-32 bg-purple-300 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-4 left-4 w-24 h-24 bg-purple-400 rounded-full blur-2xl"></div>
-              </div>
-              <CardContent className="relative p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-purple-800">InsureAutoFlow</h3>
-                </div>
-                <p className="text-purple-700 text-sm mb-3">
-                  보험사를 위한 End-to-End 머신러닝 자동화 플랫폼
-                </p>
-                <div className="flex items-center text-purple-600 font-semibold text-sm group-hover:text-purple-700 transition-colors">
-                  <span>바로가기</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </div>
-              </CardContent>
-            </a>
-          </Card>
-
           {/* Life Matrix Flow 카드 */}
           <Card className="relative overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100 border-pink-200 shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
             <a
@@ -245,6 +211,74 @@ export function MobileProfileCard() {
                   생명보험의 보험료 산출 자동화 플랫폼
                 </p>
                 <div className="flex items-center text-pink-600 font-semibold text-sm group-hover:text-pink-700 transition-colors">
+                  <span>바로가기</span>
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </CardContent>
+            </a>
+          </Card>
+
+          {/* Insure Auto Flow 카드 */}
+          <Card className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+            <a
+              href="https://www.insureautoflow.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block h-full"
+            >
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-4 right-4 w-32 h-32 bg-purple-300 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-4 left-4 w-24 h-24 bg-purple-400 rounded-full blur-2xl"></div>
+              </div>
+              <CardContent className="relative p-4">
+                <div className="flex items-center mb-3">
+                  <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-purple-800">Insure Auto Flow</h3>
+                </div>
+                <p className="text-purple-700 text-sm mb-3">
+                  보험사를 위한 End-to-End 머신러닝 자동화 플랫폼
+                </p>
+                <div className="flex items-center text-purple-600 font-semibold text-sm group-hover:text-purple-700 transition-colors">
+                  <span>바로가기</span>
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </CardContent>
+            </a>
+          </Card>
+
+          {/* DFA Auto Flow 카드 */}
+          <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+            <a
+              href="https://dfa-auto-flow-8mr7b8bke-leen-taekyos-projects.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block h-full"
+            >
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-4 right-4 w-32 h-32 bg-blue-300 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-4 left-4 w-24 h-24 bg-blue-400 rounded-full blur-2xl"></div>
+              </div>
+              <CardContent className="relative p-4">
+                <div className="flex items-center mb-3">
+                  <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-blue-800">DFA Auto Flow</h3>
+                </div>
+                <p className="text-blue-700 text-sm mb-3">
+                  동적재무분석(DFA) 자동화 플랫폼
+                </p>
+                <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:text-blue-700 transition-colors">
                   <span>바로가기</span>
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
