@@ -89,7 +89,7 @@ export function AboutSection() {
                 {/* DFA Auto Flow 카드 */}
                 <Card className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg w-full h-full hover:shadow-xl transition-shadow cursor-pointer group">
                   <a
-                    href="https://dfa-auto-flow-git-main-leen-taekyos-projects.vercel.app"
+                    href="https://dfa-auto-flow.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block h-full"
