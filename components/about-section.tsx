@@ -259,7 +259,11 @@ export function AboutSection() {
                       </div>
                       <div className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                        <p><span className="font-semibold">인태교, 전희주 (2025, 5)</span>. 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
+                        <p><span className="font-semibold">인태교, 전희주 (2025.5)</span>. 노인코호트DB를 이용한 개인건강상태에 따른 노인장기요양등급 예측모형, 한국데이터정보과학회지, 36(3), 443-455.</p>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p><span className="font-semibold">인태교, 전희주(2026.1)</span> 암 진단자의 특성에 따른 경과년도 별 주요치료율 차이 분석, 보험획회지, 제 145호.</p>
                       </div>
                 </div>
                   </CardContent>
