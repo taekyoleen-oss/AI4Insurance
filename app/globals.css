@@ -3,45 +3,102 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* =====================================================================
+   tkLeen 디자인 토큰 — "조용한 전문가" 팔레트
+   Ink #0A0A0A · Sky Blue #4A90C2 · Deep Navy #1B2845 · Cream #FAFAF7
+   ===================================================================== */
 :root {
-  --background: oklch(0.98 0.005 180);
-  --foreground: oklch(0.15 0.02 240);
-  --card: oklch(0.96 0.01 180);
-  --card-foreground: oklch(0.15 0.02 240);
-  --popover: oklch(0.98 0.005 180);
-  --popover-foreground: oklch(0.15 0.02 240);
-  --primary: oklch(0.55 0.18 200);
-  --primary-foreground: oklch(0.98 0.005 180);
-  --secondary: oklch(0.92 0.02 200);
-  --secondary-foreground: oklch(0.25 0.03 240);
-  --muted: oklch(0.94 0.01 180);
-  --muted-foreground: oklch(0.45 0.02 240);
-  --accent: oklch(0.65 0.15 180);
-  --accent-foreground: oklch(0.98 0.005 180);
-  --destructive: oklch(0.65 0.2 25);
-  --destructive-foreground: oklch(0.98 0.005 180);
-  --border: oklch(0.88 0.02 200);
-  --input: oklch(0.96 0.01 180);
-  --ring: oklch(0.55 0.18 200);
-  --chart-1: oklch(0.55 0.18 200);
-  --chart-2: oklch(0.65 0.15 180);
-  --chart-3: oklch(0.6 0.16 160);
-  --chart-4: oklch(0.7 0.12 220);
-  --chart-5: oklch(0.5 0.2 280);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.96 0.01 180);
-  --sidebar-foreground: oklch(0.15 0.02 240);
-  --sidebar-primary: oklch(0.55 0.18 200);
-  --sidebar-primary-foreground: oklch(0.98 0.005 180);
-  --sidebar-accent: oklch(0.92 0.02 200);
-  --sidebar-accent-foreground: oklch(0.25 0.03 240);
-  --sidebar-border: oklch(0.88 0.02 200);
-  --sidebar-ring: oklch(0.75 0.05 200);
+  --background: #fafaf8;        /* 웜 오프화이트 (에디토리얼) */
+  --foreground: #111418;       /* 본문 잉크 */
+  --card: #ffffff;
+  --card-foreground: #111418;
+  --popover: #ffffff;
+  --popover-foreground: #111418;
+  --primary: #4a90c2;          /* 스카이블루 — CTA·링크·강조 (단색) */
+  --primary-foreground: #ffffff;
+  --secondary: #eef1f4;
+  --secondary-foreground: #1b2845;
+  --muted: #f1f0ea;            /* 웜 라이트 */
+  --muted-foreground: #6b7280;
+  --accent: #e7eef5;           /* 옅은 블루 틴트 — hover 배경 */
+  --accent-foreground: #1b2845;
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
+  --border: #e8e6e0;
+  --input: #e8e6e0;
+  --ring: #4a90c2;
+
+  /* 브랜드 구조색 */
+  --navy: #1b2845;             /* 다크 섹션·푸터 */
+  --navy-foreground: #f2f1ec;
+  --brand: #4a90c2;
+  --sage: #7ba88f;            /* 차트 보조색 */
+
+  --chart-1: #4a90c2;
+  --chart-2: #7ba88f;
+  --chart-3: #1b2845;
+  --chart-4: #8fb8d6;
+  --chart-5: #a9866b;
+  --radius: 0.875rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111418;
+  --sidebar-primary: #4a90c2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef1f4;
+  --sidebar-accent-foreground: #1b2845;
+  --sidebar-border: #e8e6e0;
+  --sidebar-ring: #4a90c2;
+}
+
+.dark {
+  --background: #0e1320;       /* 딥 네이비-블랙 */
+  --foreground: #f2f1ec;       /* 크림 */
+  --card: #151c2e;
+  --card-foreground: #f2f1ec;
+  --popover: #151c2e;
+  --popover-foreground: #f2f1ec;
+  --primary: #5ba0d2;          /* 다크에서 살짝 밝은 스카이 */
+  --primary-foreground: #08111e;
+  --secondary: #1f2940;
+  --secondary-foreground: #e8eaf0;
+  --muted: #1a2236;
+  --muted-foreground: #9aa4b8;
+  --accent: #1f2940;
+  --accent-foreground: #e8eaf0;
+  --destructive: #e05545;
+  --destructive-foreground: #08111e;
+  --border: #28324a;
+  --input: #28324a;
+  --ring: #5ba0d2;
+
+  --navy: #11192b;
+  --navy-foreground: #f2f1ec;
+  --brand: #5ba0d2;
+  --sage: #8fbaa1;
+
+  --chart-1: #5ba0d2;
+  --chart-2: #8fbaa1;
+  --chart-3: #8fb8d6;
+  --chart-4: #4a90c2;
+  --chart-5: #c0a080;
+
+  --sidebar: #11192b;
+  --sidebar-foreground: #f2f1ec;
+  --sidebar-primary: #5ba0d2;
+  --sidebar-primary-foreground: #08111e;
+  --sidebar-accent: #1f2940;
+  --sidebar-accent-foreground: #e8eaf0;
+  --sidebar-border: #28324a;
+  --sidebar-ring: #5ba0d2;
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* 타이포 — Fraunces(serif display) / Pretendard+Inter(sans) / JetBrains(mono) */
+  --font-sans: "Pretendard Variable", var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -61,6 +118,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-brand: var(--brand);
+  --color-sage: var(--sage);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -86,22 +149,154 @@
   }
   html {
     scroll-behavior: smooth;
-    /* 모바일 스크롤 개선 */
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
   }
-  
-  /* 모바일 스크롤 개선 */
   body {
+    @apply bg-background text-foreground antialiased;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
+    font-feature-settings: "ss01", "cv01";
   }
-  
-  /* 모바일에서 스크롤 성능 개선 */
-  * {
-    -webkit-overflow-scrolling: touch;
+  ::selection {
+    background: color-mix(in srgb, var(--brand) 28%, transparent);
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+@layer utilities {
+  /* 메타 라벨 — mono, uppercase, 넓은 자간 */
+  .label-meta {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+  }
+  /* 디스플레이 헤드라인 */
+  .font-display {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+  /* 카드 미세 호버 리프트 */
+  .lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -12px color-mix(in srgb, var(--navy) 24%, transparent);
+  }
+}
+
+/* =====================================================================
+   자료실 글 본문 스타일 (.article) — Tailwind Typography 미사용, 토큰 기반
+   ===================================================================== */
+.article {
+  color: var(--foreground);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.article > :first-child { margin-top: 0; }
+.article h1, .article h2, .article h3, .article h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  scroll-margin-top: 6rem;
+}
+.article h1 { font-size: 2rem; margin: 2.4rem 0 1rem; }
+.article h2 {
+  font-size: 1.6rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.article h3 { font-size: 1.3rem; margin: 2rem 0 0.75rem; }
+.article h4 { font-size: 1.1rem; margin: 1.6rem 0 0.6rem; }
+.article p { margin: 1rem 0; }
+.article a {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+}
+.article a:hover { border-bottom-color: var(--brand); }
+.article strong { font-weight: 600; color: var(--foreground); }
+.article ul, .article ol { margin: 1rem 0; padding-left: 1.5rem; }
+.article ul { list-style: disc; }
+.article ol { list-style: decimal; }
+.article li { margin: 0.4rem 0; }
+.article blockquote {
+  margin: 1.5rem 0;
+  padding: 0.4rem 0 0.4rem 1.2rem;
+  border-left: 3px solid var(--brand);
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+.article code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--muted);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+}
+.article pre {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #0d1424;
+  overflow-x: auto;
+}
+.article pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+  color: #e6e6e6;
+}
+.article img { border-radius: 12px; margin: 1.5rem 0; max-width: 100%; height: auto; }
+.article hr { margin: 2.5rem 0; border: none; border-top: 1px solid var(--border); }
+.article table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.article th, .article td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+}
+.article th { background: var(--muted); font-weight: 600; }
+.article .heading-link { margin-left: 0.4rem; opacity: 0; color: var(--brand); }
+.article :hover > .heading-link { opacity: 0.6; }
+
+/* highlight.js — 간결한 다크 코드 팔레트 */
+.hljs-comment, .hljs-quote { color: #7c8499; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in { color: #82aaff; }
+.hljs-string, .hljs-attr { color: #c3e88d; }
+.hljs-number, .hljs-literal { color: #f78c6c; }
+.hljs-title, .hljs-function .hljs-title, .hljs-section { color: #ffcb6b; }
+.hljs-type, .hljs-class .hljs-title { color: #ffcb6b; }
+.hljs-variable, .hljs-template-variable { color: #f07178; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
+
+/* 스크롤 진입 리빌 — prefers-reduced-motion 존중 */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }

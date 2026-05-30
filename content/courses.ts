@@ -1,0 +1,96 @@
+export interface Course {
+  id: string
+  title: string
+  description: string
+  level: "초급" | "중급"
+  duration: string
+  details: {
+    overview: string
+    target: string
+    requirements: string
+    curriculum: string[]
+  }
+}
+
+export const courses: Course[] = [
+  {
+    id: "excel365-stats",
+    title: "엑셀365를 활용한 통계분석 기초",
+    description:
+      "엑셀365의 최신 통계 함수와 데이터 분석 도구를 활용하여 보험 실무에 필요한 데이터 처리 및 분석 능력을 향상시킵니다.",
+    level: "초급",
+    duration: "2일",
+    details: {
+      overview: "엑셀365 최신 버전의 강화된 통계 및 데이터 분석 도구 소개",
+      target: "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
+      requirements: "엑셀365 버전 탑재 노트북 필수",
+      curriculum: [
+        "데이터 분석용 신규 함수 20여종 소개 및 활용 (XLOOKUP, FILTER, GROUPBY 등)",
+        "엑셀365 상품개발 및 업무 활용 실습",
+        "데이터 분석 간소화 및 가공 실습",
+        "최적값 산출 및 순환참조 해찾기 실습",
+      ],
+    },
+  },
+  {
+    id: "general-insurance-modeling",
+    title: "엑셀로 하는 일반보험 모델링 실무",
+    description:
+      "일반보험 프라이싱을 위한 빈도 및 심도 모형을 엑셀로 실습하며, 다양한 통계 기법과 시뮬레이션을 통해 실무 적용 능력을 강화합니다.",
+    level: "중급",
+    duration: "3일",
+    details: {
+      overview: "빈도모형과 심도모형 소개 및 활용 방안",
+      target: "보험회사 일반보험 프라이싱 및 수리 관련 부서 실무자",
+      requirements: "노트북 필수 (엑셀365 버전 권장)",
+      curriculum: [
+        "빈도 모형(이항, 포아송, 음이항) 소개 및 일반보험 활용 실습",
+        "심도 모형(정규, 로그정규, 지수, 파레토 등) 소개 및 일반보험 활용 실습",
+        "각종 보험가격 손해액 산출 및 Monte Carlo 시뮬레이션",
+        "극단치 분석 및 Lee-Carter 등 보험사 활용 가능한 분석 소개",
+        "엑셀365 데이터 기반 함수 활용 모델 구축 실습",
+        "비비례(Excess of Loss, Stop) 모델 이론 및 실습",
+      ],
+    },
+  },
+  {
+    id: "data-science",
+    title: "데이터 사이언스 이론 및 실무",
+    description:
+      "보험사에서 활용 가능한 머신러닝 기법을 중심으로 지도 및 비지도 학습의 이론과 실습을 병행합니다.",
+    level: "중급",
+    duration: "3일",
+    details: {
+      overview: "보험사 활용 가능한 머신러닝 종류 및 원리 학습",
+      target: "보험회사 통계 분석, 상품개발 등 엑셀 활용 실무자",
+      requirements: "노트북 필수 (엑셀365 권장)",
+      curriculum: [
+        "머신러닝 개요 및 기존 모델과 차이점",
+        "보험사 활용 데이터 및 분석 목표 소개",
+        "로지스틱, 의사결정나무, KNN, 나이브-베이즈 지도학습 이론 및 실습",
+        "주성분 분석, K-평균 등 비지도학습 이론 및 실습",
+        "초급 딥러닝 개념 및 실무 예제",
+        "엑셀 기반 분석 과정 및 데이터 모델 구축 실습",
+      ],
+    },
+  },
+  {
+    id: "excel-python",
+    title: "엑셀을 통한 파이썬 데이터 분석",
+    description:
+      "엑셀365에 내장된 파이썬 기능을 활용하여 데이터 전처리부터 분석, 시각화까지 통합된 분석 환경을 실습합니다.",
+    level: "중급",
+    duration: "2일",
+    details: {
+      overview: "엑셀 내 파이썬 활용 데이터 분석 소개",
+      target: "보험회사 통계 분석, 상품개발 엑셀 활용 실무자",
+      requirements: "엑셀365 탑재 노트북 필수",
+      curriculum: [
+        "엑셀365 내 파이썬 주요 특징 및 장단점",
+        "엑셀-파이썬 데이터 처리 기본 실습",
+        "데이터 전처리(엑셀), 분석(파이썬), 결과 엑셀 변환 실습",
+        "머신러닝 분석 및 차트 생성 방법 실습",
+      ],
+    },
+  },
+]
