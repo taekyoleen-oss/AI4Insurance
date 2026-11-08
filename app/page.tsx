@@ -1,4 +1,6 @@
 import { Hero } from "@/components/sections/hero"
+import { Statement } from "@/components/sections/statement"
+import { ArchImage } from "@/components/sections/arch-image"
 import { ProductBento } from "@/components/sections/product-bento"
 import { Authority } from "@/components/sections/authority"
 import { LearningPreview } from "@/components/sections/learning-preview"
@@ -12,6 +14,8 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
       <Hero />
+      <Statement />
+      <ArchImage />
       <ProductBento />
       <Authority />
       <LearningPreview />

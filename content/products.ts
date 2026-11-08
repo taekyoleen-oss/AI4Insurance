@@ -9,6 +9,8 @@ export interface Product {
   href: string | null
   status: ProductStatus
   accent: string // 카드 포인트 색 (tkLeen 생태계 톤)
+  image: string // public/images — Unsplash License(상업적 이용 가능)
+  imageAlt: string
 }
 
 export const products: Product[] = [
@@ -26,6 +28,8 @@ export const products: Product[] = [
     href: "https://life-matrix-flow.vercel.app/",
     status: "active",
     accent: "#4a90c2",
+    image: "/images/tool-life.jpg",
+    imageAlt: "해질녘 서울 도심과 한강, 불이 켜진 거리",
   },
   {
     id: "insure-auto-flow",
@@ -41,6 +45,8 @@ export const products: Product[] = [
     href: "https://www.insureautoflow.com/",
     status: "active",
     accent: "#1b2845",
+    image: "/images/tool-ml.jpg",
+    imageAlt: "분석 대시보드 그래프가 떠 있는 노트북 화면",
   },
   {
     id: "dfa-auto-flow",
@@ -56,6 +62,8 @@ export const products: Product[] = [
     href: "https://www.dfaautoflow.com/",
     status: "active",
     accent: "#7ba88f",
+    image: "/images/tool-dfa.jpg",
+    imageAlt: "곡선으로 휘어지는 건축물 외벽 패턴",
   },
   {
     id: "reserve-matrix-flow",
@@ -71,5 +79,7 @@ export const products: Product[] = [
     href: null,
     status: "coming-soon",
     accent: "#a9866b",
+    image: "/images/tool-reserve.jpg",
+    imageAlt: "도서관 서가에 길게 늘어선 책들",
   },
 ]

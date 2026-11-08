@@ -1,16 +1,15 @@
 import Link from "next/link"
-import { ArrowRight, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/layout/container"
 import { navItems } from "@/content/site"
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-[80vh] items-center bg-background pt-16">
+    <main className="flex min-h-[80vh] items-center bg-background pt-24">
       <Container>
         <div className="mx-auto max-w-xl text-center">
-          <p className="label-meta text-brand">Error 404</p>
-          <h1 className="mt-4 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
+          <span className="chip tabular">404</span>
+          <h1 className="mt-6 text-display-md">
             페이지를 찾을 수 없습니다
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -18,16 +17,14 @@ export default function NotFound() {
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="gap-2">
+            <Button asChild size="lg">
               <Link href="/">
-                <Home className="h-4 w-4" />
                 홈으로
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="gap-2">
+            <Button asChild size="lg" variant="outline">
               <Link href="/insights">
                 자료실 둘러보기
-                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>
@@ -37,7 +34,7 @@ export default function NotFound() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-brand hover:underline"
+                className="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
                 {item.name}
               </Link>

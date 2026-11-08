@@ -4,99 +4,105 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =====================================================================
-   tkLeen 디자인 토큰 — "조용한 전문가" 팔레트
-   Ink #0A0A0A · Sky Blue #4A90C2 · Deep Navy #1B2845 · Cream #FAFAF7
+   AI 4 Insurance 디자인 토큰 — "Harbor & Ledger"
+   Harbor Navy #0F1C2E · Ledger Paper #F1F3F2 · tkLeen Sky #4A90C2
+   - Sky(#4A90C2)는 장식·대형 요소·포커스 전용. 작은 텍스트 링크는 --brand-ink.
    ===================================================================== */
 :root {
-  --background: #fafaf8;        /* 웜 오프화이트 (에디토리얼) */
-  --foreground: #111418;       /* 본문 잉크 */
+  --background: #f1f3f2;        /* Ledger Paper — 차가운 회백 */
+  --foreground: #0f1c2e;        /* Harbor Navy 잉크 */
   --card: #ffffff;
-  --card-foreground: #111418;
+  --card-foreground: #0f1c2e;
   --popover: #ffffff;
-  --popover-foreground: #111418;
-  --primary: #4a90c2;          /* 스카이블루 — CTA·링크·강조 (단색) */
-  --primary-foreground: #ffffff;
-  --secondary: #eef1f4;
-  --secondary-foreground: #1b2845;
-  --muted: #f1f0ea;            /* 웜 라이트 */
-  --muted-foreground: #6b7280;
-  --accent: #e7eef5;           /* 옅은 블루 틴트 — hover 배경 */
-  --accent-foreground: #1b2845;
-  --destructive: #c0392b;
+  --popover-foreground: #0f1c2e;
+  --primary: #0f1c2e;           /* 주 버튼 — 네이비 잉크 */
+  --primary-foreground: #f1f3f2;
+  --secondary: #e3e8ec;
+  --secondary-foreground: #0f1c2e;
+  --muted: #e6eaec;
+  --muted-foreground: #55616f;
+  --accent: #dce7f0;
+  --accent-foreground: #0f1c2e;
+  --destructive: #b3362a;
   --destructive-foreground: #ffffff;
-  --border: #e8e6e0;
-  --input: #e8e6e0;
+  --border: #d3dadf;
+  --input: #c9d1d7;
   --ring: #4a90c2;
 
-  /* 브랜드 구조색 */
-  --navy: #1b2845;             /* 다크 섹션·푸터 */
-  --navy-foreground: #f2f1ec;
-  --brand: #4a90c2;
-  --sage: #7ba88f;            /* 차트 보조색 */
+  --navy: #0f1c2e;              /* 다크 섹션·푸터 */
+  --navy-foreground: #e8edf1;
+  --navy-muted: #93a3b5;
+  --brand: #4a90c2;             /* tkLeen Sky */
+  --brand-ink: #2b6a99;         /* 작은 링크 텍스트용 (4.5:1 이상) */
+  --sage: #6f9a82;
 
   --chart-1: #4a90c2;
-  --chart-2: #7ba88f;
-  --chart-3: #1b2845;
+  --chart-2: #6f9a82;
+  --chart-3: #0f1c2e;
   --chart-4: #8fb8d6;
   --chart-5: #a9866b;
-  --radius: 0.875rem;
+  --radius: 0.75rem;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 
   --sidebar: #ffffff;
-  --sidebar-foreground: #111418;
-  --sidebar-primary: #4a90c2;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eef1f4;
-  --sidebar-accent-foreground: #1b2845;
-  --sidebar-border: #e8e6e0;
+  --sidebar-foreground: #0f1c2e;
+  --sidebar-primary: #0f1c2e;
+  --sidebar-primary-foreground: #f1f3f2;
+  --sidebar-accent: #e3e8ec;
+  --sidebar-accent-foreground: #0f1c2e;
+  --sidebar-border: #d3dadf;
   --sidebar-ring: #4a90c2;
 }
 
 .dark {
-  --background: #0e1320;       /* 딥 네이비-블랙 */
-  --foreground: #f2f1ec;       /* 크림 */
-  --card: #151c2e;
-  --card-foreground: #f2f1ec;
-  --popover: #151c2e;
-  --popover-foreground: #f2f1ec;
-  --primary: #5ba0d2;          /* 다크에서 살짝 밝은 스카이 */
-  --primary-foreground: #08111e;
-  --secondary: #1f2940;
-  --secondary-foreground: #e8eaf0;
-  --muted: #1a2236;
-  --muted-foreground: #9aa4b8;
-  --accent: #1f2940;
-  --accent-foreground: #e8eaf0;
+  --background: #0a1320;
+  --foreground: #e8edf1;
+  --card: #111d2d;
+  --card-foreground: #e8edf1;
+  --popover: #111d2d;
+  --popover-foreground: #e8edf1;
+  --primary: #e8edf1;
+  --primary-foreground: #0a1320;
+  --secondary: #1a2b40;
+  --secondary-foreground: #e8edf1;
+  --muted: #142233;
+  --muted-foreground: #9aa8b8;
+  --accent: #1a2b40;
+  --accent-foreground: #e8edf1;
   --destructive: #e05545;
-  --destructive-foreground: #08111e;
-  --border: #28324a;
-  --input: #28324a;
-  --ring: #5ba0d2;
+  --destructive-foreground: #0a1320;
+  --border: #22324a;
+  --input: #2a3c56;
+  --ring: #6aaad8;
 
-  --navy: #11192b;
-  --navy-foreground: #f2f1ec;
-  --brand: #5ba0d2;
+  --navy: #0e1b2c;
+  --navy-foreground: #e8edf1;
+  --navy-muted: #93a3b5;
+  --brand: #6aaad8;
+  --brand-ink: #7db6e0;
   --sage: #8fbaa1;
 
-  --chart-1: #5ba0d2;
+  --chart-1: #6aaad8;
   --chart-2: #8fbaa1;
   --chart-3: #8fb8d6;
   --chart-4: #4a90c2;
   --chart-5: #c0a080;
 
-  --sidebar: #11192b;
-  --sidebar-foreground: #f2f1ec;
-  --sidebar-primary: #5ba0d2;
-  --sidebar-primary-foreground: #08111e;
-  --sidebar-accent: #1f2940;
-  --sidebar-accent-foreground: #e8eaf0;
-  --sidebar-border: #28324a;
-  --sidebar-ring: #5ba0d2;
+  --sidebar: #0e1b2c;
+  --sidebar-foreground: #e8edf1;
+  --sidebar-primary: #e8edf1;
+  --sidebar-primary-foreground: #0a1320;
+  --sidebar-accent: #1a2b40;
+  --sidebar-accent-foreground: #e8edf1;
+  --sidebar-border: #22324a;
+  --sidebar-ring: #6aaad8;
 }
 
 @theme inline {
-  /* 타이포 — Fraunces(serif display) / Pretendard+Inter(sans) / JetBrains(mono) */
-  --font-sans: "Pretendard Variable", var(--font-inter), system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  /* 타이포 — IBM Plex Sans KR 단일 패밀리 (코드 블록만 JetBrains Mono) */
+  --font-sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-serif: var(--font-sans);
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
   --color-background: var(--background);
@@ -121,7 +127,9 @@
 
   --color-navy: var(--navy);
   --color-navy-foreground: var(--navy-foreground);
+  --color-navy-muted: var(--navy-muted);
   --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
   --color-sage: var(--sage);
 
   --color-chart-1: var(--chart-1);
@@ -150,40 +158,107 @@
   html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground antialiased;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
-    font-feature-settings: "ss01", "cv01";
+    overflow-x: clip;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
   ::selection {
-    background: color-mix(in srgb, var(--brand) 28%, transparent);
+    background: color-mix(in srgb, var(--brand) 30%, transparent);
   }
 }
 
 @layer utilities {
-  /* 메타 라벨 — mono, uppercase, 넓은 자간 */
+  /* 보조 정보 라벨 — 대문자·모노 대신 작은 미디엄 산세리프 */
   .label-meta {
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.4;
   }
-  /* 디스플레이 헤드라인 */
+  /* 디스플레이 — 라이트 웨이트, 좁은 자간 */
   .font-display {
-    font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: -0.035em;
   }
-  /* 카드 미세 호버 리프트 */
+  .text-display-xl {
+    font-size: clamp(3rem, 9.2vw, 9.5rem);
+    line-height: 0.98;
+    font-weight: 300;
+    letter-spacing: -0.05em;
+  }
+  .text-display-lg {
+    font-size: clamp(2.5rem, 6.4vw, 6.25rem);
+    line-height: 1.02;
+    font-weight: 300;
+    letter-spacing: -0.045em;
+  }
+  .text-display-md {
+    font-size: clamp(2rem, 4.2vw, 3.75rem);
+    line-height: 1.12;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+  }
+  /* 레거시 카드 호버 — 그림자 대신 테두리만 반응 */
   .lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: border-color 0.3s var(--ease-out-quint), background-color 0.3s var(--ease-out-quint);
   }
   .lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px -12px color-mix(in srgb, var(--navy) 24%, transparent);
+    border-color: color-mix(in srgb, var(--foreground) 35%, transparent);
   }
+  /* 칩 — 수치·상태 표시 */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    height: 1.875rem;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    white-space: nowrap;
+    background: color-mix(in srgb, currentColor 9%, transparent);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* =====================================================================
+   인터랙션 — 텍스트 롤 호버 (내비·버튼)
+   <span class="roll"><span class="roll-inner" data-text="라벨">라벨</span></span>
+   ===================================================================== */
+.roll {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: top;
+}
+.roll-inner {
+  position: relative;
+  display: block;
+  transition: transform 0.5s var(--ease-out-quint);
+}
+.roll-inner::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+}
+a:hover .roll-inner,
+button:hover .roll-inner,
+a:focus-visible .roll-inner {
+  transform: translateY(-100%);
 }
 
 /* =====================================================================
@@ -198,7 +273,7 @@
 .article h1, .article h2, .article h3, .article h4 {
   font-family: var(--font-serif);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   color: var(--foreground);
   scroll-margin-top: 6rem;
 }
@@ -213,7 +288,7 @@
 .article h4 { font-size: 1.1rem; margin: 1.6rem 0 0.6rem; }
 .article p { margin: 1rem 0; }
 .article a {
-  color: var(--brand);
+  color: var(--brand-ink);
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
 }
@@ -279,17 +354,121 @@
 .hljs-emphasis { font-style: italic; }
 .hljs-strong { font-weight: 700; }
 
-/* 스크롤 진입 리빌 — prefers-reduced-motion 존중 */
+/* =====================================================================
+   모션 — 모두 CSS(스크롤 연동 애니메이션). 미지원 브라우저·동작 줄이기 사용자는
+   최종 상태가 정적으로 보인다.
+   ===================================================================== */
+
+/* 스크롤 진입 리빌 (서브페이지) */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  will-change: opacity, transform;
+  transition: opacity 0.7s var(--ease-out-quint), transform 0.7s var(--ease-out-quint);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
+
+/* 이미지 호버 확대 — transform과 분리된 scale 속성 사용(스크롤 애니메이션과 충돌 방지) */
+.media-hover img {
+  transition: scale 0.9s var(--ease-out-quint);
+}
+.group:hover .media-hover img,
+.media-hover:hover img {
+  scale: 1.04;
+}
+
+/* 히어로 줄 마스크 */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.line-mask > span {
+  display: block;
+}
+
+/* 마키 */
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 히어로 로드 시퀀스 — 페이지의 유일한 자동 재생 모션 */
+  .hero-zoom {
+    animation: hero-zoom 2.4s var(--ease-out-quint) both;
+  }
+  .line-mask > span {
+    animation: line-rise 1.2s var(--ease-out-quint) both;
+    animation-delay: var(--d, 0ms);
+  }
+  .fade-rise {
+    animation: fade-rise 1s var(--ease-out-quint) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .marquee-track {
+    animation: marquee 48s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* 선언문 — 스크롤 진행에 따라 단어가 차례로 채워진다 */
+    .statement {
+      view-timeline: --statement block;
+      height: 230vh;
+    }
+    .statement-sticky {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+    }
+    .fill-word {
+      opacity: 0.16;
+      animation: word-on linear both;
+      animation-timeline: --statement;
+      animation-range: contain calc(var(--p) * 78%) contain calc(var(--p) * 78% + 10%);
+    }
+
+    /* 아치 → 풀블리드 확장 */
+    .arch {
+      view-timeline: --arch block;
+    }
+    .arch-media {
+      animation: arch-open linear both;
+      animation-timeline: --arch;
+      animation-range: entry 5% cover 50%;
+    }
+    .arch-media img {
+      animation: img-settle linear both;
+      animation-timeline: --arch;
+      animation-range: entry 0% cover 60%;
+    }
+
+    /* 패럴랙스 — 엇갈린 그리드의 둘째 열 */
+    @media (min-width: 768px) {
+      .drift {
+        animation: drift linear both;
+        animation-timeline: view();
+        animation-range: cover;
+      }
+    }
+    /* 스크롤 진입 시 이미지 안착 */
+    .settle img {
+      animation: img-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
@@ -299,4 +478,39 @@
   html {
     scroll-behavior: auto;
   }
+  .roll-inner,
+  .media-hover img {
+    transition: none;
+  }
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+@keyframes line-rise {
+  from { transform: translateY(108%); }
+  to { transform: translateY(0); }
+}
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes word-on {
+  to { opacity: 1; }
+}
+@keyframes arch-open {
+  from { clip-path: inset(0 16% 0 16% round 42vw 42vw 0 0); }
+  to { clip-path: inset(0 0 0 0 round 0 0 0 0); }
+}
+@keyframes img-settle {
+  from { transform: scale(1.14); }
+  to { transform: scale(1); }
+}
+@keyframes drift {
+  from { transform: translateY(var(--drift, 64px)); }
+  to { transform: translateY(calc(var(--drift, 64px) * -1)); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }

@@ -14,7 +14,7 @@ export default function LearningPage() {
   return (
     <main className="min-h-screen bg-background">
       <PageHeader
-        eyebrow="Learning"
+        eyebrow="배움 마당"
         title="보험 배움 마당"
         description="실무 중심의 보험 데이터 분석·모델링 교육 과정을 통해 전문성을 향상시키세요. 모든 과정은 엑셀·파이썬으로 현장에 바로 적용됩니다."
       />

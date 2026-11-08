@@ -3,93 +3,129 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowUpRight, Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Menu } from "lucide-react"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Container } from "@/components/layout/container"
 import { BrandIcon } from "@/components/layout/brand-icon"
 import { ThemeToggle } from "@/components/layout/theme-toggle"
 import { navItems } from "@/content/site"
 import { cn } from "@/lib/utils"
 
+function Roll({ children }: { children: string }) {
+  return (
+    <span className="roll">
+      <span className="roll-inner" data-text={children}>
+        {children}
+      </span>
+    </span>
+  )
+}
+
 export function Header() {
   const pathname = usePathname()
-  const [scrolled, setScrolled] = React.useState(false)
+  const isHome = pathname === "/"
+  const [pastHero, setPastHero] = React.useState(false)
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    // 홈: 히어로(100svh) 위에서는 투명·밝은 글자, 지나면 종이 배경으로 전환
+    const onScroll = () => {
+      const limit = isHome ? window.innerHeight - 72 : 8
+      setPastHero(window.scrollY > limit)
+    }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    window.addEventListener("resize", onScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+    }
+  }, [isHome])
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href)
+  const overlay = isHome && !pastHero
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href))
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-        scrolled
-          ? "border-border bg-background/85 backdrop-blur-md"
-          : "border-transparent bg-background/60 backdrop-blur-sm",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color] duration-500",
+        overlay
+          ? "border-b border-transparent bg-transparent text-white"
+          : "border-b border-border/70 bg-background/95 text-foreground backdrop-blur-md",
       )}
     >
-      <Container className="flex h-16 items-center justify-between">
-        <Link href="/" aria-label="AI 4 Insurance 홈" className="transition-opacity hover:opacity-80">
-          <BrandIcon />
+      <div className="mx-auto flex h-[72px] w-full max-w-[1360px] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <Link href="/" aria-label="AI 4 Insurance 홈" className="shrink-0">
+          <BrandIcon tone={overlay ? "light" : "auto"} />
         </Link>
 
-        {/* 데스크톱 내비 */}
-        <nav className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                isActive(item.href)
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-accent/60",
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-2">
+          {/* 데스크톱 내비 — 알약형 그룹 + 텍스트 롤 호버 */}
+          <nav
+            aria-label="주요 메뉴"
+            className={cn(
+              "hidden items-center rounded-full p-1 lg:flex",
+              overlay ? "bg-white/12 backdrop-blur-md" : "bg-foreground/[0.06]",
+            )}
+          >
+            {navItems.map((item) => {
+              const active = isActive(item.href)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "flex h-9 items-center rounded-full px-4 text-[0.875rem] font-medium transition-colors duration-300",
+                    active
+                      ? overlay
+                        ? "bg-white text-[#0f1c2e]"
+                        : "bg-foreground text-background"
+                      : "opacity-85 hover:opacity-100",
+                  )}
+                >
+                  <Roll>{item.name}</Roll>
+                </Link>
+              )
+            })}
+          </nav>
 
-        <div className="flex items-center gap-1.5">
           <ThemeToggle />
-          <Button asChild size="sm" className="hidden sm:inline-flex gap-1.5">
-            <Link href="/products">
-              도구 둘러보기
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </Button>
+
+          <Link
+            href="/products"
+            className={cn(
+              "hidden h-10 items-center rounded-full px-5 text-[0.875rem] font-medium transition-colors duration-300 sm:flex",
+              overlay ? "bg-white text-[#0f1c2e] hover:bg-white/85" : "bg-foreground text-background hover:bg-foreground/85",
+            )}
+          >
+            <Roll>도구 둘러보기</Roll>
+          </Link>
 
           {/* 모바일 메뉴 */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="메뉴 열기">
+              <button
+                type="button"
+                aria-label="메뉴 열기"
+                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full lg:hidden"
+              >
                 <Menu className="h-5 w-5" />
-              </Button>
+              </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
+            <SheetContent side="right" className="w-full max-w-sm border-l-0 bg-navy text-navy-foreground">
               <SheetHeader className="text-left">
                 <SheetTitle>
-                  <BrandIcon size={30} />
+                  <BrandIcon size={30} tone="light" />
                 </SheetTitle>
               </SheetHeader>
-              <nav className="mt-6 flex flex-col gap-1">
+              <nav aria-label="모바일 메뉴" className="mt-10 flex flex-col px-4">
                 {navItems.map((item) => (
                   <SheetClose asChild key={item.href}>
                     <Link
                       href={item.href}
+                      aria-current={isActive(item.href) ? "page" : undefined}
                       className={cn(
-                        "rounded-lg px-4 py-3 text-base font-medium transition-colors",
-                        isActive(item.href)
-                          ? "bg-accent text-foreground"
-                          : "text-muted-foreground hover:bg-accent/60 hover:text-foreground",
+                        "border-b border-white/10 py-4 text-[1.75rem] font-light tracking-tight transition-colors",
+                        isActive(item.href) ? "text-white" : "text-white/60 hover:text-white",
                       )}
                     >
                       {item.name}
@@ -97,18 +133,18 @@ export function Header() {
                   </SheetClose>
                 ))}
                 <SheetClose asChild>
-                  <Button asChild className="mt-4 w-full gap-1.5">
-                    <Link href="/products">
-                      도구 둘러보기
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
+                <Link
+                  href="/products"
+                  className="mt-10 flex h-12 items-center justify-center rounded-full bg-white text-[0.95rem] font-medium text-[#0f1c2e]"
+                >
+                  도구 둘러보기
+                </Link>
                 </SheetClose>
               </nav>
             </SheetContent>
           </Sheet>
         </div>
-      </Container>
+      </div>
     </header>
   )
 }
