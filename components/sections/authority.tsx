@@ -41,8 +41,8 @@ export function Authority() {
 
           <div className="media-hover settle relative aspect-[4/3] overflow-hidden bg-muted">
             <Image
-              src="/images/desk-documents.jpg"
-              alt="서류와 필기구가 놓인 오래된 나무 책상"
+              src="/images/statistics-graph.jpg"
+              alt="자와 펜 옆에 손으로 그린 통계 그래프"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
               className="object-cover"

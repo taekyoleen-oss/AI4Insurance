@@ -9,15 +9,15 @@ const HEADLINE = "text-[clamp(2.9rem,7vw,7.25rem)] font-light leading-[1.02] tra
 export function Hero() {
   return (
     <section className="relative h-[100svh] min-h-[660px] overflow-hidden bg-navy text-white">
-      {/* 서울 해질녘 전경 — Unsplash License */}
+      {/* 계리 수치표 클로즈업 — Unsplash License */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-seoul-dusk.jpg"
+          src="/images/hero-actuarial-table.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="hero-zoom object-cover object-[50%_60%]"
+          className="hero-zoom object-cover object-[50%_50%] grayscale"
         />
       </div>
       <div
@@ -25,7 +25,7 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(10,19,32,0.62) 0%, rgba(10,19,32,0.12) 34%, rgba(10,19,32,0.18) 58%, rgba(10,19,32,0.82) 100%)",
+            "linear-gradient(180deg, rgba(10,19,32,0.86) 0%, rgba(15,28,46,0.62) 40%, rgba(15,28,46,0.66) 62%, rgba(10,19,32,0.94) 100%)",
         }}
       />
 
@@ -61,12 +61,12 @@ export function Hero() {
               style={{ "--d": "1100ms" } as React.CSSProperties}
             >
               <Link
-                href="/products"
+                href="/app-resources"
                 className="flex h-12 items-center rounded-full bg-white px-7 text-[0.95rem] font-medium text-[#0f1c2e] transition-colors duration-300 hover:bg-white/85"
               >
                 <span className="roll">
-                  <span className="roll-inner" data-text="도구 둘러보기">
-                    도구 둘러보기
+                  <span className="roll-inner" data-text="앱 자료실">
+                    앱 자료실
                   </span>
                 </span>
               </Link>

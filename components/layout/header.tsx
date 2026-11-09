@@ -7,6 +7,8 @@ import { Menu } from "lucide-react"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { BrandIcon } from "@/components/layout/brand-icon"
 import { ThemeToggle } from "@/components/layout/theme-toggle"
+import { AppLauncher } from "@/components/layout/app-launcher"
+import { apps } from "@/content/apps"
 import { navItems } from "@/content/site"
 import { cn } from "@/lib/utils"
 
@@ -88,16 +90,17 @@ export function Header() {
             })}
           </nav>
 
+          <AppLauncher />
           <ThemeToggle />
 
           <Link
-            href="/products"
+            href="/contact"
             className={cn(
               "hidden h-10 items-center rounded-full px-5 text-[0.875rem] font-medium transition-colors duration-300 sm:flex",
               overlay ? "bg-white text-[#0f1c2e] hover:bg-white/85" : "bg-foreground text-background hover:bg-foreground/85",
             )}
           >
-            <Roll>도구 둘러보기</Roll>
+            <Roll>문의하기</Roll>
           </Link>
 
           {/* 모바일 메뉴 */}
@@ -111,7 +114,7 @@ export function Header() {
                 <Menu className="h-5 w-5" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-sm border-l-0 bg-navy text-navy-foreground">
+            <SheetContent side="right" className="w-full max-w-sm overflow-y-auto border-l-0 bg-navy pb-10 text-navy-foreground">
               <SheetHeader className="text-left">
                 <SheetTitle>
                   <BrandIcon size={30} tone="light" />
@@ -132,14 +135,22 @@ export function Header() {
                     </Link>
                   </SheetClose>
                 ))}
-                <SheetClose asChild>
-                <Link
-                  href="/products"
-                  className="mt-10 flex h-12 items-center justify-center rounded-full bg-white text-[0.95rem] font-medium text-[#0f1c2e]"
-                >
-                  도구 둘러보기
-                </Link>
-                </SheetClose>
+                <p className="mt-10 text-[0.8rem] text-white/50">앱 바로가기</p>
+                <ul className="mt-3 grid grid-cols-2 gap-x-4">
+                  {apps.map((app) => (
+                    <li key={app.id}>
+                      <a
+                        href={app.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2.5 py-2.5 text-[0.95rem] text-white/75 transition-colors hover:text-white"
+                      >
+                        <app.icon className="h-4 w-4 shrink-0 text-white/50" aria-hidden="true" />
+                        {app.short}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </nav>
             </SheetContent>
           </Sheet>

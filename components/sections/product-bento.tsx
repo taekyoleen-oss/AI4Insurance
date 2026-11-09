@@ -1,87 +1,86 @@
-import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { Container } from "@/components/layout/container"
 import { SectionHeading } from "@/components/sections/section-heading"
-import { products, type Product } from "@/content/products"
+import { apps, appGroups } from "@/content/apps"
 import { cn } from "@/lib/utils"
 
-// 홈 — 도구 갤러리: 엇갈린 2열(둘째 열은 아래로 밀리고 패럴랙스)
-export function ProductBento() {
-  const left = products.filter((_, i) => i % 2 === 0)
-  const right = products.filter((_, i) => i % 2 === 1)
-
+// 앱 목록 — 그룹별 괘선 행 (홈 섹션과 앱 자료실 페이지가 함께 사용)
+export function AppList({ onDark }: { onDark?: boolean }) {
   return (
-    <section id="products" className="bg-navy pb-28 pt-24 text-navy-foreground sm:pb-40 sm:pt-36">
-      <Container>
-        <SectionHeading
-          onDark
-          count={products.length}
-          label="도구"
-          title="실무에서 바로 쓰는 자동화 도구"
-          description="30년 재보험 현장에서 길어 올린 방법론을 그대로 제품화했습니다. tkLeen 생태계의 4가지 흐름."
-          link={{ href: "/products", label: "도구 전체 보기" }}
-        />
-
-        <div className="mt-20 grid gap-16 md:grid-cols-2 md:gap-x-10 lg:gap-x-20 lg:mt-28">
-          <div className="flex flex-col gap-16 md:gap-28">
-            {left.map((p) => (
-              <ToolTile key={p.id} product={p} />
-            ))}
-          </div>
-          <div className="drift flex flex-col gap-16 md:mt-56 md:gap-28" style={{ "--drift": "56px" } as React.CSSProperties}>
-            {right.map((p) => (
-              <ToolTile key={p.id} product={p} />
-            ))}
-          </div>
+    <div className="grid gap-14">
+      {appGroups.map((group) => (
+        <div key={group}>
+          <p className="flex items-center gap-1">
+            <span className="chip">{group}</span>
+            <span className="chip tabular">{apps.filter((a) => a.group === group).length}</span>
+          </p>
+          <ul
+            className={cn(
+              "mt-5 grid border-t md:grid-cols-2 md:gap-x-10 lg:gap-x-16",
+              onDark ? "border-white/15" : "border-foreground/15",
+            )}
+          >
+            {apps
+              .filter((a) => a.group === group)
+              .map((app) => (
+                <li key={app.id} className={cn("border-b", onDark ? "border-white/15" : "border-foreground/15")}>
+                  <a
+                    href={app.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${app.name} 새 창에서 열기`}
+                    className="group flex items-start gap-4 py-5"
+                  >
+                    <span
+                      className={cn(
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
+                        onDark ? "bg-white/[0.08]" : "bg-foreground/[0.06]",
+                      )}
+                    >
+                      <app.icon className="h-[1.1rem] w-[1.1rem]" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[1.05rem] font-medium tracking-[-0.02em]">{app.name}</span>
+                      <span
+                        className={cn(
+                          "mt-1 block text-[0.925rem] leading-relaxed",
+                          onDark ? "text-navy-muted" : "text-muted-foreground",
+                        )}
+                      >
+                        {app.description}
+                      </span>
+                    </span>
+                    <ArrowUpRight
+                      className="mt-1 h-4 w-4 shrink-0 opacity-40 transition-[opacity,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </li>
+              ))}
+          </ul>
         </div>
-      </Container>
-    </section>
+      ))}
+    </div>
   )
 }
 
-function ToolTile({ product: p }: { product: Product }) {
-  const live = p.status === "active" && p.href
-  const Tag = live ? "a" : "div"
-
+// 홈 — 앱 소개: 강조 없이 간결한 목록
+export function ProductBento() {
   return (
-    <Tag
-      {...(live ? { href: p.href!, target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={cn("group block", live && "cursor-pointer")}
-      aria-label={live ? `${p.name} 새 창에서 열기` : undefined}
-    >
-      <div className="media-hover settle relative aspect-[4/5] overflow-hidden bg-white/5">
-        <Image
-          src={p.image}
-          alt={p.imageAlt}
-          fill
-          sizes="(min-width: 768px) 45vw, 100vw"
-          className={cn("object-cover", !live && "grayscale-[60%] opacity-70")}
+    <section id="apps" className="bg-navy pb-24 pt-24 text-navy-foreground sm:pb-32 sm:pt-32">
+      <Container>
+        <SectionHeading
+          onDark
+          count={apps.length}
+          label="앱"
+          title="보험·통계 실무 앱"
+          description="모델 분석부터 강의·문서 작업까지, 직접 만들어 쓰는 앱입니다. 우측 상단 앱 메뉴에서도 바로 열 수 있습니다."
+          link={{ href: "/app-resources", label: "앱 자료실" }}
         />
-        {live && (
-          <span className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#0f1c2e] opacity-0 transition-[opacity,transform] duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
-            <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-          </span>
-        )}
-      </div>
-
-      <div className="mt-5 flex items-start justify-between gap-4">
-        <div>
-          <h3 className="text-[1.6rem] font-normal leading-tight tracking-[-0.03em]">{p.name}</h3>
-          <p className="mt-1 text-[0.95rem] text-navy-muted">{p.tagline}</p>
+        <div className="mt-16 lg:mt-20">
+          <AppList onDark />
         </div>
-        <span className={cn("chip shrink-0", live ? "text-[#9fd0b4]" : "text-navy-muted")}>
-          {live ? "운영중" : "준비중"}
-        </span>
-      </div>
-
-      <p className="mt-4 max-w-[52ch] text-[0.975rem] leading-relaxed text-navy-foreground/75">{p.description}</p>
-      <ul className="mt-5 flex flex-wrap gap-1.5">
-        {p.features.map((f) => (
-          <li key={f} className="chip text-navy-foreground/80">
-            {f}
-          </li>
-        ))}
-      </ul>
-    </Tag>
+      </Container>
+    </section>
   )
 }

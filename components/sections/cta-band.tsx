@@ -23,12 +23,12 @@ export function CtaBand() {
                 </span>
               </Link>
               <Link
-                href="/products"
+                href="/app-resources"
                 className="flex h-12 items-center rounded-full border border-white/30 px-7 text-[0.95rem] font-medium transition-colors duration-300 hover:border-white hover:bg-white/10"
               >
                 <span className="roll">
-                  <span className="roll-inner" data-text="도구 둘러보기">
-                    도구 둘러보기
+                  <span className="roll-inner" data-text="앱 자료실">
+                    앱 자료실
                   </span>
                 </span>
               </Link>

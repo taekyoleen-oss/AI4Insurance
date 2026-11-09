@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Container } from "@/components/layout/container"
-import { products } from "@/content/products"
+import { apps } from "@/content/apps"
 import { navItems, contact, site } from "@/content/site"
 
 const linkCls = "text-navy-foreground/80 transition-colors hover:text-white"
@@ -39,21 +39,24 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* 도구 */}
+          {/* 앱 */}
           <div>
-            <h4 className="text-[0.85rem] font-medium text-navy-muted">도구</h4>
+            <h4 className="text-[0.85rem] font-medium text-navy-muted">모델 분석 앱</h4>
             <ul className="mt-5 space-y-3 text-[0.95rem]">
-              {products.map((p) => (
-                <li key={p.id}>
-                  {p.href ? (
-                    <a href={p.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
-                      {p.name}
+              {apps
+                .filter((a) => a.group === "모델분석")
+                .map((app) => (
+                  <li key={app.id}>
+                    <a href={app.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                      {app.name}
                     </a>
-                  ) : (
-                    <span className="text-navy-foreground/45">{p.name} (준비중)</span>
-                  )}
-                </li>
-              ))}
+                  </li>
+                ))}
+              <li>
+                <Link href="/app-resources" className={linkCls}>
+                  전체 앱 {apps.length}종 →
+                </Link>
+              </li>
             </ul>
           </div>
 

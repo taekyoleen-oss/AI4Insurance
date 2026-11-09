@@ -14,6 +14,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: "/products", destination: "/app-resources", permanent: true },
       { source: "/blog", destination: "/insights", permanent: true },
       { source: "/blog/:category/:slug", destination: "/insights/:category/:slug", permanent: true },
       { source: "/category/:category", destination: "/insights/category/:category", permanent: true },
