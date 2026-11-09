@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Search, X } from "lucide-react"
-import { InsightBoard } from "@/components/cards/insight-card"
+import { InsightCard } from "@/components/cards/insight-card"
 import type { BlogPostMeta } from "@/lib/markdown"
 import { categoryLabel } from "@/content/categories"
 import { cn } from "@/lib/utils"
@@ -41,21 +41,21 @@ export function InsightsList({ posts, categories }: InsightsListProps) {
     <div>
       {/* 검색 */}
       <div className="relative max-w-md">
-        <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="제목·태그·키워드로 검색"
           aria-label="자료실 검색"
-          className="h-12 w-full rounded-full border border-foreground/20 bg-card pl-11 pr-11 text-[0.95rem] text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground"
+          className="h-11 w-full rounded-full border border-border bg-card pl-10 pr-10 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-brand"
         />
         {query && (
           <button
             type="button"
             onClick={() => setQuery("")}
             aria-label="검색어 지우기"
-            className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
           >
             <X className="h-4 w-4" />
           </button>
@@ -65,11 +65,11 @@ export function InsightsList({ posts, categories }: InsightsListProps) {
       {/* 카테고리 필터 */}
       <div className="mt-5 flex flex-wrap gap-2">
         <FilterPill active={active === null} onClick={() => setActive(null)}>
-          전체 <span className="tabular opacity-60">{posts.length}</span>
+          전체 <span className="opacity-60">{posts.length}</span>
         </FilterPill>
         {categories.map((cat) => (
           <FilterPill key={cat} active={active === cat} onClick={() => setActive(cat)}>
-            {categoryLabel(cat)} <span className="tabular opacity-60">{countOf(cat)}</span>
+            {categoryLabel(cat)} <span className="opacity-60">{countOf(cat)}</span>
           </FilterPill>
         ))}
       </div>
@@ -83,8 +83,10 @@ export function InsightsList({ posts, categories }: InsightsListProps) {
       )}
 
       {/* 그리드 */}
-      <div className="mt-10">
-        <InsightBoard posts={filtered} />
+      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((post) => (
+          <InsightCard key={post.slug} post={post} />
+        ))}
       </div>
 
       {filtered.length === 0 && (
@@ -95,7 +97,7 @@ export function InsightsList({ posts, categories }: InsightsListProps) {
               setQuery("")
               setActive(null)
             }}
-            className="mt-3 text-sm font-medium text-brand-ink transition-colors hover:text-foreground"
+            className="mt-3 text-sm font-medium text-brand transition-colors hover:text-foreground"
           >
             필터 초기화
           </button>
@@ -116,14 +118,12 @@ function FilterPill({
 }) {
   return (
     <button
-      type="button"
-      aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-full border px-4 text-[0.9rem] font-medium transition-colors duration-300",
+        "inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
         active
-          ? "border-foreground bg-foreground text-background"
-          : "border-foreground/20 text-muted-foreground hover:border-foreground/50 hover:text-foreground",
+          ? "border-brand bg-brand text-primary-foreground"
+          : "border-border bg-card text-muted-foreground hover:text-foreground",
       )}
     >
       {children}

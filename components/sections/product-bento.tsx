@@ -1,84 +1,72 @@
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Clock } from "lucide-react"
 import { Container } from "@/components/layout/container"
+import { Reveal } from "@/components/layout/reveal"
 import { SectionHeading } from "@/components/sections/section-heading"
-import { apps, appGroups } from "@/content/apps"
+import { products } from "@/content/products"
 import { cn } from "@/lib/utils"
 
-// 앱 목록 — 그룹별 괘선 행 (홈 섹션과 앱 자료실 페이지가 함께 사용)
-export function AppList({ onDark }: { onDark?: boolean }) {
-  return (
-    <div className="grid gap-14">
-      {appGroups.map((group) => (
-        <div key={group}>
-          <p className="flex items-center gap-1">
-            <span className="chip">{group}</span>
-            <span className="chip tabular">{apps.filter((a) => a.group === group).length}</span>
-          </p>
-          <ul
-            className={cn(
-              "mt-5 grid border-t md:grid-cols-2 md:gap-x-10 lg:gap-x-16",
-              onDark ? "border-white/15" : "border-foreground/15",
-            )}
-          >
-            {apps
-              .filter((a) => a.group === group)
-              .map((app) => (
-                <li key={app.id} className={cn("border-b", onDark ? "border-white/15" : "border-foreground/15")}>
-                  <a
-                    href={app.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${app.name} 새 창에서 열기`}
-                    className="group flex items-start gap-4 py-5"
-                  >
-                    <span
-                      className={cn(
-                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
-                        onDark ? "bg-white/[0.08]" : "bg-foreground/[0.06]",
-                      )}
-                    >
-                      <app.icon className="h-[1.1rem] w-[1.1rem]" aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-[1.05rem] font-medium tracking-[-0.02em]">{app.name}</span>
-                      <span
-                        className={cn(
-                          "mt-1 block text-[0.925rem] leading-relaxed",
-                          onDark ? "text-navy-muted" : "text-muted-foreground",
-                        )}
-                      >
-                        {app.description}
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      className="mt-1 h-4 w-4 shrink-0 opacity-40 transition-[opacity,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </li>
-              ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// 홈 — 앱 소개: 강조 없이 간결한 목록
 export function ProductBento() {
   return (
-    <section id="apps" className="bg-navy pb-24 pt-24 text-navy-foreground sm:pb-32 sm:pt-32">
+    <section id="products" className="py-20 sm:py-28">
       <Container>
         <SectionHeading
-          onDark
-          count={apps.length}
-          label="앱"
-          title="보험·통계 실무 앱"
-          description="모델 분석부터 강의·문서 작업까지, 직접 만들어 쓰는 앱입니다. 우측 상단 앱 메뉴에서도 바로 열 수 있습니다."
-          link={{ href: "/app-resources", label: "앱 자료실" }}
+          eyebrow="Tools"
+          title="실무에서 바로 쓰는 자동화 도구"
+          description="30년 재보험 현장에서 길어 올린 방법론을 그대로 제품화했습니다. tkLeen 생태계의 4가지 흐름."
+          link={{ href: "/products", label: "도구 전체 보기" }}
         />
-        <div className="mt-16 lg:mt-20">
-          <AppList onDark />
+
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {products.map((p, i) => {
+            const isComingSoon = p.status === "coming-soon"
+            const CardTag = p.href ? "a" : "div"
+            return (
+              <Reveal key={p.id} delay={i * 70}>
+                <CardTag
+                  {...(p.href ? { href: p.href, target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className={cn(
+                    "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-7",
+                    p.href ? "lift cursor-pointer" : "opacity-80",
+                  )}
+                >
+                  {/* 포인트 컬러 띠 */}
+                  <span
+                    className="absolute inset-x-0 top-0 h-1 opacity-80"
+                    style={{ background: p.accent }}
+                  />
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-xl font-medium text-foreground">{p.name}</h3>
+                        {isComingSoon && (
+                          <span className="label-meta inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-muted-foreground">
+                            <Clock className="h-3 w-3" /> 준비중
+                          </span>
+                        )}
+                      </div>
+                      <p className="label-meta mt-1.5 text-muted-foreground">{p.tagline}</p>
+                    </div>
+                    {p.href && (
+                      <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
+                    )}
+                  </div>
+
+                  <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">{p.description}</p>
+
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {p.features.map((f) => (
+                      <li
+                        key={f}
+                        className="rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted-foreground"
+                      >
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </CardTag>
+              </Reveal>
+            )
+          })}
         </div>
       </Container>
     </section>

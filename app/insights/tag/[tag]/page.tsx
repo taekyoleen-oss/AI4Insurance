@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react"
 import { getPostsByTag, getAllTags } from "@/lib/markdown"
 import { Container } from "@/components/layout/container"
 import { PageHeader } from "@/components/sections/page-header"
-import { InsightBoard } from "@/components/cards/insight-card"
+import { InsightCard } from "@/components/cards/insight-card"
 
 interface PageProps {
   params: Promise<{ tag: string }>
@@ -25,14 +25,13 @@ export default async function InsightsTagPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-background">
       <PageHeader
-        eyebrow="자료실 태그"
-        count={posts.length}
+        eyebrow="Insights · Tag"
         title={<>#{decoded}</>}
         description={`'${decoded}' 태그가 달린 실무 자료 ${posts.length}편.`}
       >
         <Link
           href="/insights"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-ink transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
           자료실 전체
@@ -40,7 +39,11 @@ export default async function InsightsTagPage({ params }: PageProps) {
       </PageHeader>
 
       <Container className="py-16 sm:py-20">
-        <InsightBoard posts={posts} />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <InsightCard key={post.slug} post={post} />
+          ))}
+        </div>
         {posts.length === 0 && (
           <p className="py-16 text-center text-muted-foreground">이 태그에 해당하는 글이 없습니다.</p>
         )}

@@ -1,28 +1,45 @@
 import type { Metadata } from "next"
-import { Container } from "@/components/layout/container"
-import { PageHeader } from "@/components/sections/page-header"
-import { CtaBand } from "@/components/sections/cta-band"
-import { AppList } from "@/components/sections/product-bento"
-import { apps } from "@/content/apps"
+import { ArrowUpRight, LayoutGrid } from "lucide-react"
+import { appLibraryUrl } from "@/content/site"
 
 export const metadata: Metadata = {
   title: "앱 자료실",
-  description: "보험료 산출·ML·DFA 분석부터 강의 지원·PDF·수식 변환까지, 보험·통계 실무 앱 모음.",
+  description: "바이브코딩랩 — 더 많은 앱을 활용하고 만들 수 있는 공간. AI 4 Insurance 안에서 바로 둘러보세요.",
 }
 
 export default function AppResourcesPage() {
   return (
-    <main className="min-h-screen bg-background">
-      <PageHeader
-        eyebrow="앱 자료실"
-        count={apps.length}
-        title="보험·통계 실무 앱"
-        description="모델 분석과 강의·문서 작업에 쓰는 앱 모음입니다. 각 앱은 새 창에서 열리며, 헤더 우측 상단의 앱 메뉴에서도 바로 이동할 수 있습니다."
-      />
-      <Container className="py-16 sm:py-20">
-        <AppList />
-      </Container>
-      <CtaBand />
+    <main className="bg-background pt-16">
+      <div className="flex h-[calc(100dvh-4rem)] flex-col">
+        {/* 유틸리티 바 */}
+        <div className="flex items-center justify-between gap-3 border-b border-border bg-card px-5 py-3 sm:px-8">
+          <div className="flex items-center gap-2.5">
+            <LayoutGrid className="h-4 w-4 text-brand" />
+            <div>
+              <p className="text-sm font-semibold leading-none text-foreground">앱 자료실</p>
+              <p className="mt-1 text-xs text-muted-foreground">바이브코딩랩 · vibecodinglab.ai.kr</p>
+            </div>
+          </div>
+          <a
+            href={appLibraryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            새 탭에서 열기
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        {/* 임베드 — 상대 사이트가 framing을 허용하므로 하위 경로에 그대로 노출 */}
+        <iframe
+          src={appLibraryUrl}
+          title="바이브코딩랩 앱 자료실"
+          className="w-full flex-1 border-0 bg-white"
+          loading="eager"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
     </main>
   )
 }

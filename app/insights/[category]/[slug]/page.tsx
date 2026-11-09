@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react"
 import { getPostBySlug } from "@/lib/markdown"
 import { Container } from "@/components/layout/container"
 import { Button } from "@/components/ui/button"
@@ -51,19 +51,21 @@ export default async function InsightArticlePage({ params }: PageProps) {
 
           {/* 헤더 */}
           <header className="mt-8 border-b border-border pb-8">
-            <div className="flex flex-wrap items-center gap-1.5 text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground">
               <Link
                 href={`/insights/category/${post.category}`}
-                className="chip text-brand-ink transition-opacity hover:opacity-75"
+                className="label-meta rounded-full bg-accent px-2.5 py-1 text-accent-foreground transition-opacity hover:opacity-80"
               >
                 {categoryLabel(post.category)}
               </Link>
-              <time dateTime={post.date} className="chip tabular">
-                {formattedDate}
-              </time>
-              <span className="chip">약 5분 읽기</span>
+              <span className="label-meta inline-flex items-center gap-1.5">
+                <Calendar className="h-3.5 w-3.5" /> {formattedDate}
+              </span>
+              <span className="label-meta inline-flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5" /> 약 5분 읽기
+              </span>
             </div>
-            <h1 className="mt-7 text-[clamp(2rem,4.4vw,3.25rem)] font-light leading-[1.15] tracking-[-0.04em]">
+            <h1 className="mt-5 font-display text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-[2.5rem]">
               {post.title}
             </h1>
             {post.tags.length > 0 && (
@@ -72,7 +74,7 @@ export default async function InsightArticlePage({ params }: PageProps) {
                   <Link
                     key={tag}
                     href={`/insights/tag/${tag}`}
-                    className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                    className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-brand hover:text-brand"
                   >
                     {tag}
                   </Link>

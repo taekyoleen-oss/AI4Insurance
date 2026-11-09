@@ -17,8 +17,7 @@ export default function InsightsPage() {
   return (
     <main className="min-h-screen bg-background">
       <PageHeader
-        eyebrow="자료실"
-        count={posts.length}
+        eyebrow="Insights"
         title="보험 모델링 실무 자료"
         description="보험과 관련한 최신 지식, 데이터 분석 방법, 모델링을 위한 공간입니다. 전통적 모델링은 물론 머신러닝·딥러닝과 엑셀·파이썬 기반의 실무 지식을 공유합니다."
       />

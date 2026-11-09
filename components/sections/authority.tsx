@@ -1,92 +1,77 @@
-import Image from "next/image"
 import Link from "next/link"
+import { ArrowRight, GraduationCap } from "lucide-react"
 import { Container } from "@/components/layout/container"
+import { Reveal } from "@/components/layout/reveal"
 import { profile } from "@/content/profile"
 import { research } from "@/content/research"
 import { trustStats } from "@/content/site"
-
-function OutlineLink({ href, children }: { href: string; children: string }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex h-11 items-center rounded-full border border-foreground/25 px-5 text-[0.9rem] font-medium transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-background"
-    >
-      <span className="roll">
-        <span className="roll-inner" data-text={children}>
-          {children}
-        </span>
-      </span>
-    </Link>
-  )
-}
 
 export function Authority() {
   const recentPapers = research.slice(0, 3)
 
   return (
-    <section id="about" className="py-28 sm:py-40">
+    <section id="about" className="py-20 sm:py-28">
       <Container>
-        <h2 className="text-display-xl">{profile.name}입니다</h2>
-
-        <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-2 lg:gap-4">
-          <div className="flex flex-col justify-end lg:pr-16">
-            <p className="text-[0.95rem] font-medium text-brand-ink">{profile.credentials}</p>
-            <p className="mt-5 max-w-[36rem] text-[1.25rem] leading-[1.75] tracking-[-0.01em] sm:text-[1.375rem]">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          {/* 좌측: 전문가 소개 */}
+          <Reveal>
+            <p className="label-meta mb-3 text-brand">Authority</p>
+            <h2 className="font-display text-3xl font-medium leading-tight text-foreground sm:text-4xl">
+              검증된 전문가가
+              <br />
+              직접 만들었습니다
+            </h2>
+            <div className="mt-6 flex items-baseline gap-3">
+              <span className="font-display text-2xl font-medium text-foreground">{profile.name}</span>
+              <span className="text-sm text-muted-foreground">{profile.credentials}</span>
+            </div>
+            <p className="mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-muted-foreground">
               {profile.summary}
             </p>
-            <div className="mt-9">
-              <OutlineLink href="/about">프로필과 경력 전체 보기</OutlineLink>
-            </div>
-          </div>
+            <Link
+              href="/about"
+              className="group mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-brand transition-colors hover:text-foreground"
+            >
+              프로필 · 경력 전체 보기
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </Reveal>
 
-          <div className="media-hover settle relative aspect-[4/3] overflow-hidden bg-muted">
-            <Image
-              src="/images/statistics-graph.jpg"
-              alt="자와 펜 옆에 손으로 그린 통계 그래프"
-              fill
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
-
-        {/* 신뢰 지표 — 괘선으로 구분한 4열 */}
-        <dl className="mt-24 grid grid-cols-2 gap-px border-y border-foreground/15 bg-foreground/15 lg:grid-cols-4">
-          {trustStats.map((s) => (
-            <div key={s.label} className="bg-background py-7 pr-6 [&:not(:nth-child(2n+1))]:pl-6 lg:[&:not(:first-child)]:pl-6">
-              <dt className="text-[0.9rem] text-muted-foreground">{s.label}</dt>
-              <dd className="mt-3 text-[clamp(1.75rem,3vw,2.75rem)] font-light leading-none tracking-[-0.04em]">
-                {s.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-
-        {/* 최신 연구 실적 */}
-        <div className="mt-24 grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-4">
-          <div>
-            <h3 className="text-[1.75rem] font-light tracking-[-0.03em]">최신 연구 실적</h3>
-            <div className="mt-6">
-              <OutlineLink href="/about#research">{`논문 ${research.length}편 전체 보기`}</OutlineLink>
-            </div>
-          </div>
-          <ul className="border-t border-foreground/15">
-            {recentPapers.map((p) => (
-              <li
-                key={p.title}
-                className="grid gap-2 border-b border-foreground/15 py-6 sm:grid-cols-[7rem_1fr] sm:gap-6"
-              >
-                <span className="tabular text-[0.9rem] text-muted-foreground">{p.date}</span>
-                <div>
-                  <p className="text-[1.0625rem] font-medium leading-snug">{p.title}</p>
-                  <p className="mt-2 flex flex-wrap items-center gap-2 text-[0.9rem] text-muted-foreground">
-                    {p.journal}
-                    {p.kci && <span className="chip h-6 px-2 text-[0.75rem] text-brand-ink">KCI 등재</span>}
-                  </p>
+          {/* 우측: 지표 + 최신 논문 */}
+          <div className="space-y-5">
+            <Reveal delay={80} className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {trustStats.map((s) => (
+                <div key={s.label} className="rounded-xl border border-border bg-card p-4 text-center">
+                  <div className="font-display text-xl font-medium text-foreground">{s.value}</div>
+                  <div className="mt-1 text-[0.7rem] leading-snug text-muted-foreground">{s.label}</div>
                 </div>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </Reveal>
+
+            <Reveal delay={140} className="rounded-2xl border border-border bg-card p-6">
+              <div className="mb-4 flex items-center gap-2">
+                <GraduationCap className="h-4 w-4 text-brand" />
+                <span className="label-meta text-muted-foreground">최신 연구 실적</span>
+              </div>
+              <ul className="space-y-4">
+                {recentPapers.map((p) => (
+                  <li key={p.title} className="border-l-2 border-brand/30 pl-4">
+                    <p className="text-sm font-medium leading-snug text-foreground">{p.title}</p>
+                    <p className="label-meta mt-1.5 text-muted-foreground">
+                      {p.journal} · {p.date}{p.kci ? " · KCI" : ""}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/about#research"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand transition-colors hover:text-foreground"
+              >
+                논문 8편 전체 보기
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </Container>
     </section>

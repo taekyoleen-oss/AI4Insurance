@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Award, Quote } from "lucide-react"
 import { Container } from "@/components/layout/container"
 import { Reveal } from "@/components/layout/reveal"
 import { PageHeader } from "@/components/sections/page-header"
@@ -13,128 +14,132 @@ export const metadata: Metadata = {
     "인태교 · 보험계리사 · 경영학 박사. 코리안리 30년 재보험 실무, KCI 논문 8편. 경력 타임라인과 연구 실적.",
 }
 
-// 좌측 칩 + 제목 / 우측 본문으로 나뉘는 소개 페이지 공통 구획
-function Block({
-  id,
-  label,
-  title,
-  children,
-}: {
-  id?: string
-  label: string
-  title: string
-  children: React.ReactNode
-}) {
-  return (
-    <section id={id} className="grid scroll-mt-28 gap-8 border-t border-foreground/15 py-16 sm:py-24 lg:grid-cols-[1fr_2fr] lg:gap-16">
-      <Reveal className="lg:sticky lg:top-28 lg:self-start">
-        <span className="chip">{label}</span>
-        <h2 className="mt-5 text-display-md">{title}</h2>
-      </Reveal>
-      <div>{children}</div>
-    </section>
-  )
-}
-
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
-      <PageHeader eyebrow="소개" title={profile.name} description={profile.credentials}>
-        <dl className="grid grid-cols-2 gap-px border-y border-foreground/15 bg-foreground/15">
+      <PageHeader
+        eyebrow="About"
+        title={<>{profile.name}</>}
+        description={profile.credentials}
+      >
+        <div className="grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
           {trustStats.map((s) => (
-            <div key={s.label} className="bg-background py-5 pr-4 even:pl-5">
-              <dt className="text-[0.875rem] text-muted-foreground">{s.label}</dt>
-              <dd className="mt-1 text-[1.5rem] font-light tracking-[-0.03em]">{s.value}</dd>
+            <div key={s.label} className="rounded-xl border border-border bg-card p-4">
+              <div className="font-display text-xl font-medium text-foreground">{s.value}</div>
+              <div className="mt-1 text-[0.7rem] leading-snug text-muted-foreground">{s.label}</div>
             </div>
           ))}
-        </dl>
+        </div>
       </PageHeader>
 
-      <Container>
-        {/* 소개글 */}
-        <Reveal className="py-16 sm:py-24">
-          <div className="ml-auto max-w-[44rem] space-y-6 text-[1.1875rem] leading-[1.8] text-foreground/85">
+      <Container className="py-16 sm:py-20">
+        {/* 소개 */}
+        <Reveal className="mx-auto max-w-[680px]">
+          <div className="space-y-5 text-[1.0625rem] leading-[1.75] text-muted-foreground">
             {profile.intro.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
         </Reveal>
 
-        <Block label="경력" title="경력 타임라인">
-          <ol className="border-t border-foreground/15">
-            {timeline.map((entry) => (
-              <li
-                key={entry.period + entry.title}
-                className="grid gap-1 border-b border-foreground/15 py-6 sm:grid-cols-[9rem_1fr] sm:gap-8"
-              >
-                <p className="tabular text-[0.9rem] text-brand-ink">{entry.period}</p>
-                <div>
-                  <h3 className="text-[1.125rem] font-medium tracking-[-0.02em]">{entry.title}</h3>
-                  {entry.detail && (
-                    <p className="mt-1 text-[0.95rem] leading-relaxed text-muted-foreground">{entry.detail}</p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ol>
-        </Block>
+        {/* 경력 타임라인 */}
+        <section className="mt-20">
+          <Reveal>
+            <p className="label-meta mb-3 text-brand">Career</p>
+            <h2 className="font-display text-3xl font-medium text-foreground">경력 타임라인</h2>
+          </Reveal>
+          <div className="mt-10 max-w-3xl">
+            <ol className="relative border-l border-border pl-8">
+              {timeline.map((entry, i) => (
+                <Reveal as="li" key={entry.period + entry.title} delay={i * 40} className="relative pb-9 last:pb-0">
+                  <span className="absolute -left-[2.15rem] top-1.5 h-3 w-3 rounded-full border-2 border-brand bg-background" />
+                  <p className="label-meta text-brand">{entry.period}</p>
+                  <h3 className="mt-1 text-base font-semibold text-foreground">{entry.title}</h3>
+                  {entry.detail && <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{entry.detail}</p>}
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        </section>
 
-        <Block label="성과" title="주요 성과">
-          <ul className="border-t border-foreground/15">
-            {achievements.map((a) => (
-              <li key={a} className="border-b border-foreground/15 py-5 text-[1.0625rem] leading-relaxed">
-                {a}
-              </li>
+        {/* 주요 성과 */}
+        <section className="mt-20">
+          <Reveal>
+            <p className="label-meta mb-3 text-brand">Highlights</p>
+            <h2 className="font-display text-3xl font-medium text-foreground">주요 성과</h2>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {achievements.map((a, i) => (
+              <Reveal key={a} delay={i * 50} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5">
+                <Award className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+                <p className="text-sm leading-relaxed text-foreground">{a}</p>
+              </Reveal>
             ))}
-          </ul>
-        </Block>
+          </div>
+        </section>
 
-        <Block id="research" label={`논문 ${research.length}편`} title="연구 실적">
-          <p className="mb-8 max-w-[38rem] text-muted-foreground">
-            국민건강보험·신용정보 등 공공·금융 데이터를 활용한 보험 위험률 및 예측모형 연구.
-          </p>
-          <ol className="border-t border-foreground/15">
-            {research.map((p) => (
-              <li
+        {/* 연구 실적 */}
+        <section id="research" className="mt-20 scroll-mt-24">
+          <Reveal>
+            <p className="label-meta mb-3 text-brand">Research</p>
+            <h2 className="font-display text-3xl font-medium text-foreground">연구 실적 · 논문 {research.length}편</h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              국민건강보험·신용정보 등 공공·금융 데이터를 활용한 보험 위험률 및 예측모형 연구.
+            </p>
+          </Reveal>
+          <ol className="mt-10 space-y-px overflow-hidden rounded-2xl border border-border">
+            {research.map((p, i) => (
+              <Reveal
+                as="li"
                 key={p.title}
-                className="grid gap-2 border-b border-foreground/15 py-6 sm:grid-cols-[6.5rem_1fr] sm:gap-8"
+                delay={Math.min(i * 30, 200)}
+                className="flex flex-col gap-2 bg-card p-5 sm:flex-row sm:items-baseline sm:gap-6"
               >
-                <p className="tabular text-[0.9rem] text-muted-foreground">{p.date}</p>
-                <div>
-                  <p className="text-[1.0625rem] font-medium leading-snug tracking-[-0.015em]">{p.title}</p>
-                  <p className="mt-2 text-[0.925rem] text-muted-foreground">
-                    {p.authors}, <span className="text-foreground/75">{p.journal}</span>
+                <div className="label-meta shrink-0 text-muted-foreground sm:w-24">{p.date}</div>
+                <div className="flex-1">
+                  <p className="text-[0.95rem] font-medium leading-snug text-foreground">{p.title}</p>
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    {p.authors} · <span className="text-foreground/70">{p.journal}</span>
                     {p.detail ? `, ${p.detail}` : ""}
+                    {p.kci && (
+                      <span className="label-meta ml-2 rounded bg-accent px-1.5 py-0.5 text-accent-foreground">KCI</span>
+                    )}
                   </p>
-                  {p.kci && <span className="chip mt-3 text-brand-ink">KCI 등재</span>}
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ol>
-        </Block>
+        </section>
 
-        <Block label="분야" title="전문 분야">
-          <ul className="flex flex-wrap gap-2">
+        {/* 전문 분야 */}
+        <section className="mt-20">
+          <Reveal>
+            <p className="label-meta mb-3 text-brand">Expertise</p>
+            <h2 className="font-display text-3xl font-medium text-foreground">전문 분야</h2>
+          </Reveal>
+          <Reveal delay={60} className="mt-7 flex flex-wrap gap-2.5">
             {expertise.map((tag) => (
-              <li key={tag} className="rounded-full border border-foreground/20 px-4 py-2 text-[0.95rem]">
+              <span
+                key={tag}
+                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground"
+              >
                 {tag}
-              </li>
+              </span>
             ))}
-          </ul>
-        </Block>
-      </Container>
+          </Reveal>
+        </section>
 
-      {/* 교육 철학 — 네이비 풀블리드 인용 */}
-      <section className="border-b border-white/10 bg-navy py-24 text-navy-foreground sm:py-36">
-        <Container>
-          <figure className="ml-auto max-w-[56rem]">
-            <blockquote className="text-[clamp(1.625rem,3.4vw,2.75rem)] font-light leading-[1.35] tracking-[-0.035em]">
+        {/* 교육 철학 */}
+        <section className="mt-20">
+          <Reveal className="relative mx-auto max-w-3xl rounded-3xl border border-border bg-muted/40 p-8 sm:p-12">
+            <Quote className="h-8 w-8 text-brand/40" />
+            <p className="mt-4 font-display text-xl font-medium leading-relaxed text-foreground sm:text-2xl">
               {profile.philosophy}
-            </blockquote>
-            <figcaption className="mt-10 text-[0.95rem] text-navy-muted">{profile.name}, 보험계리사</figcaption>
-          </figure>
-        </Container>
-      </section>
+            </p>
+            <p className="mt-6 label-meta text-muted-foreground">— {profile.name}, 보험계리사</p>
+          </Reveal>
+        </section>
+      </Container>
 
       <CtaBand />
     </main>

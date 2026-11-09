@@ -10,11 +10,15 @@ export const site = {
 
 export const navItems = [
   { name: "소개", href: "/about" },
+  { name: "도구", href: "/products" },
   { name: "배움 마당", href: "/learning" },
   { name: "자료실", href: "/insights" },
   { name: "앱 자료실", href: "/app-resources" },
   { name: "문의", href: "/contact" },
 ] as const
+
+// 바이브코딩랩 — 앱 자료실로 임베드/연결되는 외부 사이트
+export const appLibraryUrl = "https://vibecodinglab.ai.kr/"
 
 export const contact = {
   email: "taekyoleen@gmail.com",
@@ -31,5 +35,5 @@ export const trustStats = [
   { value: "30년", label: "코리안리 재보험 실무" },
   { value: "보험계리사", label: "2002년 자격 취득" },
   { value: "논문 8편", label: "KCI 등재 다수" },
-  { value: "실무 앱 11종", label: "보험·통계 분석과 강의 지원" },
+  { value: "도구 4종", label: "보험 실무 자동화" },
 ] as const
